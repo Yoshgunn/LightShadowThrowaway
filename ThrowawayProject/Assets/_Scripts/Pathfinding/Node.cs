@@ -24,6 +24,7 @@ public class Node : MonoBehaviour {
 			boundaries[i] = this.transform.GetChild (i).GetComponent<Boundary>();
 			//If there are more than four boundaries, everything will break
 		}*/
+		//this.gameObject.AddComponent<Light> ();
 	}
 	
 	// Update is called once per frame
