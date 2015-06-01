@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PathfindingPlayer : MonoBehaviour {
+	//TODO: Enable 'redirection', where you can click while moving to move toward a different place.
 
 	public static PathfindingPlayer PLAYER;
 
