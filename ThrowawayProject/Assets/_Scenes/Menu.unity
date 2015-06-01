@@ -206,7 +206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Changing Shadow Object Level
+  m_Text: Hiding Shadow Object Level
 --- !u!222 &351455528
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ GameObject:
   - 114: {fileID: 1788995259}
   - 114: {fileID: 1788995262}
   m_Layer: 5
-  m_Name: ChangingShadowObjectButton
+  m_Name: HidingShadowObjectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -740,7 +740,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ChangingShadowObject
+          m_StringArgument: HidingShadowObject
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Menu.unity
   - enabled: 1
-    path: Assets/_Scenes/ChangingShadowObject.unity
-  - enabled: 1
     path: Assets/_Scenes/ButtonTorch1.unity
+  - enabled: 1
+    path: Assets/_Scenes/HidingShadowObject.unity
