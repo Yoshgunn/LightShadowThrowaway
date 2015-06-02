@@ -18,7 +18,7 @@ public class Boundary : MonoBehaviour {
 
 		//Check if there are other boundaries that this should be linked to
 		foreach (Boundary go in allBoundaries) {
-			if (this.transform.position == go.transform.position){
+			if (this.transform.position == go.transform.position || Vector3.Distance(this.transform.position, go.transform.position) < 0.05f){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
 				break;
