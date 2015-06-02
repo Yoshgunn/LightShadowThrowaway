@@ -21,6 +21,11 @@ public class PathfindingPlayer : MonoBehaviour {
 		//Figure out if we have to move somewhere
 		if (targetNode == null) {
 			targetNode = currentNode.GetNextNode ();
+			if (targetNode == null){
+				//We are on the current node and not moving. In this case, make sure we are in the correct spot
+				//This is mostly here so that moving platforms will work
+				transform.position = currentNode.transform.position;
+			}
 		}
 		
 		if (targetNode != null) {
