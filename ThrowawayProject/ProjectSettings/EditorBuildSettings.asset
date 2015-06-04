@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Ramp.unity
   - enabled: 1
     path: Assets/_Scenes/MovingPlatform.unity
+  - enabled: 1
+    path: Assets/_Scenes/DraggableObject.unity
