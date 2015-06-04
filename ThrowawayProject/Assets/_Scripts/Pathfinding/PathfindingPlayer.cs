@@ -18,6 +18,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		//Figure out if we have to move somewhere
 		if (targetNode == null) {
 			targetNode = currentNode.GetNextNode ();

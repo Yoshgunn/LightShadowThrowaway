@@ -180,6 +180,16 @@ public class Node : MonoBehaviour {
 		}
 	}
 
+	//Function to get the node at a specific space
+	public static Node GetNodeAt(Vector3 location){
+		foreach (Node node in allNodes) {
+			if (node.transform.position == location){
+				return node;
+			}
+		}
+		return null;
+	}
+
 	//Function to rebuild this node
 	//	loop through all boundaries
 	//	if any of them have the same position as a boundary in this node, add a connector (to both nodes)

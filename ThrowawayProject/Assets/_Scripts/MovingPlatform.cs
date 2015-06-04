@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovingPlatform : MonoBehaviour {
+public class MovingPlatform : MonoBehaviour, Triggerable {
 
 	private static float SPEED = 0.03f;
 	private static int STOP_TIME = 60;
 
 	public bool looping;
+	public bool triggerable;
 
 	private Transform platform = null;
 	private Transform[] targetedLocations;
@@ -14,6 +15,7 @@ public class MovingPlatform : MonoBehaviour {
 	private int currentTargetIndex = 0;
 	private int incrementAmount = 1;
 	private int timer = 0;
+	private bool triggered;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,7 @@ public class MovingPlatform : MonoBehaviour {
 			targetedLocations[i-1] = transform.GetChild (i);
 			Debug.Log ("Target Transform is: " + targetedLocations[i-1]);
 		}
+		triggered = !triggerable;
 		/*targetedLocations = new Transform[children.Length-2];
 		for (int i=2; i<children.Length; i++) {
 			targetedLocations[i-2] = children[i];
@@ -35,6 +38,9 @@ public class MovingPlatform : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log (Vector3.Distance (platform.position, targetTransform.position));
+		if (!triggered) {
+			return;
+		}
 		if (Vector3.Distance (platform.position, targetTransform.position) <= SPEED) {
 			//Debug.Log ("Changing Target");
 			platform.position = targetTransform.position;
@@ -64,5 +70,13 @@ public class MovingPlatform : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void Triggerable.Trigger(){
+		triggered = true;
+	}
+
+	void Triggerable.UnTrigger(){
+		triggered = false;
 	}
 }

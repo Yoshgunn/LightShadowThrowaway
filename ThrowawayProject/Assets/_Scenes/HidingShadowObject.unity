@@ -2195,6 +2195,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2067437738}
   - 114: {fileID: 2067437739}
+  - 23: {fileID: 2067437740}
   m_Layer: 0
   m_Name: HidingObject
   m_TagString: Untagged
@@ -2230,6 +2231,30 @@ MonoBehaviour:
   blockingTriggers:
   - {fileID: 1263956448}
   player: {fileID: 183123297}
+--- !u!23 &2067437740
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067437737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1001 &2132768816
 Prefab:
   m_ObjectHideFlags: 0

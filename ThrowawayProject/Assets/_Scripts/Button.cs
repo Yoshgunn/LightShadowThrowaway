@@ -5,16 +5,19 @@ public class Button : MonoBehaviour, Trigger {
 
 	//TODO: Rather than have this declared publicly (which is a headache if we ever want to move the button),
 	//			it should figure out the node based on where it is (similar to how nodes find each other).
-	public Node myNode;
 	public bool retriggerable;
 	public bool unTriggerOnLeave;
 	public Transform[] triggerableTransforms;
 
 	private bool isTriggering = false;
 	private Triggerable[] triggerables;
+	private Node myNode;
 
 	// Use this for initialization
 	void Start () {
+		//Get the node we're on
+		myNode = Node.GetNodeAt (this.transform.position);
+
 		triggerables = new Triggerable[triggerableTransforms.Length];
 		for (int i=0; i<triggerableTransforms.Length; i++) {
 			triggerables[i] = triggerableTransforms[i].GetComponent<Triggerable>();
