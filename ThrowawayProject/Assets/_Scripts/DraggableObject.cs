@@ -4,24 +4,21 @@ using System.Collections;
 public class DraggableObject : MonoBehaviour {
 
 	public bool moveInX;
+	public bool moveInZ;
 
 	private bool dragging = false;
-	private Plane directionPlane;
 	private Plane floorPlane;
 	private float xPos;
 	private float zPos;
 	private float yPos;
 	private Vector3 whereIWantToBe;
+	//private bool movingInX = false;
+	//private bool movingInZ = false;
 
 	// Use this for initialization
 	void Start () {
 		Application.targetFrameRate = 30;
 		//Make a plane
-		if (moveInX) {
-			directionPlane = new Plane (new Vector3 (0, 0, 1), this.transform.position);
-		} else {
-			directionPlane = new Plane (new Vector3 (1, 0, 0), this.transform.position);
-		}
 		floorPlane = new Plane (new Vector3 (0, 1, 0), this.transform.position);
 		xPos = this.transform.position.x;
 		yPos = this.transform.position.y;
@@ -38,30 +35,21 @@ public class DraggableObject : MonoBehaviour {
 			//Find the place where it should be...
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			float rayDistanceY;
-			float rayDistanceOther;
+			float rayDistance;
 			Vector3 pos = this.transform.position;
-			if (directionPlane.Raycast(ray, out rayDistanceY)){
-				if (floorPlane.Raycast (ray, out rayDistanceOther)){
-					rayDistanceY = 1000;
-					//Debug.Log ("y distance: " + rayDistanceY + ", other distance: " + rayDistanceOther);
-					//Debug.Log ("first position: " + pos);
-					pos = ray.GetPoint(Mathf.Min(rayDistanceY, rayDistanceOther));
-					pos.y = yPos;
-					if (moveInX){
-						pos.z = zPos;
-					}else{
-						pos.x = xPos;
-					}
-					whereIWantToBe = pos;
-					//Debug.Log ("second position: " + pos);
+			if (floorPlane.Raycast (ray, out rayDistance)){
+				//Debug.Log ("y distance: " + rayDistanceY + ", other distance: " + rayDistanceOther);
+				//Debug.Log ("first position: " + pos);
+				pos = ray.GetPoint(rayDistance);
+				pos.y = yPos;
+				if (!moveInX){
+					pos.x = xPos;
 				}
-				/*pos = ray.GetPoint(rayDistance);
-				if (pos.y < yPos + 1 && pos.y > yPos - 1){
-					//Debug.Log ("pos: " + pos);
-
-					pos.y = yPos;
-					this.transform.position = pos;
-				}*/
+				if (!moveInZ){
+					pos.z = zPos;
+				}
+				whereIWantToBe = pos;
+				//Debug.Log ("second position: " + pos);
 			}
 			
 		}
@@ -75,7 +63,9 @@ public class DraggableObject : MonoBehaviour {
 			this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*0.2f);
 		}else{
 			this.transform.position = new Vector3(Mathf.Round(this.transform.position.x), Mathf.Round(this.transform.position.y), Mathf.Round(this.transform.position.z));
-			Node.GetNodeAt(new Vector3(this.transform.position.x, 0, this.transform.position.z)).RecalculateEdges(false);
+			if (dragging){
+				Node.GetNodeAt(new Vector3(this.transform.position.x, 0, this.transform.position.z)).RecalculateEdges(false);
+			}
 		}
 
 	}
