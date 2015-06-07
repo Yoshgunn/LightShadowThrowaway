@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Torch : MonoBehaviour, Triggerable {
+public class Torch : MonoBehaviour, Triggerable, MyLight {
 
 	private Light light;
 
+	public bool startsOn;
+
 	// Use this for initialization
 	void Start () {
-		light = this.gameObject.AddComponent<Light> ();
-		light.enabled = false;
+		light = this.GetComponent<Light> ();
+		if (light == null) {
+			light = this.gameObject.AddComponent<Light> ();
+		}
+		//light = this.gameObject.AddComponent<Light> ();
+		light.enabled = startsOn;
 		light.shadows = LightShadows.Hard;
 	}
 	
@@ -23,5 +29,9 @@ public class Torch : MonoBehaviour, Triggerable {
 
 	void Triggerable.UnTrigger(){
 		light.enabled = !light.enabled;
+	}
+
+	bool MyLight.GetIsOn(){
+		return light.enabled;
 	}
 }

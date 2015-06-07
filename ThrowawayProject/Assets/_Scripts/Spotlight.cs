@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spotlight : MonoBehaviour, Triggerable {
+public class MySpotlight : MonoBehaviour, Triggerable {
 	private bool isTriggered = false;
 
 	// Use this for initialization

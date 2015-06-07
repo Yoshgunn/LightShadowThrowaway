@@ -58,7 +58,9 @@ public class DraggableObject : MonoBehaviour {
 		//TODO: Instead of '0' for the y position, actually figure it out. I'm not sure how to do that yet, so I'm leaving it for now.
 		whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
 		if (whereIWantToBe != this.transform.position && Node.GetNodeAt(new Vector3(whereIWantToBe.x, 0, whereIWantToBe.z))){
-			Node.GetNodeAt(new Vector3(Mathf.Round (this.transform.position.x), 0, Mathf.Round (this.transform.position.z))).RecalculateEdges(true);
+			if (Node.GetNodeAt(new Vector3(Mathf.Round (this.transform.position.x), 0, Mathf.Round (this.transform.position.z)))!=null){
+				Node.GetNodeAt(new Vector3(Mathf.Round (this.transform.position.x), 0, Mathf.Round (this.transform.position.z))).RecalculateEdges(true);
+			}
 			//Node.GetNodeAt(new Vector3(this.transform.position.x, 0, this.transform.position.z)).RecalculateEdges(false);
 			this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*0.2f);
 		}else{
