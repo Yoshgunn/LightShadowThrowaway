@@ -102,10 +102,10 @@ public class Node : MonoBehaviour {
 		}
 		PathfindingPlayer.PLAYER.SetTargetNode (null);		//I would rather have the player CONTINUE toward the CURRENT target, then pick up from there
 		//Initialize stuff
-		//Node current = PathfindingPlayer.PLAYER.currentNode;
+		//Node current = PathfindingPlayer.PLAYER.GetCurrentNode();
 		Node current = PathfindingPlayer.PLAYER.GetTargetNode ();	//The node we're on IN THE PATHFINDING ALGORITHM. currentNode still refers to the node where the character is.
 		if (current == null){
-			current = PathfindingPlayer.PLAYER.currentNode;			//If we're not moving, use the current node. Otherwise, use the target node.
+			current = PathfindingPlayer.PLAYER.GetCurrentNode();			//If we're not moving, use the current node. Otherwise, use the target node.
 		}
 		//Debug.Log ("Test: " + (current == PathfindingPlayer.PLAYER.GetTargetNode ()));
 		HashSet<Node> closedSet = new HashSet<Node> ();	//The set of nodes already evaluated

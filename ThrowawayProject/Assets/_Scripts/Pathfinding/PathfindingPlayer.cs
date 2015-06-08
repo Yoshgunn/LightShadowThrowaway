@@ -6,13 +6,14 @@ public class PathfindingPlayer : MonoBehaviour {
 
 	public static PathfindingPlayer PLAYER;
 
-	public Node currentNode;
+	private Node currentNode;
 	private Node targetNode = null;
 	private float speed = 0.05f;
 
 	// Use this for initialization
 	void Start () {
 		PLAYER = this;
+		currentNode = Node.GetNodeAt (this.transform.position);
 		Node.currentNode = currentNode;
 	}
 	
@@ -53,5 +54,15 @@ public class PathfindingPlayer : MonoBehaviour {
 
 	public void SetTargetNode(Node n){
 		this.targetNode = n;
+	}
+
+	public Node GetCurrentNode(){
+		return currentNode;
+	}
+
+	public void SetCurrentNode(Node n){
+		//This probably shouldn't be used often, let the pathfinding handle it
+		//I'm using it now for the doorways, since you have to 'teleport'
+		this.currentNode = n;
 	}
 }

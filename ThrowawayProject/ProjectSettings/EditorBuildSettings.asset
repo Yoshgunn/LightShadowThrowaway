@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/GhostMonolith.unity
   - enabled: 1
     path: Assets/_Scenes/MovingObject.unity
+  - enabled: 1
+    path: Assets/_Scenes/Doorway.unity

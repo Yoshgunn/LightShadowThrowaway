@@ -28,7 +28,7 @@ public class Button : MonoBehaviour, Trigger {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isTriggering && PathfindingPlayer.PLAYER.currentNode.Equals (myNode)) {
+		if (!isTriggering && PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode)) {
 			//This means that the player has moved onto the button
 			//Trigger all of the triggerables, and set isTriggered to true
 			//Debug.Log ("trigger");
@@ -37,7 +37,7 @@ public class Button : MonoBehaviour, Trigger {
 			foreach (Triggerable triggerable in triggerables) {
 				triggerable.Trigger ();
 			}
-		} else if (isTriggering && !PathfindingPlayer.PLAYER.currentNode.Equals (myNode) && retriggerable) {
+		} else if (isTriggering && !PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode) && retriggerable) {
 			//This means that the player has moved off of the button. Only triggers if 'retriggerable' is true.
 			isTriggering = false;
 			this.gameObject.transform.Translate(new Vector3(0f, 0.05f, 0f));
