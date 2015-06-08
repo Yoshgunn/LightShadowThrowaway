@@ -7,10 +7,12 @@ public class Node : MonoBehaviour {
 	public static Node currentNode;
 	private static List<Node> allNodes = new List<Node>();
 
+	public float cost = 1;
+
 	private Boundary[] boundaries = new Boundary[4];
 	private Node nextNode = null;	//The next node in the path. If it's null, then this is the last space in the path (not necessarily the goal though).
 	private bool marked = false;	//Is this node part of the path?
-	private int gScore = -1;		//Cost from start along best known path during pathfinding.
+	private float gScore = -1;		//Cost from start along best known path during pathfinding.
 	private float fScore = -1;		//Estimated total cost from start to goal through this node.
 
 	// Use this for initialization
@@ -57,11 +59,11 @@ public class Node : MonoBehaviour {
 		nextNode = n;
 	}
 	
-	public int GetGScore(){
+	public float GetGScore(){
 		return gScore;
 	}
 	
-	public void SetGScore (int g){
+	public void SetGScore (float g){
 		gScore = g;
 	}
 	
@@ -115,7 +117,7 @@ public class Node : MonoBehaviour {
 		currentNode.SetFScore (Heuristic (current, goal));	//Estimated total cost from start to foal through this node.
 
 		float lowestFScore;
-		int tentativeGScore;
+		float tentativeGScore;
 		while (openSet.Count > 0) {
 			//Debug.Log ("");
 			//Debug.Log ("Looping...");
@@ -149,7 +151,7 @@ public class Node : MonoBehaviour {
 				if (closedSet.Contains (neighbors[i])){
 					continue;
 				}
-				tentativeGScore = current.GetGScore() + 1;
+				tentativeGScore = current.GetGScore() + neighbors[i].cost;
 
 				//If this node hasn't been put in the open set OR this path to this node is BETTER, add it to the open set and recalculate stuff
 				if (tentativeGScore < neighbors[i].GetGScore() || !openSet.Contains (neighbors[i])){
