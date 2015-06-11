@@ -34,7 +34,7 @@ public class DraggableObject : MonoBehaviour {
 		if (dragging) {
 			//Find the place where it should be...
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			float rayDistanceY;
+			//float rayDistanceY;
 			float rayDistance;
 			Vector3 pos = this.transform.position;
 			if (floorPlane.Raycast (ray, out rayDistance)){

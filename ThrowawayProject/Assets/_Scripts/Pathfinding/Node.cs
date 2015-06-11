@@ -94,7 +94,7 @@ public class Node : MonoBehaviour {
 
 	//Find a path from the current node to the target node
 	public static void FindPath(Node goal){
-		//Debug.Log ("Pathfinding...");
+		Debug.Log ("Pathfinding...");
 		foreach (Node n in allNodes) {
 			//Debug.Log ("Resetting next node for " + n);
 			n.SetMarked (false);
