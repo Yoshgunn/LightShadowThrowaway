@@ -466,7 +466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Changing Shadow Object Level
+  m_Text: Monolith Level
 --- !u!222 &194707451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hiding Shadow Object Level
+  m_Text: Portal Monolith Level
 --- !u!222 &351455528
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -845,7 +845,7 @@ GameObject:
   - 114: {fileID: 781554875}
   - 114: {fileID: 781554874}
   m_Layer: 5
-  m_Name: ChangingShadowObjectButton 1
+  m_Name: MonolithButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ChangingShadowObject
+          m_StringArgument: Monolith
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1840,7 +1840,7 @@ GameObject:
   - 114: {fileID: 1608884378}
   - 114: {fileID: 1608884377}
   m_Layer: 5
-  m_Name: MovingObjectButton
+  m_Name: WanderingMonolithButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MovingObject
+          m_StringArgument: WanderingMonolith
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2162,7 +2162,7 @@ GameObject:
   - 114: {fileID: 1788995259}
   - 114: {fileID: 1788995262}
   m_Layer: 5
-  m_Name: HidingShadowObjectButton
+  m_Name: PortalMonolithButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2234,7 +2234,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: HidingShadowObject
+          m_StringArgument: PortalMonolith
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2336,7 +2336,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Moving Object Level
+  m_Text: Wandering Monolith Level
 --- !u!222 &1910744596
 CanvasRenderer:
   m_ObjectHideFlags: 0

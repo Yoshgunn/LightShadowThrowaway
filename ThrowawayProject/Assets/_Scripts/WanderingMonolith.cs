@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovingObject : MonoBehaviour, Triggerable {
+public class WanderingMonolith : MonoBehaviour, Triggerable {
 
 	public float speed = 0.02f;
 

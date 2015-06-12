@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangingObject : MonoBehaviour {
+public class Monolith : MonoBehaviour {
 
 	//bool hidden = false;
 	bool triggered = false;

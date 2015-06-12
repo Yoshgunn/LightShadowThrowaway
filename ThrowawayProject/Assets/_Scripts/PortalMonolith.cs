@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class HidingObject : MonoBehaviour {
+public class PortalMonolith : MonoBehaviour {
 
 	bool hidden = false;
 	int lastNumObst = 0;
