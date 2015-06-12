@@ -275,7 +275,8 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c8225ccc3b17ec4c84cb4b08df27dbb, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11434012, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &196070925 stripped
@@ -1311,6 +1312,22 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &1696938822 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 117858, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
+  m_PrefabInternal: {fileID: 196070924}
+--- !u!114 &1696938823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1696938822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c839914bca00e64ca9dc32fb2e65ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
 --- !u!1 &1979416171
 GameObject:
   m_ObjectHideFlags: 0

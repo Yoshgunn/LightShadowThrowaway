@@ -9,7 +9,7 @@ public class Node : MonoBehaviour {
 
 	public float cost = 1;
 
-	private Boundary[] boundaries = new Boundary[4];
+	public Boundary[] boundaries = new Boundary[4];
 	private Node nextNode = null;	//The next node in the path. If it's null, then this is the last space in the path (not necessarily the goal though).
 	private bool marked = false;	//Is this node part of the path?
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
@@ -80,7 +80,7 @@ public class Node : MonoBehaviour {
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
-	public void RecalculateEdges(bool willBeActive){
+	public virtual void RecalculateEdges(bool willBeActive){
 		if (willBeActive) {
 			foreach (Boundary b in boundaries) {
 				b.Connect ();
