@@ -4,7 +4,7 @@ using System.Collections;
 public class RotatableNode : Node {
 
 	bool isActive = true;
-	bool isFacingUp;
+	bool isFacingUp = true;
 	bool wasFacingUp;	//Whether or not it was facing up last frame
 
 	// Use this for initialization
@@ -15,22 +15,24 @@ public class RotatableNode : Node {
 	// Update is called once per frame
 	void Update () {
 		if (isActive) {
-			wasFacingUp = isFacingUp;
 			isFacingUp = (Vector3.Angle(transform.up, Vector3.up)<=45);
 
 			if (wasFacingUp!=isFacingUp){
 				if (!isFacingUp){
+					Debug.Log ("Disconnecting...");
 					//Disconnect this node if it's not 'facing up'
 					foreach (Boundary b in boundaries){
 						b.Disconnect();
 					}
 				}else{
+					Debug.Log ("Reconnecting...");
 					//Reconnect it if it is
 					foreach (Boundary b in boundaries){
 						b.Connect();
 					}
 				}
 			}
+			wasFacingUp = isFacingUp;
 		}
 	}
 
@@ -39,5 +41,6 @@ public class RotatableNode : Node {
 	public override void RecalculateEdges(bool willBeActive){
 		base.RecalculateEdges (willBeActive);
 		isActive = willBeActive;
+		wasFacingUp = true;
 	}
 }

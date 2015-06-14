@@ -16,6 +16,10 @@ public class ClickDetector : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		Activate ();
+	}
+
+	public void Activate(){
 		Node.FindPath (this.node);
 	}
 }

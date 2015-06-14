@@ -31,7 +31,8 @@ public class Boundary : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (this.connectedTo != null)
+			Debug.DrawLine (this.node.transform.position, this.connectedTo.node.transform.position, Color.green);
 	}
 
 	//Find a connection
@@ -40,6 +41,7 @@ public class Boundary : MonoBehaviour {
 			if (go.isActiveAndEnabled && this.transform.position == go.transform.position){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
+				//Debug.Log ("Connected!");
 				break;
 			}
 		}
@@ -49,6 +51,7 @@ public class Boundary : MonoBehaviour {
 
 	//Remove the connection
 	public void Disconnect(){
+		//Debug.Log ("Disconnected!");
 		if (this.connectedTo != null) {
 			//If this node is pointing to a node through this connector, disconnect it
 			if (this.node.GetNextNode() == connectedTo.GetNode ()){

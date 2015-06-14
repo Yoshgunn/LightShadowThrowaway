@@ -31,3 +31,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Doorway.unity
   - enabled: 1
     path: Assets/_Scenes/DraggableObjectRotate.unity
+  - enabled: 1
+    path: Assets/_Scenes/DraggableObjectRotate2.unity
