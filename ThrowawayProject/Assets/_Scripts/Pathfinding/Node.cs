@@ -191,6 +191,13 @@ public class Node : MonoBehaviour {
 		}
 		return null;
 	}
+	
+	public Node GetNextNodeInDirection(int direction){
+		if (direction < 4 && boundaries [direction].GetConnectedTo () != null) {
+			return boundaries [direction].GetConnectedTo ().GetNode ();
+		}
+		return null;
+	}
 
 	//Function to rebuild this node
 	//	loop through all boundaries
