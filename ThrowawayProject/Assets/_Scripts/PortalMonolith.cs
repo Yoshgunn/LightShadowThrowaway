@@ -13,7 +13,7 @@ public class PortalMonolith : MonoBehaviour {
 	bool completedOnce = false;
 
 	public GameObject[] blockingTriggers;		//These have to go in bottom-to-top style
-	public GameObject player;
+	//public GameObject player;
 	public GameObject[] lights;
 
 	//public LayerMask layerMask;
@@ -51,8 +51,8 @@ public class PortalMonolith : MonoBehaviour {
 	void TestShouldBeHidden(){
 		int countTemp = 0;		//How many objects am I 'above'?
 		int count = 0;
-		float px = player.transform.position.x;	//'player x'
-		float pz = player.transform.position.z;	//'player z'
+		float px = PathfindingPlayer.PLAYER.transform.position.x;	//'player x'
+		float pz = PathfindingPlayer.PLAYER.transform.position.z;	//'player z'
 		float tx = this.transform.position.x;		//'this x'
 		float tz = this.transform.position.z;		//'this z'
 		float angleToPlayer = Mathf.Atan2(pz - tz, px - tx);
@@ -148,19 +148,29 @@ public class PortalMonolith : MonoBehaviour {
 			}
 			
 			bool isBlocked = false;
-			//Find the angle TO the OBJECT from the light
-			float angleToObject = Mathf.Atan2(light.transform.position.z - transform.position.z, light.transform.position.x - transform.position.x);
-			//Find the angle OF the the OBJECT from the light
-			float objectAngle = Mathf.Atan2(Mathf.Sqrt (2)/2f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(transform.position.x, transform.position.z)));
+			//Find the angle TO the OBJECT from the light in the XZ plane
+			float angleToObjectXZ = Mathf.Atan2(light.transform.position.z - transform.position.z, light.transform.position.x - transform.position.x);
+			//Find the angle OF the the OBJECT from the light in the XZ plane
+			float objectAngleXZ = Mathf.Atan2(Mathf.Sqrt (2)/2f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(transform.position.x, transform.position.z)));
+			
+			//Find the angle TO the OBJECT from the light in the XY plane
+			float angleToObjectXY = Mathf.Atan2(light.transform.position.y - transform.position.y, light.transform.position.x - transform.position.x);
+			//Find the angle OF the the OBJECT from the light in the XY plane
+			float objectAngleXY = Mathf.Atan2(Mathf.Sqrt (2)/2f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.y), new Vector2(transform.position.x, transform.position.y)));
 			
 			foreach (GameObject blocker in blockingTriggers){
-				//Find the angle TO the BLOCKER from the light
-				float angleToBlocker = Mathf.Atan2(light.transform.position.z - blocker.transform.position.z, light.transform.position.x - blocker.transform.position.x);
-				//Find the angle OF the BLOCKER from the light
-				float blockerAngle = Mathf.Atan2(0.5f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(blocker.transform.position.x, blocker.transform.position.z)));
+				//Find the angle TO the BLOCKER from the light in the XZ plane
+				float angleToBlockerXZ = Mathf.Atan2(light.transform.position.z - blocker.transform.position.z, light.transform.position.x - blocker.transform.position.x);
+				//Find the angle OF the BLOCKER from the light in the XZ plane
+				float blockerAngleXZ = Mathf.Atan2(0.5f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(blocker.transform.position.x, blocker.transform.position.z)));
+				
+				//Find the angle TO the BLOCKER from the light in the XY plane
+				float angleToBlockerXY = Mathf.Atan2(light.transform.position.z - blocker.transform.position.z, light.transform.position.x - blocker.transform.position.x);
+				//Find the angle OF the BLOCKER from the light in the XY plane
+				float blockerAngleXY = Mathf.Atan2(0.5f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(blocker.transform.position.x, blocker.transform.position.z)));
 				
 				//Now test to see if this blocker is blocking the object from this light
-				if (angleToBlocker - blockerAngle < angleToObject - objectAngle && angleToBlocker + blockerAngle > angleToObject + objectAngle){
+				if ((angleToBlockerXZ - blockerAngleXZ < angleToObjectXZ - objectAngleXZ && angleToBlockerXZ + blockerAngleXZ > angleToObjectXZ + objectAngleXZ) && (angleToBlockerXY - blockerAngleXY < angleToObjectXY - objectAngleXY && angleToBlockerXY + blockerAngleXY > angleToObjectXY + objectAngleXY)){
 					isBlocked = true;
 					break;
 				}

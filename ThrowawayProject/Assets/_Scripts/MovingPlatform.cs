@@ -10,6 +10,7 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 	public bool triggerable;
 
 	private Transform platform = null;
+	private Node[] nodes;
 	private Transform[] targetedLocations;
 	private Transform targetTransform;
 	private int currentTargetIndex = 0;
@@ -21,6 +22,7 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 	void Start () {
 		//Transform[] children = transform.;
 		platform = transform.GetChild (0);
+		nodes = platform.GetComponentsInChildren<Node> ();
 		Debug.Log ("Platform is: " + platform);
 		targetedLocations = new Transform[transform.childCount - 1];
 		for (int i=1;i<transform.childCount;i++){
@@ -58,17 +60,30 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 			timer = STOP_TIME;
 
 			//Add the node to the pathfinding
-			platform.GetComponentInChildren<Node>().RecalculateEdges(true);
+			foreach (Node n in nodes){
+				n.RecalculateEdges(true);
+			}
 		} else {
+			timer--;
 			if (timer == 0){
+				//Remove the node from the pathfinding
+				foreach (Node n in nodes){
+					n.RecalculateEdges(false);
+				}
+			}else if (timer<0){
 				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * SPEED);
-			}else{
-				timer--;
+				if (timer==-1){
+					//Reconnect these nodes so that they will reconnect with each other (if there are multiple nodes in the platform). They won't connect with the 'shores', since we've already left.
+					foreach (Node n in nodes){
+						n.RecalculateEdges(true);
+					}
+				}
+			}/*else{
 				if (timer==0){
 					//Remove the node from the pathfinding
 					platform.GetComponentInChildren<Node>().RecalculateEdges(false);
 				}
-			}
+			}*/
 		}
 	}
 

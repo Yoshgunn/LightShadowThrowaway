@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Node : MonoBehaviour {
+	
+	public static int UP_X = 0;
+	public static int UP_Z = 1;
+	public static int DOWN_X = 2;
+	public static int DOWN_Z = 3;
 
 	public static Node currentNode;
 	private static List<Node> allNodes = new List<Node>();
@@ -14,6 +19,9 @@ public class Node : MonoBehaviour {
 	private bool marked = false;	//Is this node part of the path?
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
 	private float fScore = -1;		//Estimated total cost from start to goal through this node.
+
+	//Might have to do something like 'associated nodes', so that something on a ramp can occupy all three of the nodes for the ramp...
+	private bool isOccupied = false;	//Whether or not something is currently occupying this node.
 
 	// Use this for initialization
 	void Awake () {
@@ -77,6 +85,14 @@ public class Node : MonoBehaviour {
 
 	public void SetMarked(bool b){
 		this.marked = b;
+	}
+
+	public void SetIsOccupied(bool b){
+		this.isOccupied = b;
+	}
+
+	public bool GetIsOccupied(){
+		return this.isOccupied;
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
@@ -182,6 +198,16 @@ public class Node : MonoBehaviour {
 		}
 	}
 
+	//Function to get the node directly under a specific space
+	public static Node GetNodeDirectlyUnder(Vector3 location){
+		foreach (Node node in allNodes) {
+			if (node.transform.position == new Vector3(location.x, location.y-0.5f, location.z)){
+				return node;
+			}
+		}
+		return null;
+	}
+
 	//Function to get the node at a specific space
 	public static Node GetNodeAt(Vector3 location){
 		foreach (Node node in allNodes) {
@@ -193,10 +219,47 @@ public class Node : MonoBehaviour {
 	}
 	
 	public Node GetNextNodeInDirection(int direction){
-		if (direction < 4 && boundaries [direction].GetConnectedTo () != null) {
+		if (direction < 4 && boundaries [direction].GetConnectedTo ()) {
 			return boundaries [direction].GetConnectedTo ().GetNode ();
 		}
 		return null;
+	}
+	
+	//Get the node to the 'up in x' direction from this node
+	public Node GetUpXNode(){
+		return GetNextNodeInDirection (UP_X);
+	}
+	
+	//Get the node to the 'up in z' direction from this node
+	public Node GetUpZNode(){
+		return GetNextNodeInDirection (UP_Z);
+	}
+	
+	//Get the node to the 'down in x' direction from this node
+	public Node GetDownXNode(){
+		return GetNextNodeInDirection (DOWN_X);
+	}
+	
+	//Get the node to the 'down in z' direction from this node
+	public Node GetDownZNode(){
+		return GetNextNodeInDirection (DOWN_Z);
+	}
+
+	//Returns the position that something should be in to be considered 'on' this node. Directly above this node (0.5)
+	public Vector3 GetPositionAbove(){
+		return new Vector3(this.transform.position.x, this.transform.position.y+0.5f, this.transform.position.z);
+	}
+
+	//Determine whether or not two nodes are direct neighbors
+	public bool IsNeighborOf(Node n){
+		foreach (Boundary b in boundaries) {
+			if (b.GetConnectedTo()){
+				if (b.GetConnectedTo().GetNode().Equals (n)){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	//Function to rebuild this node

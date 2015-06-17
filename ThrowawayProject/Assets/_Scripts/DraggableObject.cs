@@ -12,6 +12,9 @@ public class DraggableObject : MonoBehaviour {
 	private float zPos;
 	private float yPos;
 	private Vector3 whereIWantToBe;
+	private Node myNode = null;
+
+	private static float SPEED = 0.2f;
 	//private bool movingInX = false;
 	//private bool movingInZ = false;
 
@@ -23,6 +26,7 @@ public class DraggableObject : MonoBehaviour {
 		xPos = this.transform.position.x;
 		yPos = this.transform.position.y;
 		zPos = this.transform.position.z;
+		myNode = Node.GetNodeDirectlyUnder (this.transform.position);
 		//plane.
 		//plane = this.transform.GetChild (0).GetComponent<Plane>();
 		//plane = mesh.
@@ -54,21 +58,44 @@ public class DraggableObject : MonoBehaviour {
 			
 		}
 
+		//Now determine where I should be (node-wise)
+		whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
+		if (whereIWantToBe != this.transform.position) {
+			Node nodeIWantToBeOn = Node.GetNodeDirectlyUnder (whereIWantToBe);
+			if (nodeIWantToBeOn && !nodeIWantToBeOn.GetIsOccupied ()/* && nodeIWantToBeOn.IsNeighborOf (myNode)*/) {
+				myNode.RecalculateEdges(true);
+				myNode.SetIsOccupied(false);
+				nodeIWantToBeOn.RecalculateEdges(false);
+				nodeIWantToBeOn.SetIsOccupied(true);
+				myNode = nodeIWantToBeOn;
+			}
+
+			if (this.transform.position != myNode.GetPositionAbove()){
+				if (Vector3.Distance (whereIWantToBe, this.transform.position) >SPEED){
+					this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*SPEED);
+				}else{
+					this.transform.position = whereIWantToBe;
+				}
+			}
+		}
+
 		//Now, determine where I should be (like, which node)
 		//TODO: Instead of '0' for the y position, actually figure it out. I'm not sure how to do that yet, so I'm leaving it for now.
-		whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
-		if (whereIWantToBe != this.transform.position && Node.GetNodeAt(new Vector3(whereIWantToBe.x, 0, whereIWantToBe.z))){
-			if (Node.GetNodeAt(new Vector3(Mathf.Round (this.transform.position.x), 0, Mathf.Round (this.transform.position.z)))!=null){
-				Node.GetNodeAt(new Vector3(Mathf.Round (this.transform.position.x), 0, Mathf.Round (this.transform.position.z))).RecalculateEdges(true);
+		/*whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
+		if (whereIWantToBe != this.transform.position && Node.GetNodeDirectlyUnder(whereIWantToBe) && !Node.GetNodeDirectlyUnder(whereIWantToBe).GetIsOccupied()){
+			if (Node.GetNodeDirectlyUnder(new Vector3(Mathf.Round (this.transform.position.x), this.transform.position.y, Mathf.Round (this.transform.position.z)))!=null){
+				Node.GetNodeDirectlyUnder(new Vector3(Mathf.Round (this.transform.position.x), this.transform.position.y, Mathf.Round (this.transform.position.z))).RecalculateEdges(true);
 			}
 			//Node.GetNodeAt(new Vector3(this.transform.position.x, 0, this.transform.position.z)).RecalculateEdges(false);
 			this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*0.2f);
 		}else{
 			this.transform.position = new Vector3(Mathf.Round(this.transform.position.x), Mathf.Round(this.transform.position.y), Mathf.Round(this.transform.position.z));
 			if (dragging){
-				Node.GetNodeAt(new Vector3(this.transform.position.x, 0, this.transform.position.z)).RecalculateEdges(false);
+				if (Node.GetNodeDirectlyUnder(this.transform.position)){
+					Node.GetNodeDirectlyUnder(this.transform.position).RecalculateEdges(false);
+				}
 			}
-		}
+		}*/
 
 	}
 

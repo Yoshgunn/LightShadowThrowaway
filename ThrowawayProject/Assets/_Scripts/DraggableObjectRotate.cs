@@ -8,7 +8,7 @@ public class DraggableObjectRotate : MonoBehaviour {
 	public bool rotateInX;
 	public bool rotateInY;
 	public bool rotateInZ;
-	//public bool moveWhilePlayerIsHere = false;
+	public bool moveWhilePlayerIsHere = false;
 
 	private Vector3 normal;
 	private bool dragging = false;
@@ -133,10 +133,12 @@ public class DraggableObjectRotate : MonoBehaviour {
 		
 		clickStartLocation = Input.mousePosition;
 
-		//Only do ANYTHING else if the player isn't here
-		foreach (Node node in nodes){
-			if (PathfindingPlayer.PLAYER.GetCurrentNode().Equals (node)){
-				return;
+		//Only do ANYTHING else if the player isn't here or if this is marked as moveWhilePlayerIsHere
+		if (!moveWhilePlayerIsHere) {
+			foreach (Node node in nodes) {
+				if (PathfindingPlayer.PLAYER.GetCurrentNode ().Equals (node)) {
+					return;
+				}
 			}
 		}
 		dragging = true;
