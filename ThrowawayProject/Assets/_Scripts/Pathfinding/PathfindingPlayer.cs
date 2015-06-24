@@ -18,7 +18,7 @@ public class PathfindingPlayer : MonoBehaviour {
 		currentNode = Node.GetNodeDirectlyUnder (this.transform.position);
 		Node.currentNode = currentNode;
 		currentNode.SetIsOccupied (true);
-		//this.transform.GetComponentInChildren<Light> ().attenuate = false;
+		this.transform.GetComponentInChildren<Light> ().attenuate = false;
 	}
 	
 	// Update is called once per frame
