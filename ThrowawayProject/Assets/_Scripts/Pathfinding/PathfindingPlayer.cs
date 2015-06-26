@@ -64,7 +64,7 @@ public class PathfindingPlayer : MonoBehaviour {
 
 				//If we are halfway to the new node, set the old one to unoccupied
 				if (currentNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, currentNode.GetPositionAbove())){
-					Debug.Log ("Setting current node to unoccupied.");
+					//Debug.Log ("Setting current node to unoccupied.");
 					currentNode.SetIsOccupied(false);
 					targetNode.SetIsOccupied(true);
 				}
