@@ -44,6 +44,9 @@ public class Node : MonoBehaviour {
 		} else {
 			this.GetComponent<Light> ().enabled = false;
 		}*/
+		if (isOccupied) {
+			Debug.DrawLine(this.transform.position, this.GetPositionAbove(), Color.magenta);
+		}
 	}
 
 	public List<Node> GetNeighbors(){
@@ -93,6 +96,10 @@ public class Node : MonoBehaviour {
 
 	public bool GetIsOccupied(){
 		return this.isOccupied;
+	}
+
+	public float GetPathfindingCost(){
+		return cost + ((isOccupied)?0.5f:0f);
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
@@ -167,7 +174,8 @@ public class Node : MonoBehaviour {
 				if (closedSet.Contains (neighbors[i])){
 					continue;
 				}
-				tentativeGScore = current.GetGScore() + neighbors[i].cost;
+				//tentativeGScore = current.GetGScore() + neighbors[i].cost;
+				tentativeGScore = current.GetGScore() + neighbors[i].GetPathfindingCost();
 
 				//If this node hasn't been put in the open set OR this path to this node is BETTER, add it to the open set and recalculate stuff
 				if (tentativeGScore < neighbors[i].GetGScore() || !openSet.Contains (neighbors[i])){
@@ -219,10 +227,23 @@ public class Node : MonoBehaviour {
 	}
 	
 	public Node GetNextNodeInDirection(int direction){
-		if (direction < 4 && boundaries [direction].GetConnectedTo ()) {
-			return boundaries [direction].GetConnectedTo ().GetNode ();
+		Node returnValue = null;
+		//Debug.Log ("Moving in direction: " + direction);
+		if (direction < 4 && boundaries.Length==4 && boundaries [direction].GetConnectedTo ()) {
+			returnValue = boundaries [direction].GetConnectedTo ().GetNode ();
+			//return boundaries [direction].GetConnectedTo ().GetNode ();
+		} else if (boundaries.Length == 2) {
+			direction /= 2;
+			//Debug.Log ("Actually, it's direction: " + direction);
+			if (direction<2 && boundaries[direction].GetConnectedTo()){
+				returnValue = boundaries[direction].GetConnectedTo().GetNode ();
+				//return boundaries[direction].GetConnectedTo().GetNode ();
+			}
 		}
-		return null;
+		if (returnValue == this) {
+			returnValue=null;
+		}
+		return returnValue;
 	}
 	
 	//Get the node to the 'up in x' direction from this node

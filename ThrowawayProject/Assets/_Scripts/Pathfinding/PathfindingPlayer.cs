@@ -11,6 +11,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	private float speed = 0.05f;
 	private static int TIME_TO_MOVE_ONE_SPACE = 20;
 	private int countBetweenSpaces = 0;
+	bool moveToTargetNode = false;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,18 @@ public class PathfindingPlayer : MonoBehaviour {
 				//We are on the current node and not moving. In this case, make sure we are in the correct spot
 				//This is mostly here so that moving platforms will work
 				transform.position = currentNode.GetPositionAbove();
+				if (!currentNode.GetIsOccupied()){
+					currentNode.SetIsOccupied(true);
+				}
+			}else{
+				//We have somewhere to go
+				if (!targetNode.GetIsOccupied()){
+					targetNode.SetIsOccupied(true);
+					//currentNode.SetIsOccupied(false);
+					moveToTargetNode = true;
+				}else{
+					moveToTargetNode = false;
+				}
 			}
 		} else {
 			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*10){
@@ -41,15 +54,29 @@ public class PathfindingPlayer : MonoBehaviour {
 				//Move toward the target node
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
 				//this.transform.Translate (Vector3.Normalize (targetNode.transform.position - currentNode.transform.position) * speed);
-				this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(currentNode.cost+targetNode.cost)));
+				if (moveToTargetNode){
+					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(currentNode.cost+targetNode.cost)));
+				}else if (!targetNode.GetIsOccupied()){
+					targetNode.SetIsOccupied(true);
+					//currentNode.SetIsOccupied(false);
+					moveToTargetNode = true;
+				}
+
+				//If we are halfway to the new node, set the old one to unoccupied
+				if (currentNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, currentNode.GetPositionAbove())){
+					Debug.Log ("Setting current node to unoccupied.");
+					currentNode.SetIsOccupied(false);
+					targetNode.SetIsOccupied(true);
+				}
 			} else {
 				//Move to the target node and set the new current node
 				//Also set the target node as occupied and the current node as unoccupied
 				this.transform.position = targetNode.GetPositionAbove();
 				currentNode.SetNextNode (null);
 				currentNode.SetMarked (false);
-				currentNode.SetIsOccupied(false);
-				targetNode.SetIsOccupied(true);
+				//currentNode.SetIsOccupied(false);
+				//targetNode.SetIsOccupied(true);
+				moveToTargetNode = false;
 				currentNode = targetNode;
 				targetNode = currentNode.GetNextNode ();
 				if (targetNode == null) {
