@@ -10355,7 +10355,7 @@ MonoBehaviour:
     type: 2}
   alphaBackNoBlendOp: {fileID: 2100000, guid: 203376e7542aa416e8605d0bc1c5181e, type: 2}
   shadowMesh: {fileID: 4300000, guid: ecdae3cd4a0734d11a3bd6744c7d66be, type: 2}
-  isSimple: 1
+  isSimple: 0
   layer: 0
 --- !u!1001 &1829172201
 Prefab:
