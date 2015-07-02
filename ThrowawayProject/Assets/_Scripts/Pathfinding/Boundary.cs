@@ -31,14 +31,15 @@ public class Boundary : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (this.connectedTo != null)
+		if (this.connectedTo != null) {
 			Debug.DrawLine (this.node.transform.position, this.connectedTo.node.transform.position, Color.green);
+		}
 	}
 
 	//Find a connection
 	public void Connect(){
 		foreach (Boundary go in allBoundaries) {
-			if (go.isActiveAndEnabled && this.transform.position == go.transform.position){
+			if (go.isActiveAndEnabled && /*!this.Equals (go) && */this.transform.position == go.transform.position){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
 				//Debug.Log ("Connected!");

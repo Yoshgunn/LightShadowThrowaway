@@ -24,6 +24,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log ("Framerate: " + 1f / Time.deltaTime);
 
 		//Figure out if we have to move somewhere
 		if (targetNode == null) {
@@ -55,6 +56,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
 				//this.transform.Translate (Vector3.Normalize (targetNode.transform.position - currentNode.transform.position) * speed);
 				if (moveToTargetNode){
+					//Debug.Log ("Moving " + (1f/(10f*(currentNode.cost+targetNode.cost))) + " spaces");
 					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(currentNode.cost+targetNode.cost)));
 				}else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);
