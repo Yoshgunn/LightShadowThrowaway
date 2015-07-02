@@ -36,7 +36,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 
 		if (rotating && rotationAmount < rotateAmount) {
 			//If we're still rotating
-			rotator.RotateAround (this.transform.position, axis, SPEED);
+			rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-SPEED:SPEED));
 			rotationAmount += SPEED;
 		} else {
 			//If we're done rotating...
