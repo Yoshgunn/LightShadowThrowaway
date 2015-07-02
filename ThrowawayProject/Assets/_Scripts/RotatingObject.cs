@@ -11,7 +11,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 	public bool rotateInZ = false;
 	public bool rotateBackwards = false;
 
-	private int myRotation = 0;
+	//private int myRotation = 0;
 	private int rotationAmount = 0;
 	private bool triggered = false;
 	private bool rotating = false;
@@ -55,7 +55,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 	void Triggerable.Trigger(){
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
-			Debug.Log ("Disabling the nodes!~");
+			//Debug.Log ("Disabling the nodes!~");
 			Node[] nodes = rotator.GetComponentsInChildren<Node> ();
 			foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
