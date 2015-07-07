@@ -78,7 +78,7 @@ public class Walker : MonoBehaviour {
 			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > speed){
 				//If we're not moving (because the place we want to move to is occupied), figure out what to do.
 				if (moveToTargetNode){
-					Debug.Log ("Moving toward target node");
+					//Debug.Log ("Moving toward target node");
 					//this.transform.Translate (Vector3.Normalize(targetNode.GetPositionAbove() - this.transform.position)*speed);
 					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(myNode.cost+targetNode.cost)));
 				}else if (!targetNode.GetIsOccupied()){
@@ -89,6 +89,7 @@ public class Walker : MonoBehaviour {
 
 				//If we are halfway to the new node, set the old one to unoccupied
 				if (myNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, myNode.GetPositionAbove())){
+					//Debug.Log ("Walker setting node occupied to false...");
 					myNode.SetIsOccupied(false);
 					targetNode.SetIsOccupied(true);
 				}

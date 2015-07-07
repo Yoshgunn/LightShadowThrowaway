@@ -4,15 +4,19 @@ using System.Collections;
 public class PathfindingPlayer : MonoBehaviour {
 	//TODO: Enable 'redirection', where you can click while moving to move toward a different place.
 
+	private static int TIME_TO_MOVE_ONE_SPACE = 100;
+	private static int TIME_TO_WAIT_FOR_OCCUPIED_NODE = 60;		//2 seconds? 1?
+
 	public static PathfindingPlayer PLAYER;
 
 	private Node currentNode;
 	private Node targetNode = null;
 	private float speed = 0.05f;
-	private static int TIME_TO_MOVE_ONE_SPACE = 20;
 	private int countBetweenSpaces = 0;
 	bool moveToTargetNode = false;
 	bool clickWhileMoving = false;
+	private int waitingForOccupiedNodeCount = 0;
+	private bool alreadyResetLastNodeOccupied = false;		//Boolean to keep track of whether or not you already reset the last node you were on. If a walker is right behind you, it might reset that node after the walker actually occupies it.
 
 	// Use this for initialization
 	void Start () {
@@ -38,12 +42,15 @@ public class PathfindingPlayer : MonoBehaviour {
 					currentNode.SetIsOccupied(true);
 				}
 			}else{
+				//Debug.Log ("target node is null, getting next node. Next node is " + targetNode);
 				//We have somewhere to go
 				if (!targetNode.GetIsOccupied()){
+					//Debug.Log ("Target node is NOT occupied!");
 					targetNode.SetIsOccupied(true);
 					//currentNode.SetIsOccupied(false);
 					moveToTargetNode = true;
 				}else{
+					//Debug.Log ("Target node is occupied!");
 					moveToTargetNode = false;
 				}
 			}
@@ -63,13 +70,28 @@ public class PathfindingPlayer : MonoBehaviour {
 					targetNode.SetIsOccupied(true);
 					//currentNode.SetIsOccupied(false);
 					moveToTargetNode = true;
+					waitingForOccupiedNodeCount = 0;
+				}else{
+					//we are still waiting for the occupied node
+					waitingForOccupiedNodeCount++;
+					if (waitingForOccupiedNodeCount > TIME_TO_WAIT_FOR_OCCUPIED_NODE){
+						//Debug.Log ("The way I wanted to go is blocked!");
+						targetNode = null;
+						Node.FindNewPathToGoal();
+						targetNode = currentNode.GetNextNode();
+						if (!targetNode){
+							return;
+						}
+					}
 				}
 
 				//If we are halfway to the new node, set the old one to unoccupied
-				if (currentNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, currentNode.GetPositionAbove())){
+				//Debug.Log ("currentNode: " + currentNode + ", targetNode: " + targetNode);
+				if (!alreadyResetLastNodeOccupied && currentNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, currentNode.GetPositionAbove())){
 					//Debug.Log ("Setting current node to unoccupied.");
 					currentNode.SetIsOccupied(false);
 					targetNode.SetIsOccupied(true);
+					alreadyResetLastNodeOccupied = true;
 				}
 			} else {
 				//Move to the target node and set the new current node
@@ -92,6 +114,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				}
 
 				countBetweenSpaces = 0;
+				alreadyResetLastNodeOccupied = false;
 
 			}
 		}

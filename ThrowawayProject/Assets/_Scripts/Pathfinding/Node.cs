@@ -8,6 +8,7 @@ public class Node : MonoBehaviour {
 	public static int UP_Z = 1;
 	public static int DOWN_X = 2;
 	public static int DOWN_Z = 3;
+	private static float ADDITIONAL_OCCUPIED_PATHFINDING_COST = 2;
 
 	public static Node currentNode;
 	private static List<Node> allNodes = new List<Node>();
@@ -23,6 +24,7 @@ public class Node : MonoBehaviour {
 
 	//Might have to do something like 'associated nodes', so that something on a ramp can occupy all three of the nodes for the ramp...
 	private bool isOccupied = false;	//Whether or not something is currently occupying this node.
+	private static Node overallGoal = null;			//The overall goal of the pathfinding.
 
 	// Use this for initialization
 	void Awake () {
@@ -52,10 +54,10 @@ public class Node : MonoBehaviour {
 			this.GetComponent<Light> ().enabled = false;
 		}*/
 		if (isOccupied) {
-			//Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
+			Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
 		}
 		if (marked) {
-			Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
+			//Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
 		}
 	}
 
@@ -109,7 +111,7 @@ public class Node : MonoBehaviour {
 	}
 
 	public float GetPathfindingCost(){
-		return cost + ((isOccupied)?0.5f:0f);
+		return cost + ((isOccupied)?ADDITIONAL_OCCUPIED_PATHFINDING_COST:0f);
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
@@ -125,14 +127,24 @@ public class Node : MonoBehaviour {
 		}
 	}
 
+	//Find a path to the current goal (to be used in the case of deadlocks having to do with Walkers and occupied nodes).
+	public static void FindNewPathToGoal(){
+		Debug.Log ("Finding NEW path!");
+		FindPath (overallGoal);
+	}
+
 	//Find a path from the current node to the target node
 	public static void FindPath(Node goal){
 		Debug.Log ("Pathfinding...");
+
+		overallGoal = goal;
 		foreach (Node n in allNodes) {
 			//Debug.Log ("Resetting next node for " + n);
 			n.SetMarked (false);
 			n.SetNextNode (null);
-			n.SetIsOccupied (false);
+			if (!n.Equals (PathfindingPlayer.PLAYER.GetCurrentNode())){
+				//n.SetIsOccupied (false);
+			}
 		}
 		PathfindingPlayer.PLAYER.SetupPathfinding ();
 		//PathfindingPlayer.PLAYER.SetTargetNode (null);		//I would rather have the player CONTINUE toward the CURRENT target, then pick up from there
