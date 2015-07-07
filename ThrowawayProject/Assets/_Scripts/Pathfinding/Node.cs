@@ -15,6 +15,7 @@ public class Node : MonoBehaviour {
 	public float cost = 1;
 
 	public Boundary[] boundaries = new Boundary[4];
+	public Transform placeholder = null;
 	private Node nextNode = null;	//The next node in the path. If it's null, then this is the last space in the path (not necessarily the goal though).
 	private bool marked = false;	//Is this node part of the path?
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
@@ -29,6 +30,12 @@ public class Node : MonoBehaviour {
 		allNodes.Add (this);
 		//Get all of the boundaries (the children)
 		boundaries = this.transform.GetComponentsInChildren<Boundary> ();
+		//Get the placeholder object (which denotes the actual location of this node)
+		if (this.transform.childCount > 0) {
+			placeholder = this.transform.GetChild(0).transform;
+		} else {
+			placeholder = this.transform;
+		}
 		/*for (int i=0; i<this.transform.childCount; i++) {
 			if (boundaries[i].component
 			boundaries[i] = this.transform.GetChild (i).GetComponent<Boundary>();
@@ -45,7 +52,8 @@ public class Node : MonoBehaviour {
 			this.GetComponent<Light> ().enabled = false;
 		}*/
 		if (isOccupied) {
-			Debug.DrawLine(this.transform.position, this.GetPositionAbove(), Color.magenta);
+			//Debug.DrawLine(this.transform.position, this.GetPositionAbove(), Color.magenta);
+			Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
 		}
 	}
 
@@ -209,7 +217,8 @@ public class Node : MonoBehaviour {
 	//Function to get the node directly under a specific space
 	public static Node GetNodeDirectlyUnder(Vector3 location){
 		foreach (Node node in allNodes) {
-			if (node.transform.position == new Vector3(location.x, location.y-0.5f, location.z)){
+			//if (node.transform.position == new Vector3(location.x, location.y-0.5f, location.z)){
+			if (node.GetPositionAbove () == location){
 				return node;
 			}
 		}
@@ -219,7 +228,7 @@ public class Node : MonoBehaviour {
 	//Function to get the node at a specific space
 	public static Node GetNodeAt(Vector3 location){
 		foreach (Node node in allNodes) {
-			if (node.transform.position == location){
+			if (node.GetPosition() == location){
 				return node;
 			}
 		}
@@ -268,7 +277,13 @@ public class Node : MonoBehaviour {
 
 	//Returns the position that something should be in to be considered 'on' this node. Directly above this node (0.5)
 	public Vector3 GetPositionAbove(){
-		return new Vector3(this.transform.position.x, this.transform.position.y+0.5f, this.transform.position.z);
+		//return new Vector3(this.transform.position.x, this.transform.position.y+0.5f, this.transform.position.z);
+		return new Vector3(placeholder.position.x, placeholder.position.y+0.5f, placeholder.position.z);
+	}
+
+	//Returns the position of this node (the position is determined by the 'placeholder' child object)
+	public Vector3 GetPosition(){
+		return placeholder.position;
 	}
 
 	//Determine whether or not two nodes are direct neighbors

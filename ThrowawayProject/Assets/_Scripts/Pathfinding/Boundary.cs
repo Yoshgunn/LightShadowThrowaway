@@ -32,7 +32,7 @@ public class Boundary : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (this.connectedTo != null) {
-			Debug.DrawLine (this.node.transform.position, this.connectedTo.node.transform.position, Color.green);
+			Debug.DrawLine (this.node.GetPosition (), this.connectedTo.node.GetPosition (), Color.green);
 		}
 	}
 
