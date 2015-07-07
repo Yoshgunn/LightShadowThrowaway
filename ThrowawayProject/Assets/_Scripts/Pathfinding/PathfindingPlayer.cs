@@ -12,6 +12,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	private static int TIME_TO_MOVE_ONE_SPACE = 20;
 	private int countBetweenSpaces = 0;
 	bool moveToTargetNode = false;
+	bool clickWhileMoving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -47,7 +48,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				}
 			}
 		} else {
-			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*10){
+			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
 				Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
 			}
@@ -57,7 +58,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				//this.transform.Translate (Vector3.Normalize (targetNode.transform.position - currentNode.transform.position) * speed);
 				if (moveToTargetNode){
 					//Debug.Log ("Moving " + (1f/(10f*(currentNode.cost+targetNode.cost))) + " spaces");
-					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(currentNode.cost+targetNode.cost)));
+					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
 				}else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);
 					//currentNode.SetIsOccupied(false);
@@ -74,8 +75,13 @@ public class PathfindingPlayer : MonoBehaviour {
 				//Move to the target node and set the new current node
 				//Also set the target node as occupied and the current node as unoccupied
 				this.transform.position = targetNode.GetPositionAbove();
-				currentNode.SetNextNode (null);
-				currentNode.SetMarked (false);
+				if (clickWhileMoving){
+					//Debug.Log ("Not resetting the current node this time");
+					clickWhileMoving = false;
+				}else{
+					currentNode.SetNextNode (null);
+					currentNode.SetMarked (false);
+				}
 				//currentNode.SetIsOccupied(false);
 				//targetNode.SetIsOccupied(true);
 				moveToTargetNode = false;
@@ -88,6 +94,13 @@ public class PathfindingPlayer : MonoBehaviour {
 				countBetweenSpaces = 0;
 
 			}
+		}
+	}
+
+	public void SetupPathfinding(){
+		//Do any preparation that needs to be done for pathfinding
+		if (targetNode) {
+			clickWhileMoving = true;
 		}
 	}
 

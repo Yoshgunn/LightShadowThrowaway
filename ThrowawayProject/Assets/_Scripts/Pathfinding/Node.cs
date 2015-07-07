@@ -52,7 +52,9 @@ public class Node : MonoBehaviour {
 			this.GetComponent<Light> ().enabled = false;
 		}*/
 		if (isOccupied) {
-			//Debug.DrawLine(this.transform.position, this.GetPositionAbove(), Color.magenta);
+			//Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
+		}
+		if (marked) {
 			Debug.DrawLine(placeholder.position, this.GetPositionAbove(), Color.magenta);
 		}
 	}
@@ -130,8 +132,10 @@ public class Node : MonoBehaviour {
 			//Debug.Log ("Resetting next node for " + n);
 			n.SetMarked (false);
 			n.SetNextNode (null);
+			n.SetIsOccupied (false);
 		}
-		PathfindingPlayer.PLAYER.SetTargetNode (null);		//I would rather have the player CONTINUE toward the CURRENT target, then pick up from there
+		PathfindingPlayer.PLAYER.SetupPathfinding ();
+		//PathfindingPlayer.PLAYER.SetTargetNode (null);		//I would rather have the player CONTINUE toward the CURRENT target, then pick up from there
 		//Initialize stuff
 		//Node current = PathfindingPlayer.PLAYER.GetCurrentNode();
 		Node current = PathfindingPlayer.PLAYER.GetTargetNode ();	//The node we're on IN THE PATHFINDING ALGORITHM. currentNode still refers to the node where the character is.
