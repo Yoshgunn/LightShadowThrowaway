@@ -62,13 +62,17 @@ public class DraggableObject : MonoBehaviour {
 		whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
 		if (whereIWantToBe != this.transform.position) {
 			Node nodeIWantToBeOn = Node.GetNodeDirectlyUnder (whereIWantToBe);
-			if (nodeIWantToBeOn && !nodeIWantToBeOn.GetIsOccupied ()/* && nodeIWantToBeOn.IsNeighborOf (myNode)*/) {
+			if (nodeIWantToBeOn && !nodeIWantToBeOn.GetIsOccupied () && nodeIWantToBeOn.WouldBeNeighborOf (myNode)) {
 				myNode.RecalculateEdges(true);
 				myNode.SetIsOccupied(false);
 				nodeIWantToBeOn.RecalculateEdges(false);
 				nodeIWantToBeOn.SetIsOccupied(true);
 				myNode = nodeIWantToBeOn;
 			}
+
+			//TODO: The easiest way to do this might be:
+			//		- Find the closest node to 'whereIWantToBe' that is connected to the current node
+			//		- Use that as the 'whereIWantToBe' location
 
 			if (this.transform.position != myNode.GetPositionAbove()){
 				if (Vector3.Distance (whereIWantToBe, this.transform.position) >SPEED){

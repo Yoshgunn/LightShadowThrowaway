@@ -314,6 +314,18 @@ public class Node : MonoBehaviour {
 		return false;
 	}
 
+	//Determine whether or not two nodes WOULD be neighbors if they were both active.
+	public bool WouldBeNeighborOf(Node n){
+		foreach (Boundary b in boundaries) {
+			foreach (Boundary b2 in n.boundaries){
+				if (b.transform.position == b2.transform.position || Vector3.Distance (b.transform.position, b2.transform.position) < Boundary.DISTANCE_FOR_CONNECTION){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	//Function to rebuild this node
 	//	loop through all boundaries
 	//	if any of them have the same position as a boundary in this node, add a connector (to both nodes)

@@ -6,6 +6,7 @@ public class Boundary : MonoBehaviour {
 
 	//public static GameObject[] allBoundaries = new GameObject[0];
 	public static List<Boundary> allBoundaries = new List<Boundary>();
+	public static float DISTANCE_FOR_CONNECTION = 0.05f;
 
 	private Node node;
 	private Boundary connectedTo = null;
@@ -18,7 +19,7 @@ public class Boundary : MonoBehaviour {
 
 		//Check if there are other boundaries that this should be linked to
 		foreach (Boundary go in allBoundaries) {
-			if (this.transform.position == go.transform.position || Vector3.Distance(this.transform.position, go.transform.position) < 0.05f){
+			if (this.transform.position == go.transform.position || Vector3.Distance(this.transform.position, go.transform.position) < DISTANCE_FOR_CONNECTION){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
 				break;
@@ -39,7 +40,7 @@ public class Boundary : MonoBehaviour {
 	//Find a connection
 	public void Connect(){
 		foreach (Boundary go in allBoundaries) {
-			if (go.isActiveAndEnabled && /*!this.Equals (go) && */this.transform.position == go.transform.position){
+			if (go.isActiveAndEnabled && /*!this.Equals (go) && */(this.transform.position == go.transform.position || Vector3.Distance (this.transform.position, go.transform.position) < DISTANCE_FOR_CONNECTION)){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
 				//Debug.Log ("Connected!");
