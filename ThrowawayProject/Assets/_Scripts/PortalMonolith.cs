@@ -147,6 +147,16 @@ public class PortalMonolith : MonoBehaviour {
 				continue;
 			}
 			
+			MyLight lightComponent = light.GetComponent<MyLight>();
+			if (lightComponent==null){
+				lightComponent = light.GetComponentInChildren<MyLight>();
+			}
+			
+			if (Vector3.Distance (this.transform.position, light.transform.position) > lightComponent.GetRange () + Mathf.Sqrt (2)){
+				//If the 'light' can't reach the object, then don't worry about it
+				continue;
+			}
+			
 			bool isBlocked = false;
 			//Find the angle TO the OBJECT from the light in the XZ plane
 			float angleToObjectXZ = Mathf.Atan2(light.transform.position.z - transform.position.z, light.transform.position.x - transform.position.x);

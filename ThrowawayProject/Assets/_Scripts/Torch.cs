@@ -6,6 +6,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	private Light light;
 
 	public bool startsOn;
+	public float range = -1f;
 
 	float fadeAmount = 0f;
 	int fadeCounter = 0;
@@ -19,6 +20,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		//light = this.gameObject.AddComponent<Light> ();
 		light.enabled = startsOn;
 		light.shadows = LightShadows.Hard;
+		if (range != -1) {
+			light.range = range;
+		}
 	}
 	
 	// Update is called once per frame
@@ -42,6 +46,10 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 
 	bool MyLight.GetIsOn(){
 		return light.enabled;
+	}
+
+	float MyLight.GetRange(){
+		return this.GetComponent<Light> ().range;
 	}
 	
 	void MyLight.FadeIn(int time){
