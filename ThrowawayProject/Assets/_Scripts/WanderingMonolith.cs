@@ -11,12 +11,14 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	GameObject myObject;
 	Vector3 startingPos;
 	Vector3 targetPos;
+	Node[] nodes;
 	
 	// Use this for initialization
 	void Start () {
 		targetPos = transform.GetChild (0).transform.position;
 		myObject = transform.GetChild (1).gameObject;
 		startingPos = myObject.transform.position;
+		nodes = myObject.GetComponentsInChildren<Node> ();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +28,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 			if (Vector3.Distance (myObject.transform.position, targetPos) < speed){
 				//Re-enable all of the nodes in this object
 				if (!nodesActive) {
-					Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+					//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
 					foreach (Node node in nodes) {
 						node.RecalculateEdges (true);
 					}
@@ -41,7 +43,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 			if (Vector3.Distance (myObject.transform.position, startingPos) < speed){
 				//Re-enable all of the nodes in this object
 				if (!nodesActive) {
-					Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+					//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
 					foreach (Node node in nodes) {
 						node.RecalculateEdges (true);
 					}
@@ -57,10 +59,12 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	void Triggerable.Trigger(){
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
-			Node[] nodes = myObject.GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
-			}
+			}*/
+			//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+			Node.DisconnectGroup(nodes);
 			nodesActive = false;
 		}
 		triggered = true;
@@ -69,10 +73,12 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	void Triggerable.UnTrigger(){
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
-			Node[] nodes = myObject.GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
-			}
+			}*/
+			//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+			Node.DisconnectGroup(nodes);
 			nodesActive = false;
 		}
 		triggered = false;

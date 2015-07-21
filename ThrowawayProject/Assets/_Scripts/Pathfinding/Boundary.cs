@@ -40,7 +40,7 @@ public class Boundary : MonoBehaviour {
 	//Find a connection
 	public void Connect(){
 		foreach (Boundary go in allBoundaries) {
-			if (go.isActiveAndEnabled && /*!this.Equals (go) && */(this.transform.position == go.transform.position || Vector3.Distance (this.transform.position, go.transform.position) < DISTANCE_FOR_CONNECTION)){
+			if (go.isActiveAndEnabled && !this.Equals (go) && (this.transform.position == go.transform.position || Vector3.Distance (this.transform.position, go.transform.position) < DISTANCE_FOR_CONNECTION)){
 				this.connectedTo = go.GetComponent<Boundary>();
 				connectedTo.SetConnectedTo(this);
 				//Debug.Log ("Connected!");

@@ -23,7 +23,7 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 		//Transform[] children = transform.;
 		platform = transform.GetChild (0);
 		nodes = platform.GetComponentsInChildren<Node> ();
-		Debug.Log ("Platform is: " + platform);
+		Debug.Log ("Platform is: " + platform + ", # of nodes: " + nodes.Length);
 		targetedLocations = new Transform[transform.childCount - 1];
 		for (int i=1;i<transform.childCount;i++){
 			targetedLocations[i-1] = transform.GetChild (i);
@@ -60,24 +60,30 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 			timer = STOP_TIME;
 
 			//Add the node to the pathfinding
+			//Debug.Log ("reconnecting to the 'shore'!");
 			foreach (Node n in nodes){
+				//Debug.Log ("reconnect...");
 				n.RecalculateEdges(true);
 			}
 		} else {
 			timer--;
 			if (timer == 0){
 				//Remove the node from the pathfinding
-				foreach (Node n in nodes){
+				/*foreach (Node n in nodes){
 					n.RecalculateEdges(false);
-				}
+				}*/
+				//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+				Node.DisconnectGroup(nodes);
 			}else if (timer<0){
 				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * SPEED);
-				if (timer==-1){
+
+				//Get rid of the below. It used to connect the nodes together after moving them one frame. There's a better way, which has been implemented.
+				/*if (timer==-1){
 					//Reconnect these nodes so that they will reconnect with each other (if there are multiple nodes in the platform). They won't connect with the 'shores', since we've already left.
 					foreach (Node n in nodes){
 						n.RecalculateEdges(true);
 					}
-				}
+				}*/
 			}/*else{
 				if (timer==0){
 					//Remove the node from the pathfinding

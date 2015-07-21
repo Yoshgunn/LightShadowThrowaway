@@ -145,9 +145,11 @@ public class DraggableObjectRotate : MonoBehaviour {
 		locked = false;
 		//Turn off all of the nodes (This might not work. It depends on whether or not we want to allow you to move while dragging this thing... It should be fine...)
 		//Node[] nodes = rotator.GetComponentsInChildren<Node>();
-		foreach (Node node in nodes){
+		/*foreach (Node node in nodes){
 			node.RecalculateEdges(false);
-		}
+		}*/
+		//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+		Node.DisconnectGroup (nodes);
 
 
 		Debug.Log ("Mouse down");

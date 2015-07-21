@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -123,6 +124,20 @@ public class Node : MonoBehaviour {
 		} else {
 			foreach (Boundary b in boundaries){
 				b.Disconnect();
+			}
+		}
+	}
+
+	//Disconnects these nodes from the rest of the map, but keeps them connected to each other
+	public static void DisconnectGroup(Node[] nodes){
+		foreach (Node n in nodes) {
+			foreach (Boundary b in n.boundaries){
+				if (b.GetConnectedTo()){
+					if (!(Array.IndexOf(nodes, b.GetConnectedTo().GetNode ())>-1)){
+						//If the node it's connected to isn't one of the nodes we want, disconnect it
+						b.Disconnect();
+					}
+				}
 			}
 		}
 	}

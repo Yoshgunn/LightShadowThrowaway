@@ -18,12 +18,14 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 	private Transform rotator;
 	private bool nodesActive = true;
 	private Vector3 axis;
+	private Node[] nodes;
 
 
 	// Use this for initialization
 	void Start () {
 		rotator = this.transform.GetChild (0).transform;
 		axis = new Vector3 (rotateInX ? 1 : 0, rotateInY ? 1 : 0, rotateInZ ? 1 : 0);
+		nodes = rotator.GetComponentsInChildren<Node> ();
 	}
 	
 	// Update is called once per frame
@@ -42,7 +44,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 			//If we're done rotating...
 			//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...
 			//Re-enable the nodes
-			Node[] nodes = rotator.GetComponentsInChildren<Node> ();
+			//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
 			foreach (Node node in nodes) {
 				node.RecalculateEdges (true);
 			}
@@ -56,10 +58,12 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
 			//Debug.Log ("Disabling the nodes!~");
-			Node[] nodes = rotator.GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
-			}
+			}*/
+			//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+			Node.DisconnectGroup (nodes);
 			nodesActive = false;
 		}
 		triggered = true;
@@ -68,10 +72,12 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 	void Triggerable.UnTrigger(){
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
-			Node[] nodes = rotator.GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
-			}
+			}*/
+			//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+			Node.DisconnectGroup (nodes);
 			nodesActive = false;
 		}
 		triggered = false;

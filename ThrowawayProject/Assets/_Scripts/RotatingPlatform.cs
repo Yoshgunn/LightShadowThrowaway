@@ -22,12 +22,14 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 	private bool paused = true;
 	private int pauseTimer = 0;
 	private bool signalStop = false;
+	private Node[] nodes;
 
 
 	// Use this for initialization
 	void Start () {
 		rotator = this.transform.GetChild (0).transform;
 		axis = new Vector3 (rotateInX ? 1 : 0, rotateInY ? 1 : 0, rotateInZ ? 1 : 0);
+		nodes = rotator.GetComponentsInChildren<Node> ();
 	}
 	
 	// Update is called once per frame
@@ -42,10 +44,12 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 					//Disable all of the nodes
 					if (nodesActive) {
 						//Debug.Log ("Disabling the nodes!~");
-						Node[] nodes = rotator.GetComponentsInChildren<Node> ();
-						foreach (Node node in nodes) {
+						//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
+						/*foreach (Node node in nodes) {
 							node.RecalculateEdges (false);
-						}
+						}*/
+						//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
+						Node.DisconnectGroup (nodes);
 						nodesActive = false;
 					}
 				}
@@ -60,7 +64,7 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 					//If we're done rotating...
 					//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...
 					//Re-enable the nodes
-					Node[] nodes = rotator.GetComponentsInChildren<Node> ();
+					//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
 					foreach (Node node in nodes) {
 						node.RecalculateEdges (true);
 					}
