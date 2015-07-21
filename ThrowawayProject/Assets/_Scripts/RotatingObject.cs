@@ -40,7 +40,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 			//If we're still rotating
 			rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-SPEED:SPEED));
 			rotationAmount += SPEED;
-		} else {
+		} else if (rotating){
 			//If we're done rotating...
 			//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...
 			//Re-enable the nodes

@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
+  range: -1
 --- !u!4 &454929624
 Transform:
   m_ObjectHideFlags: 0
@@ -2072,6 +2073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
+  range: -1
 --- !u!1 &1979416171
 GameObject:
   m_ObjectHideFlags: 0
