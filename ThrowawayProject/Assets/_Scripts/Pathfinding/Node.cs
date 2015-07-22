@@ -9,7 +9,7 @@ public class Node : MonoBehaviour {
 	public static int UP_Z = 1;
 	public static int DOWN_X = 2;
 	public static int DOWN_Z = 3;
-	private static float ADDITIONAL_OCCUPIED_PATHFINDING_COST = 2;
+	private static float ADDITIONAL_OCCUPIED_PATHFINDING_COST = 20;
 
 	public static Node currentNode;
 	private static List<Node> allNodes = new List<Node>();
@@ -139,6 +139,7 @@ public class Node : MonoBehaviour {
 
 	//Figures out if this node should be connected/disconnected from other nodes
 	public virtual void RecalculateEdges(bool willBeActive){
+		//Debug.Log ("Recalculating: " + willBeActive);
 		if (willBeActive) {
 			foreach (Boundary b in boundaries) {
 				b.Connect ();
@@ -309,7 +310,7 @@ public class Node : MonoBehaviour {
 	}*/
 
 	//Gets the next node in a certain direction ([counter]clockwise)
-	public Node GetNextNodeFromBoundary(Boundary b){
+	public Node GetNextNodeFromBoundary(Boundary b, bool clockwise){
 		Node n = null;
 		int index = Array.IndexOf (boundaries, b);
 		if (index < 0) {
@@ -329,7 +330,7 @@ public class Node : MonoBehaviour {
 		//If the 'opposite' one wasn't there, start from the given boundary and search for the next one
 		i = index;
 		do {
-			i = (i + 1) % boundaries.Length;
+			i = (i + (clockwise?1:-1)) % boundaries.Length;
 			if (i<0){
 				i += boundaries.Length;
 			}

@@ -17,6 +17,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	bool clickWhileMoving = false;
 	private int waitingForOccupiedNodeCount = 0;
 	private bool alreadyResetLastNodeOccupied = false;		//Boolean to keep track of whether or not you already reset the last node you were on. If a walker is right behind you, it might reset that node after the walker actually occupies it.
+	private bool cantFindNewPath = false;
 
 	// Use this for initialization
 	void Start () {
@@ -65,6 +66,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
 				//this.transform.Translate (Vector3.Normalize (targetNode.transform.position - currentNode.transform.position) * speed);
 				if (moveToTargetNode){
+					//cantFindNewPath = false;
 					//Debug.Log ("Moving " + (1f/(10f*(currentNode.cost+targetNode.cost))) + " spaces");
 					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
 				}else if (!targetNode.GetIsOccupied()){
@@ -75,8 +77,10 @@ public class PathfindingPlayer : MonoBehaviour {
 				}else{
 					//we are still waiting for the occupied node
 					waitingForOccupiedNodeCount++;
-					if (waitingForOccupiedNodeCount > TIME_TO_WAIT_FOR_OCCUPIED_NODE){
+					if (waitingForOccupiedNodeCount > TIME_TO_WAIT_FOR_OCCUPIED_NODE/* && !cantFindNewPath*/){
 						//Debug.Log ("The way I wanted to go is blocked!");
+						//cantFindNewPath = true;
+						//waitingForOccupiedNodeCount = 0;
 						targetNode = null;
 						Node.FindNewPathToGoal();
 						targetNode = currentNode.GetNextNode();
@@ -105,8 +109,8 @@ public class PathfindingPlayer : MonoBehaviour {
 					currentNode.SetNextNode (null);
 					currentNode.SetMarked (false);
 				}
-				//currentNode.SetIsOccupied(false);
-				//targetNode.SetIsOccupied(true);
+				currentNode.SetIsOccupied(false);
+				targetNode.SetIsOccupied(true);
 				moveToTargetNode = false;
 				currentNode = targetNode;
 				targetNode = currentNode.GetNextNode ();

@@ -16,6 +16,7 @@ public class DraggableObject : MonoBehaviour {
 	private Node[] nodes;
 	private Vector3 startLocation;
 	private bool nodesConnected = true;
+	private bool disabledMyNode = false;
 
 	private static float SPEED = 0.2f;
 	private static float CLICK_DISTANCE = 0.05f;
@@ -24,7 +25,8 @@ public class DraggableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Application.targetFrameRate = 30;
+		Debug.Log ("Start");
+		//Application.targetFrameRate = 30;
 		//Make a plane
 		floorPlane = new Plane (new Vector3 (0, 1, 0), this.transform.position);
 		xPos = this.transform.position.x;
@@ -35,10 +37,17 @@ public class DraggableObject : MonoBehaviour {
 		//plane.
 		//plane = this.transform.GetChild (0).GetComponent<Plane>();
 		//plane = mesh.
+		myNode.RecalculateEdges (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//TODO: I shouldn't need this, I should be able to do it in the Start() function.
+		//However, when I do, the node doesn't become disabled.
+		if (!disabledMyNode) {
+			myNode.RecalculateEdges (false);
+		}
+
 		whereIWantToBe = this.transform.position;
 		if (dragging) {
 			//Find the place where it should be...

@@ -4,7 +4,7 @@ using System.Collections;
 public class Walker : MonoBehaviour {
 
 	public int direction = 0;
-	//public bool clockwise = false;
+	public bool clockwise = false;
 
 	Node myNode;
 	Node targetNode = null;
@@ -28,8 +28,8 @@ public class Walker : MonoBehaviour {
 		Debug.Log ("Are we allowed to move to target node? " + moveToTargetNode);*/
 		if (targetNode == null) {
 			//Get the next node
-			targetNode = myNode.GetNextNodeFromBoundary(lastBoundary);
-			Debug.Log ("Got next node: " + targetNode);
+			targetNode = myNode.GetNextNodeFromBoundary(lastBoundary, !clockwise);
+			//Debug.Log ("Got next node: " + targetNode);
 
 			lastBoundary = Node.GetSharedBoundary(targetNode, myNode);
 
@@ -81,7 +81,7 @@ public class Walker : MonoBehaviour {
 				Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
 			}
-			//TODO: I'll have to calibrate this for walking on moving platforms (in the same way that I'll have to calibrate the player moving).
+
 			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > speed){
 				//If we're not moving (because the place we want to move to is occupied), figure out what to do.
 				if (moveToTargetNode){
@@ -102,6 +102,8 @@ public class Walker : MonoBehaviour {
 				}
 			}else{
 				this.transform.position = targetNode.GetPositionAbove();
+				targetNode.SetIsOccupied(true);
+				myNode.SetIsOccupied(false);
 				myNode = targetNode;
 				targetNode = null;
 				moveToTargetNode = false;
