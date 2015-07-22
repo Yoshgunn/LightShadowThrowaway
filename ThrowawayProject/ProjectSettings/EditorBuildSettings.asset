@@ -47,3 +47,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Curves.unity
   - enabled: 1
     path: Assets/_Scenes/LightRay.unity
+  - enabled: 1
+    path: Assets/_Scenes/FloatingDraggableObject.unity
