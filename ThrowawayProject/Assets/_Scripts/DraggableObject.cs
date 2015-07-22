@@ -13,8 +13,12 @@ public class DraggableObject : MonoBehaviour {
 	private float yPos;
 	private Vector3 whereIWantToBe;
 	private Node myNode = null;
+	private Node[] nodes;
+	private Vector3 startLocation;
+	private bool nodesConnected = true;
 
 	private static float SPEED = 0.2f;
+	private static float CLICK_DISTANCE = 0.05f;
 	//private bool movingInX = false;
 	//private bool movingInZ = false;
 
@@ -27,6 +31,7 @@ public class DraggableObject : MonoBehaviour {
 		yPos = this.transform.position.y;
 		zPos = this.transform.position.z;
 		myNode = Node.GetNodeDirectlyUnder (this.transform.position);
+		nodes = transform.GetComponentsInChildren<Node> ();
 		//plane.
 		//plane = this.transform.GetChild (0).GetComponent<Plane>();
 		//plane = mesh.
@@ -83,6 +88,15 @@ public class DraggableObject : MonoBehaviour {
 			}
 		}
 
+		//Now, if the node is settled and we're not dragging, reconnect the nodes
+		if (!dragging && !nodesConnected && this.transform.position == myNode.GetPositionAbove()){
+			//Reconnect the nodes
+			foreach (Node n in nodes){
+				n.RecalculateEdges(true);
+			}
+			nodesConnected = true;
+		}
+
 		//Now, determine where I should be (like, which node)
 		//TODO: Instead of '0' for the y position, actually figure it out. I'm not sure how to do that yet, so I'm leaving it for now.
 		/*whereIWantToBe = new Vector3(Mathf.Round(whereIWantToBe.x), Mathf.Round(whereIWantToBe.y), Mathf.Round(whereIWantToBe.z));
@@ -105,11 +119,32 @@ public class DraggableObject : MonoBehaviour {
 
 	void OnMouseDown(){
 		dragging = true;
-		//Debug.Log ("Mouse down");
+		startLocation = this.transform.position;
+
+		Node.DisconnectGroup (nodes);
+		nodesConnected = false;
 	}
 
 	void OnMouseUp(){
 		dragging = false;
-		//Debug.Log ("Mouse up");
+
+		if (Vector3.Distance (startLocation, this.transform.position) < CLICK_DISTANCE){
+			Debug.Log ("Click");
+			//Send the click to the child nodes
+			RaycastHit[] hits;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			hits = Physics.RaycastAll (ray, 100f);
+			//hits = Physics.RaycastAll(transform.position, transform.forward, 100.0F);
+			
+			foreach (RaycastHit hit in hits){
+				//Debug.Log ("Raycasthit: " + hit.collider.gameObject);
+				ClickDetector clicker = hit.collider.transform.GetComponent<ClickDetector>();
+				if (clicker){
+					clicker.Activate();
+					break;
+				}
+			}
+		}
+		Debug.Log ("Mouse up");
 	}
 }

@@ -13,6 +13,8 @@ public class Walker : MonoBehaviour {
 	bool moveToTargetNode = false;
 	int countBetweenSpaces = 0;
 
+	Boundary lastBoundary = null;		//Used to record where we came from to get to the current node, so that we can get the next node in the right direction
+
 	// Use this for initialization
 	void Start () {
 		myNode = Node.GetNodeDirectlyUnder (this.transform.position);
@@ -26,7 +28,12 @@ public class Walker : MonoBehaviour {
 		Debug.Log ("Are we allowed to move to target node? " + moveToTargetNode);*/
 		if (targetNode == null) {
 			//Get the next node
-			targetNode = myNode.GetNextNodeInDirection (direction);
+			targetNode = myNode.GetNextNodeFromBoundary(lastBoundary);
+			Debug.Log ("Got next node: " + targetNode);
+
+			lastBoundary = Node.GetSharedBoundary(targetNode, myNode);
+
+			/*targetNode = myNode.GetNextNodeInDirection (direction);
 
 			//Look in one direction
 			if (targetNode==null){
@@ -44,7 +51,7 @@ public class Walker : MonoBehaviour {
 			if (targetNode==null){
 				direction = (direction+3)%4;
 				targetNode = myNode.GetNextNodeInDirection(direction);
-			}
+			}*/
 
 			if (!targetNode){
 				//This means we're on a 1x1 platform. Stay here

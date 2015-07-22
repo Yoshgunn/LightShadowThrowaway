@@ -31,8 +31,30 @@ public class Node : MonoBehaviour {
 	void Awake () {
 		//Add this node to the list of all nodes
 		allNodes.Add (this);
-		//Get all of the boundaries (the children)
-		boundaries = this.transform.GetComponentsInChildren<Boundary> ();
+		//Get all of the boundaries (the children), and then sort it by clockwise direction
+		Boundary[] tempBoundaries = this.transform.GetComponentsInChildren<Boundary> ();
+		float[] angleValues = new float[tempBoundaries.Length];
+		boundaries = new Boundary[tempBoundaries.Length];
+
+		for (int i=0;i<tempBoundaries.Length;i++){
+			angleValues[i] = Vector2.Angle (Vector2.zero, new Vector2(tempBoundaries[i].transform.position.x, tempBoundaries[i].transform.position.z));
+		}
+
+		for (int i=0; i<tempBoundaries.Length; i++) {
+			float lowest = 1000;
+			int lowestIndex = -1;
+
+			for (int j=0;j<tempBoundaries.Length;j++){
+				if (angleValues[j]<lowest){
+					lowest = angleValues[j];
+					lowestIndex = j;
+				}
+			}
+			boundaries[i] = tempBoundaries[lowestIndex];
+			angleValues[lowestIndex] = 1000;
+		}
+
+
 		//Get the placeholder object (which denotes the actual location of this node)
 		if (this.transform.childCount > 0) {
 			placeholder = this.transform.GetChild(0).transform;
@@ -266,7 +288,7 @@ public class Node : MonoBehaviour {
 		return null;
 	}
 	
-	public Node GetNextNodeInDirection(int direction){
+	/*public Node GetNextNodeInDirection(int direction){
 		Node returnValue = null;
 		//Debug.Log ("Moving in direction: " + direction);
 		if (direction < 4 && boundaries.Length==4 && boundaries [direction].GetConnectedTo ()) {
@@ -284,10 +306,58 @@ public class Node : MonoBehaviour {
 			returnValue=null;
 		}
 		return returnValue;
+	}*/
+
+	//Gets the next node in a certain direction ([counter]clockwise)
+	public Node GetNextNodeFromBoundary(Boundary b){
+		Node n = null;
+		int index = Array.IndexOf (boundaries, b);
+		if (index < 0) {
+			index = 0;
+		}
+		//int i = index;
+
+		//First, try to get the one opposite from the current boundary
+		int i = (index + (int)(Mathf.Floor (boundaries.Length / 2f))) % boundaries.Length;
+		if (i < 0) {
+			i += boundaries.Length;
+		}
+		if (boundaries [i].GetConnectedTo ()) {
+			return boundaries[i].GetConnectedTo().GetNode ();
+		}
+
+		//If the 'opposite' one wasn't there, start from the given boundary and search for the next one
+		i = index;
+		do {
+			i = (i + 1) % boundaries.Length;
+			if (i<0){
+				i += boundaries.Length;
+			}
+			//Debug.Log ("i: " + i);
+			if (boundaries [i].GetConnectedTo ()) {
+				n = boundaries [i].GetConnectedTo ().GetNode ();
+			}
+		} while (n==null && i!=index);
+		return n;
+	}
+
+	//Gets the boundary shared by these two nodes.
+	//NOTE: The boundary will be the child of the first argument (n1)
+	public static Boundary GetSharedBoundary(Node n1, Node n2){
+		if (n1 && n2) {
+			foreach (Boundary b1 in n1.boundaries) {
+				if (b1.GetConnectedTo ()) {
+					if (b1.GetConnectedTo ().GetNode () == n2) {
+						return b1;
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
 	//Get the node to the 'up in x' direction from this node
-	public Node GetUpXNode(){
+	/*public Node GetUpXNode(){
 		return GetNextNodeInDirection (UP_X);
 	}
 	
@@ -304,7 +374,7 @@ public class Node : MonoBehaviour {
 	//Get the node to the 'down in z' direction from this node
 	public Node GetDownZNode(){
 		return GetNextNodeInDirection (DOWN_Z);
-	}
+	}*/
 
 	//Returns the position that something should be in to be considered 'on' this node. Directly above this node (0.5)
 	public Vector3 GetPositionAbove(){

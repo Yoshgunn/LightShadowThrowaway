@@ -23,11 +23,11 @@ public class MovingPlatform : MonoBehaviour, Triggerable {
 		//Transform[] children = transform.;
 		platform = transform.GetChild (0);
 		nodes = platform.GetComponentsInChildren<Node> ();
-		Debug.Log ("Platform is: " + platform + ", # of nodes: " + nodes.Length);
+		//Debug.Log ("Platform is: " + platform + ", # of nodes: " + nodes.Length);
 		targetedLocations = new Transform[transform.childCount - 1];
 		for (int i=1;i<transform.childCount;i++){
 			targetedLocations[i-1] = transform.GetChild (i);
-			Debug.Log ("Target Transform is: " + targetedLocations[i-1]);
+			//Debug.Log ("Target Transform is: " + targetedLocations[i-1]);
 		}
 		triggered = !triggerable;
 		/*targetedLocations = new Transform[children.Length-2];

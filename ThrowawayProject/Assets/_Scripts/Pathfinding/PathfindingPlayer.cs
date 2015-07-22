@@ -5,7 +5,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	//TODO: Enable 'redirection', where you can click while moving to move toward a different place.
 
 	private static int TIME_TO_MOVE_ONE_SPACE = 20;
-	private static int TIME_TO_WAIT_FOR_OCCUPIED_NODE = 60;		//2 seconds? 1?
+	private static int TIME_TO_WAIT_FOR_OCCUPIED_NODE = 1;		//2 seconds? 1?
 
 	public static PathfindingPlayer PLAYER;
 
@@ -22,6 +22,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	void Start () {
 		PLAYER = this;
 		currentNode = Node.GetNodeDirectlyUnder (this.transform.position);
+		Debug.Log ("Starting Node: " + currentNode);
 		Node.currentNode = currentNode;
 		currentNode.SetIsOccupied (true);
 		//this.transform.GetComponentInChildren<Light> ().attenuate = false;
