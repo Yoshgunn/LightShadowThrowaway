@@ -11,6 +11,9 @@ public class DraggableObject : MonoBehaviour {
 	private float xPos;
 	private float zPos;
 	private float yPos;
+	private float minPos;
+	private float maxPos;
+	private bool restricted = false;
 	private Vector3 whereIWantToBe;
 	private Node myNode = null;
 	private Node[] nodes;
@@ -38,6 +41,24 @@ public class DraggableObject : MonoBehaviour {
 		//plane = this.transform.GetChild (0).GetComponent<Plane>();
 		//plane = mesh.
 		myNode.RecalculateEdges (false);
+
+		//Now set up the min/max positions
+		if (this.transform.childCount > 2) {
+			restricted = true;
+			if (moveInX) {
+				minPos = this.transform.GetChild (1).transform.position.x;
+				maxPos = this.transform.GetChild (2).transform.position.x;
+			} else if (moveInZ) {
+				minPos = this.transform.GetChild (1).transform.position.z;
+				maxPos = this.transform.GetChild (2).transform.position.z;
+			}
+			
+			if (minPos > maxPos) {
+				float temp = minPos;
+				minPos = maxPos;
+				maxPos = temp;
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -62,9 +83,23 @@ public class DraggableObject : MonoBehaviour {
 				pos.y = yPos;
 				if (!moveInX){
 					pos.x = xPos;
+					if (restricted){
+						if (pos.z < minPos){
+							pos.z = minPos;
+						}else if (pos.z > maxPos){
+							pos.z = maxPos;
+						}
+					}
 				}
 				if (!moveInZ){
 					pos.z = zPos;
+					if (restricted){
+						if (pos.x < minPos){
+							pos.x = minPos;
+						}else if (pos.x > maxPos){
+							pos.x = maxPos;
+						}
+					}
 				}
 				whereIWantToBe = pos;
 				//Debug.Log ("second position: " + pos);
