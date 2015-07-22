@@ -89,7 +89,7 @@ public class DraggableObjectRotate : MonoBehaviour {
 			if (angle>rotateBackSpeed && angle<90-rotateBackSpeed){
 				//Debug.Log ("Angle: " + angle);
 				//It should 'snap' into place
-				if (angle>45){
+				if (angle<45){
 					rotator.RotateAround (transform.position, normal, (sign?1:-1)*rotateBackSpeed);
 				}else{
 					rotator.RotateAround (transform.position, normal, (sign?-1:1)*rotateBackSpeed);
@@ -106,7 +106,7 @@ public class DraggableObjectRotate : MonoBehaviour {
 		rotateBackSpeed = 1;
 		//Note: This will always lock everything to 90 degrees in the drig in every axis.
 		rotator.eulerAngles = new Vector3(Mathf.Round (rotator.eulerAngles.x/90f)*90, Mathf.Round (rotator.eulerAngles.y/90f)*90, Mathf.Round (rotator.eulerAngles.z/90f)*90);
-		rotator.position = new Vector3 (Mathf.Round (rotator.position.x*10f)/10f, Mathf.Round (rotator.position.y*10f)/10f, Mathf.Round (rotator.position.z*10f)/10f);
+		rotator.position = new Vector3 (Mathf.Round (rotator.position.x), Mathf.Round (rotator.position.y), Mathf.Round (rotator.position.z));
 		//Node[] nodes = rotator.GetComponentsInChildren<Node>();
 		foreach (Node node in nodes){
 			node.RecalculateEdges(true);
@@ -133,10 +133,13 @@ public class DraggableObjectRotate : MonoBehaviour {
 		
 		clickStartLocation = Input.mousePosition;
 
-		//Only do ANYTHING else if the player isn't here or if this is marked as moveWhilePlayerIsHere
+		//Only do ANYTHING else if the player isn't here (or moving here) or if this is marked as moveWhilePlayerIsHere
+		//TODO: Does it make the game at all 'clunky' for this to be unable to move if it's the 'target' node of the player?
 		if (!moveWhilePlayerIsHere) {
+			Node currentNode = PathfindingPlayer.PLAYER.GetCurrentNode();
+			Node targetNode = PathfindingPlayer.PLAYER.GetTargetNode();
 			foreach (Node node in nodes) {
-				if (PathfindingPlayer.PLAYER.GetCurrentNode ().Equals (node)) {
+				if (currentNode.Equals (node) || (targetNode && node.Equals (targetNode))) {
 					return;
 				}
 			}
