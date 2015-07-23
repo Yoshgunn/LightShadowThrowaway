@@ -511,6 +511,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 336258662}
+--- !u!1 &344016419 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 190400, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+  m_PrefabInternal: {fileID: 1705469401}
 --- !u!1001 &346442099
 Prefab:
   m_ObjectHideFlags: 0
@@ -2290,6 +2294,7 @@ MonoBehaviour:
   lights:
   - {fileID: 1371030490}
   - {fileID: 1857150449}
+  - {fileID: 344016419}
 --- !u!1001 &2052359779
 Prefab:
   m_ObjectHideFlags: 0

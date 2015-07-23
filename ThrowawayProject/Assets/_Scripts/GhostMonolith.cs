@@ -39,36 +39,27 @@ public class GhostMonolith : MonoBehaviour {
 
 	void ToggleHidden(){
 		Debug.Log ("Toggle Hidden");
+
+		//Hide the current child
+		//First, remove all of it's nodes from the pathfinding graph
+		Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+		foreach (Node node in nodes) {
+			node.RecalculateEdges (false);
+		}
+		this.transform.GetChild (curChild).gameObject.SetActive (false);
 		
-		//First of all, only toggle it if there is NO light on it
-		if (AmIInShadow()) {
-			//Hide the current child
-			//First, remove all of it's nodes from the pathfinding graph
-			Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
-				node.RecalculateEdges (false);
-			}
-			this.transform.GetChild (curChild).gameObject.SetActive (false);
-			
-			//Go to the next child (which should now become active
-			curChild = (curChild + 1) % numChildren;
-			
-			//Show the next child
-			this.transform.GetChild (curChild).gameObject.SetActive (true);
-			//Now add it to the pathfinding graph
-			nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
-				//TODO: I honestly have no idea how it works without this...
-				//Something else must be recalculating this node when it becomes active
-				//node.RecalculateEdges (true);
-			}
-			//hidden = !hidden;
-			
-			
-			//Toggle the meshrenderer and the navmeshobstacle (these should always be opposite), as well as the bool value 'hidden'
-			/*this.GetComponent<MeshRenderer> ().enabled = hidden;
-			hidden = !hidden;
-			this.GetComponent<NavMeshObstacle> ().enabled = hidden;*/
+		//Go to the next child (which should now become active
+		curChild = (curChild + 1) % numChildren;
+		
+		//Show the next child
+		this.transform.GetChild (curChild).gameObject.SetActive (true);
+		//We shouldn't have to add it back to the pathfinding graph, because when the node becomes active, it adds itself back
+		//But, apparently we do...
+		nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+		foreach (Node node in nodes) {
+			//TODO: I honestly have no idea how it works without this...
+			//Something else must be recalculating this node when it becomes active
+			node.RecalculateEdges (true);
 		}
 	}
 
@@ -132,7 +123,8 @@ public class GhostMonolith : MonoBehaviour {
 			}
 			//Debug.Log ("Light " + light + " is blocked!");
 		}
-		
+
+		//Debug.Log ("Am I in shadow? - " + isInShadow);
 		return isInShadow;
 	}
 }

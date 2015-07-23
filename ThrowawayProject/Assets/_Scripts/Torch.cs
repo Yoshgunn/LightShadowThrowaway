@@ -45,7 +45,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	}
 
 	bool MyLight.GetIsOn(){
-		return light.enabled;
+		if (light)
+			return light.enabled;
+		return false;
 	}
 
 	float MyLight.GetRange(){
