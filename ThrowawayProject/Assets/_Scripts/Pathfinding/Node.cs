@@ -4,17 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Node : MonoBehaviour {
-	
-	public static int UP_X = 0;
-	public static int UP_Z = 1;
-	public static int DOWN_X = 2;
-	public static int DOWN_Z = 3;
+
+	public static byte NORMAL = 0;
+	public static byte RAMP = 1;
+	public static byte LADDER = 2;
 	private static float ADDITIONAL_OCCUPIED_PATHFINDING_COST = 20;
 
 	public static Node currentNode;
 	private static List<Node> allNodes = new List<Node>();
 
 	public float cost = 1;
+	public byte type = NORMAL;
 
 	public Boundary[] boundaries = new Boundary[4];
 	public Transform placeholder = null;
@@ -324,7 +324,9 @@ public class Node : MonoBehaviour {
 			i += boundaries.Length;
 		}
 		if (boundaries [i].GetConnectedTo ()) {
-			return boundaries[i].GetConnectedTo().GetNode ();
+			if (boundaries[i].GetConnectedTo().GetNode ().type != LADDER){
+				return boundaries[i].GetConnectedTo().GetNode ();
+			}
 		}
 
 		//If the 'opposite' one wasn't there, start from the given boundary and search for the next one
@@ -336,7 +338,9 @@ public class Node : MonoBehaviour {
 			}
 			//Debug.Log ("i: " + i);
 			if (boundaries [i].GetConnectedTo ()) {
-				n = boundaries [i].GetConnectedTo ().GetNode ();
+				if (boundaries [i].GetConnectedTo ().GetNode().type != LADDER){
+					n = boundaries [i].GetConnectedTo ().GetNode ();
+				}
 			}
 		} while (n==null && i!=index);
 		return n;
