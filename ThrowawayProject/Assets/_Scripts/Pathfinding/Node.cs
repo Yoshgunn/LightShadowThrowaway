@@ -342,6 +342,41 @@ public class Node : MonoBehaviour {
 		return n;
 	}
 
+	//Gets the next boundary in a certain direction ([counter]clockwise)
+	public Boundary GetNextBoundary(Boundary b, bool clockwise){
+		//Node n = null;
+		Boundary returnBoundary = null;
+		int index = Array.IndexOf (boundaries, b);
+		if (index < 0) {
+			index = 0;
+		}
+		//int i = index;
+		
+		//First, try to get the one opposite from the current boundary
+		/*int i = (index + (int)(Mathf.Floor (boundaries.Length / 2f))) % boundaries.Length;
+		if (i < 0) {
+			i += boundaries.Length;
+		}
+		if (boundaries [i].GetConnectedTo ()) {
+			return boundaries[i];//.GetConnectedTo().GetNode ();
+		}*/
+		
+		//If the 'opposite' one wasn't there, start from the given boundary and search for the next one
+		int i = index;
+		do {
+			i = (i + (clockwise?1:-1)) % boundaries.Length;
+			if (i<0){
+				i += boundaries.Length;
+			}
+			//Debug.Log ("i: " + i);
+			if (boundaries [i].GetConnectedTo ()) {
+				//n = boundaries [i].GetConnectedTo ().GetNode ();
+				returnBoundary = boundaries[i];
+			}
+		} while (returnBoundary==null && i!=index);
+		return returnBoundary;
+	}
+
 	//Gets the boundary shared by these two nodes.
 	//NOTE: The boundary will be the child of the first argument (n1)
 	public static Boundary GetSharedBoundary(Node n1, Node n2){
