@@ -3,11 +3,15 @@ using System.Collections;
 
 public class Floater : MonoBehaviour, Triggerable {
 
-	private static float SPEED = 0.03f;
+	private static float DEFAULT_SPEED = 0.03f;
 	private static int STOP_TIME = 10;
 
 	public bool looping;
 	public bool triggerable;
+
+	//These attributes will have default values. However, they can be changed.
+	public float speed;
+	public int stopTime = -1;
 
 	private Transform platform = null;
 	//private Node[] nodes;
@@ -35,6 +39,14 @@ public class Floater : MonoBehaviour, Triggerable {
 			targetedLocations[i-2] = children[i];
 		}*/
 		targetTransform = targetedLocations [0];
+
+		//Set up the 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
+		}
+		if (stopTime < 0) {
+			stopTime = STOP_TIME;
+		}
 	}
 	
 	// Update is called once per frame
@@ -43,7 +55,7 @@ public class Floater : MonoBehaviour, Triggerable {
 		if (!triggered) {
 			return;
 		}
-		if (Vector3.Distance (platform.position, targetTransform.position) <= SPEED) {
+		if (Vector3.Distance (platform.position, targetTransform.position) <= speed) {
 			//Debug.Log ("Changing Target");
 			platform.position = targetTransform.position;
 			currentTargetIndex += incrementAmount;
@@ -57,7 +69,7 @@ public class Floater : MonoBehaviour, Triggerable {
 			}
 			//currentTargetIndex = (currentTargetIndex+1)%targetedLocations.Length;
 			targetTransform = targetedLocations[currentTargetIndex];
-			timer = STOP_TIME;
+			timer = stopTime;
 
 			//Add the node to the pathfinding
 			//Debug.Log ("reconnecting to the 'shore'!");
@@ -75,7 +87,7 @@ public class Floater : MonoBehaviour, Triggerable {
 				//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
 				//Node.DisconnectGroup(nodes);
 			}else if (timer<0){
-				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * SPEED);
+				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * speed);
 
 				//Get rid of the below. It used to connect the nodes together after moving them one frame. There's a better way, which has been implemented.
 				/*if (timer==-1){

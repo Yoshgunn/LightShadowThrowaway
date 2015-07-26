@@ -1044,6 +1044,7 @@ MonoBehaviour:
   rotateInY: 1
   rotateInZ: 0
   rotateBackwards: 0
+  speed: 0
 --- !u!1001 &580840624
 Prefab:
   m_ObjectHideFlags: 0

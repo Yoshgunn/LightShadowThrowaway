@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class WanderingMonolith : MonoBehaviour, Triggerable {
-	
-	public float speed = 0.02f;
+
+	private static float DEFAULT_SPEED = 0.02f;
+
+	//These attributes will have default values. However, they can be changed.
+	public float speed;
 	
 	bool triggered = false;
 	bool nodesActive = true;
@@ -19,6 +22,11 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		myObject = transform.GetChild (1).gameObject;
 		startingPos = myObject.transform.position;
 		nodes = myObject.GetComponentsInChildren<Node> ();
+
+		//Set up the 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
+		}
 	}
 	
 	// Update is called once per frame

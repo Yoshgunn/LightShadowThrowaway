@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveInX: 1
   moveInZ: 0
+  speed: 0
 --- !u!54 &11215275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1215,6 +1216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveInX: 1
   moveInZ: 0
+  speed: .100000001
 --- !u!23 &803635142
 MeshRenderer:
   m_ObjectHideFlags: 0

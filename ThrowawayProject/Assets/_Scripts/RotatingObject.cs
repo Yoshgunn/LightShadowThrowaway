@@ -3,13 +3,16 @@ using System.Collections;
 
 public class RotatingObject : MonoBehaviour, Triggerable {
 
-	private static int SPEED = 1;
+	private static int DEFAULT_SPEED = 1;
 
 	public int rotateAmount = 90;
 	public bool rotateInX = false;
 	public bool rotateInY = true;
 	public bool rotateInZ = false;
 	public bool rotateBackwards = false;
+
+	//These attributes will have default values. However, they can be changed.
+	public int speed;
 
 	//private int myRotation = 0;
 	private int rotationAmount = 0;
@@ -26,6 +29,11 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 		rotator = this.transform.GetChild (0).transform;
 		axis = new Vector3 (rotateInX ? 1 : 0, rotateInY ? 1 : 0, rotateInZ ? 1 : 0);
 		nodes = rotator.GetComponentsInChildren<Node> ();
+
+		//Set up the 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
+		}
 	}
 	
 	// Update is called once per frame
@@ -38,8 +46,8 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 
 		if (rotating && rotationAmount < rotateAmount) {
 			//If we're still rotating
-			rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-SPEED:SPEED));
-			rotationAmount += SPEED;
+			rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-speed:speed));
+			rotationAmount += speed;
 		} else if (rotating){
 			//If we're done rotating...
 			//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...

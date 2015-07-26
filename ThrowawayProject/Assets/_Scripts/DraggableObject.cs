@@ -6,6 +6,9 @@ public class DraggableObject : MonoBehaviour {
 	public bool moveInX;
 	public bool moveInZ;
 
+	//These attributes will have default values. However, they can be changed.
+	public float speed;
+
 	private bool dragging = false;
 	private Plane floorPlane;
 	private float xPos;
@@ -21,7 +24,7 @@ public class DraggableObject : MonoBehaviour {
 	private bool nodesConnected = true;
 	private bool disabledMyNode = false;
 
-	private static float SPEED = 0.2f;
+	private static float DEFAULT_SPEED = 0.2f;
 	private static float CLICK_DISTANCE = 0.05f;
 	//private bool movingInX = false;
 	//private bool movingInZ = false;
@@ -58,6 +61,11 @@ public class DraggableObject : MonoBehaviour {
 				minPos = maxPos;
 				maxPos = temp;
 			}
+		}
+
+		//Set up 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
 		}
 	}
 	
@@ -124,8 +132,8 @@ public class DraggableObject : MonoBehaviour {
 			//		- Use that as the 'whereIWantToBe' location
 
 			if (this.transform.position != myNode.GetPositionAbove()){
-				if (Vector3.Distance (whereIWantToBe, this.transform.position) >SPEED){
-					this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*SPEED);
+				if (Vector3.Distance (whereIWantToBe, this.transform.position) >speed){
+					this.transform.Translate (Vector3.Normalize(whereIWantToBe - this.transform.position)*speed);
 				}else{
 					this.transform.position = whereIWantToBe;
 				}

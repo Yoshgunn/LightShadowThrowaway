@@ -3,14 +3,20 @@ using System;
 using System.Collections;
 
 public class TrackWalker : MonoBehaviour {
+	
+	private static float DEFAULT_SPEED = 0.04f;
 
 	public int direction = 0;
 	public bool clockwise = false;
 
+	//These attributes will have default values. However, they can be changed.
+	public float speed;
+
 	Node myNode;
 	Node targetNode = null;
-	private float speed = 0.02f;
+	//private float speed = 0.02f;
 	//int directionChange = 1;
+	float frameSpeed;
 	bool moveToTargetNode = false;
 	int countBetweenSpaces = 0;
 
@@ -27,6 +33,12 @@ public class TrackWalker : MonoBehaviour {
 		for (int i=1; i<this.transform.childCount; i++) {
 			legalPositions[i-1] = this.transform.GetChild (i).transform.position;
 		}
+
+		//Set up 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
+		}
+		frameSpeed = 1f / (2f*speed);
 	}
 	
 	// Update is called once per frame
@@ -44,6 +56,10 @@ public class TrackWalker : MonoBehaviour {
 					lastBoundary = b;
 				}
 				b = myNode.GetNextBoundary(lastBoundary, !clockwise);
+				if (!(b && b.GetConnectedTo())){
+					targetNode = null;
+					break;
+				}
 				Vector3 pos = b.GetConnectedTo().GetNode ().GetPositionAbove();
 				//Debug.Log ("Checking position: " + b.GetConnectedTo().GetNode ().GetPositionAbove());
 				foreach (Vector3 v in legalPositions){
@@ -114,7 +130,7 @@ public class TrackWalker : MonoBehaviour {
 			}*/
 		} else {
 			//Move toward the target node
-			if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*10){
+			if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*frameSpeed){
 				Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
 			}
@@ -124,7 +140,7 @@ public class TrackWalker : MonoBehaviour {
 				if (moveToTargetNode){
 					//Debug.Log ("Moving toward target node");
 					//this.transform.Translate (Vector3.Normalize(targetNode.GetPositionAbove() - this.transform.position)*speed);
-					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(++countBetweenSpaces)/(10f*(myNode.cost+targetNode.cost)));
+					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(++countBetweenSpaces)/(frameSpeed*(myNode.cost+targetNode.cost)));
 				}else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);
 					//myNode.SetIsOccupied(false);

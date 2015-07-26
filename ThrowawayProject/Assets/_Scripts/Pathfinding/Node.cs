@@ -310,7 +310,7 @@ public class Node : MonoBehaviour {
 	}*/
 
 	//Gets the next node in a certain direction ([counter]clockwise)
-	public Node GetNextNodeFromBoundary(Boundary b, bool clockwise){
+	public Node GetNextNodeFromBoundary(Boundary b, bool clockwise, int[] allowedTypes){
 		Node n = null;
 		int index = Array.IndexOf (boundaries, b);
 		if (index < 0) {
@@ -324,7 +324,7 @@ public class Node : MonoBehaviour {
 			i += boundaries.Length;
 		}
 		if (boundaries [i].GetConnectedTo ()) {
-			if (boundaries[i].GetConnectedTo().GetNode ().type != LADDER){
+			if (Array.IndexOf(allowedTypes, boundaries[i].GetConnectedTo().GetNode ().type) >= 0){
 				return boundaries[i].GetConnectedTo().GetNode ();
 			}
 		}
@@ -338,7 +338,7 @@ public class Node : MonoBehaviour {
 			}
 			//Debug.Log ("i: " + i);
 			if (boundaries [i].GetConnectedTo ()) {
-				if (boundaries [i].GetConnectedTo ().GetNode().type != LADDER){
+				if (Array.IndexOf(allowedTypes, boundaries [i].GetConnectedTo ().GetNode().type) >= 0){
 					n = boundaries [i].GetConnectedTo ().GetNode ();
 				}
 			}

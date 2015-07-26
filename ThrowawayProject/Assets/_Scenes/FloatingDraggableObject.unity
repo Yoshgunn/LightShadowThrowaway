@@ -1053,6 +1053,7 @@ MonoBehaviour:
   moveInX: 1
   moveInZ: 0
   moveInY: 0
+  speed: 0
 --- !u!54 &943538604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1140,6 +1141,7 @@ MonoBehaviour:
   moveInX: 0
   moveInZ: 1
   moveInY: 0
+  speed: 0
 --- !u!54 &1055281388
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2014,6 +2016,7 @@ MonoBehaviour:
   moveInX: 0
   moveInZ: 0
   moveInY: 1
+  speed: 0
 --- !u!54 &1578942632
 Rigidbody:
   m_ObjectHideFlags: 0

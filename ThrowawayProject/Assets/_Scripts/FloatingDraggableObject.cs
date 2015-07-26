@@ -2,10 +2,16 @@
 using System.Collections;
 
 public class FloatingDraggableObject : MonoBehaviour {
+	
+	private static float DEFAULT_SPEED = 0.2f;
+	private static float CLICK_DISTANCE = 0.05f;
 
 	public bool moveInX;
 	public bool moveInZ;
 	public bool moveInY;
+
+	//These attributes will have default values. However, they can be changed.
+	public float speed;
 
 	private bool dragging = false;
 	private Plane floorPlane;
@@ -17,9 +23,6 @@ public class FloatingDraggableObject : MonoBehaviour {
 	private bool nodesConnected = true;
 	private float minPos;
 	private float maxPos;
-
-	private static float SPEED = 0.2f;
-	private static float CLICK_DISTANCE = 0.05f;
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +49,11 @@ public class FloatingDraggableObject : MonoBehaviour {
 			float temp = minPos;
 			minPos = maxPos;
 			maxPos = temp;
+		}
+
+		//Set up the 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
 		}
 	}
 	
@@ -89,16 +97,16 @@ public class FloatingDraggableObject : MonoBehaviour {
 
 		//Now figure out where I should be (grid-wise)
 		Vector3 whereIWantToBe = new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y), Mathf.Round(pos.z));
-		if (Vector3.Distance (whereIWantToBe, this.transform.position) > SPEED){
+		if (Vector3.Distance (whereIWantToBe, this.transform.position) > speed){
 			//If we're moving, disconnect the nodes
 			if (nodesConnected){
 				nodesConnected = false;
 				Node.DisconnectGroup(nodes);
 			}
 			//...and move us
-			this.transform.Translate(Vector3.Normalize (whereIWantToBe - this.transform.position)*SPEED);
+			this.transform.Translate(Vector3.Normalize (whereIWantToBe - this.transform.position)*speed);
 		}else if (!nodesConnected){
-			//if the nodes aren't connected, but we're closed than SPEED...
+			//if the nodes aren't connected, but we're closed than speed...
 			//Move us to where we should be
 			this.transform.position = whereIWantToBe;
 			//...and reconnect the nodes

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RotatingPlatform : MonoBehaviour, Triggerable {
 
-	private static int SPEED = 1;
+	private static int DEFAULT_SPEED = 1;
 	private static int STOP_TIME = 60;
 
 	public int rotateAmount = 90;
@@ -12,6 +12,10 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 	public bool rotateInZ = false;
 	public bool rotateBackwards = false;
 	public bool rotating = true;
+
+	//These attributes will have default values. However, they can be changed.
+	public int speed;
+	public int stopTime = -1;
 
 	//private int myRotation = 0;
 	private int rotationAmount = 0;
@@ -30,6 +34,14 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 		rotator = this.transform.GetChild (0).transform;
 		axis = new Vector3 (rotateInX ? 1 : 0, rotateInY ? 1 : 0, rotateInZ ? 1 : 0);
 		nodes = rotator.GetComponentsInChildren<Node> ();
+
+		//Set up the 'default' values
+		if (speed == 0) {
+			speed = DEFAULT_SPEED;
+		}
+		if (stopTime < 0) {
+			stopTime = STOP_TIME;
+		}
 	}
 	
 	// Update is called once per frame
@@ -37,7 +49,7 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 		if (rotating) {	//We only have to do anything if it's rotating. If it's not, don't worry about it
 			if (paused) {
 				pauseTimer++;
-				if (pauseTimer > STOP_TIME) {
+				if (pauseTimer > stopTime) {
 					//Start rotating again
 					pauseTimer = 0;
 					paused = false;
@@ -58,8 +70,8 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 
 				if (rotationAmount < rotateAmount) {
 					//If we're still rotating
-					rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-SPEED:SPEED));
-					rotationAmount += SPEED;
+					rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-speed:speed));
+					rotationAmount += speed;
 				} else {
 					//If we're done rotating...
 					//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...
