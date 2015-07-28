@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1814,8 +1815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingNode: {fileID: 0}
-  targetNode: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -2317,6 +2316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2557,6 +2557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedTo: {fileID: 1466078608}
+  isOpen: 1
+  numTimesBeforeClosing: 2
 --- !u!1001 &1433621206
 Prefab:
   m_ObjectHideFlags: 0
@@ -2652,6 +2654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedTo: {fileID: 1375817429}
+  isOpen: 1
+  numTimesBeforeClosing: 3
 --- !u!1 &1483868053
 GameObject:
   m_ObjectHideFlags: 0

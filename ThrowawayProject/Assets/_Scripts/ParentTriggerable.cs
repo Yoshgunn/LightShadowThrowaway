@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParentTrigger : MonoBehaviour, Triggerable {
+public class ParentTriggerable : MonoBehaviour, Triggerable {
 
 	// Use this for initialization
 	void Start () {

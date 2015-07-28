@@ -135,7 +135,7 @@ public class SilhouetteMonolith : MonoBehaviour {
 	void ToggleHidden(){
 
 		//First of all, only toggle it if there is NO light on it
-		if (AmIInShadow()) {
+		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
 			//Debug.Log ("Changing... " + curChild);
 			//Hide the current child
 			//First, remove all of it's nodes from the pathfinding graph
@@ -167,56 +167,5 @@ public class SilhouetteMonolith : MonoBehaviour {
 			hidden = !hidden;
 			this.GetComponent<NavMeshObstacle> ().enabled = hidden;*/
 		}
-	}
-
-	bool AmIInShadow(){
-		bool isInShadow = true;
-		
-		//Loop through each light
-		//See if it's hidden by looping through each object
-		foreach (GameObject light in lights) {
-			if ((light.GetComponent<MyLight>()==null || !light.GetComponent<MyLight>().GetIsOn()) && (light.GetComponentInChildren<MyLight>()==null || !light.GetComponentInChildren<MyLight>().GetIsOn())){
-				//If the 'light' doesn't have a light component, or it does but the light isn't on, then don't worry about it
-				//Debug.Log ("Light isn't on!");
-				continue;
-			}
-			
-			bool isBlocked = false;
-			//Find the angle TO the OBJECT from the light in the XZ plane
-			float angleToObjectXZ = Mathf.Atan2(light.transform.position.z - transform.position.z, light.transform.position.x - transform.position.x);
-			//Find the angle OF the the OBJECT from the light in the XZ plane
-			float objectAngleXZ = Mathf.Atan2(Mathf.Sqrt (2)/2f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(transform.position.x, transform.position.z)));
-			
-			//Find the angle TO the OBJECT from the light in the XY plane
-			float angleToObjectXY = Mathf.Atan2(light.transform.position.y - transform.position.y, light.transform.position.x - transform.position.x);
-			//Find the angle OF the the OBJECT from the light in the XY plane
-			float objectAngleXY = Mathf.Atan2(Mathf.Sqrt (2)/2f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.y), new Vector2(transform.position.x, transform.position.y)));
-			
-			foreach (GameObject blocker in blockingTriggers){
-				//Find the angle TO the BLOCKER from the light in the XZ plane
-				float angleToBlockerXZ = Mathf.Atan2(light.transform.position.z - blocker.transform.position.z, light.transform.position.x - blocker.transform.position.x);
-				//Find the angle OF the BLOCKER from the light in the XZ plane
-				float blockerAngleXZ = Mathf.Atan2(0.5f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.z), new Vector2(blocker.transform.position.x, blocker.transform.position.z)));
-				
-				//Find the angle TO the BLOCKER from the light in the XY plane
-				float angleToBlockerXY = Mathf.Atan2(light.transform.position.y - blocker.transform.position.y, light.transform.position.x - blocker.transform.position.x);
-				//Find the angle OF the BLOCKER from the light in the XY plane
-				float blockerAngleXY = Mathf.Atan2(0.5f, Vector2.Distance(new Vector2(light.transform.position.x, light.transform.position.y), new Vector2(blocker.transform.position.x, blocker.transform.position.y)));
-				
-				//Now test to see if this blocker is blocking the object from this light
-				if ((angleToBlockerXZ - blockerAngleXZ < angleToObjectXZ - objectAngleXZ && angleToBlockerXZ + blockerAngleXZ > angleToObjectXZ + objectAngleXZ) && (angleToBlockerXY - blockerAngleXY < angleToObjectXY - objectAngleXY && angleToBlockerXY + blockerAngleXY > angleToObjectXY + objectAngleXY)){
-					isBlocked = true;
-					break;
-				}
-			}
-			
-			//If the object isn't blocked from this light by any of the blockers, then we know we are NOT in shadow
-			if (!isBlocked){
-				isInShadow = false;
-				break;
-			}
-		}
-		
-		return isInShadow;
 	}
 }
