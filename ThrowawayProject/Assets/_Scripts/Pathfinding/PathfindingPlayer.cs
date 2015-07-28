@@ -19,6 +19,9 @@ public class PathfindingPlayer : MonoBehaviour {
 	private bool alreadyResetLastNodeOccupied = false;		//Boolean to keep track of whether or not you already reset the last node you were on. If a walker is right behind you, it might reset that node after the walker actually occupies it.
 	private bool cantFindNewPath = false;
 
+	// Animation Stuff
+	public Animator animatorController;
+
 	// Use this for initialization
 	void Start () {
 		PLAYER = this;
@@ -27,6 +30,9 @@ public class PathfindingPlayer : MonoBehaviour {
 		Node.currentNode = currentNode;
 		currentNode.SetIsOccupied (true);
 		//this.transform.GetComponentInChildren<Light> ().attenuate = false;
+
+		// We need to get the Animator Controller for Animation Blending
+		animatorController = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -43,6 +49,10 @@ public class PathfindingPlayer : MonoBehaviour {
 				if (!currentNode.GetIsOccupied()){
 					currentNode.SetIsOccupied(true);
 				}
+
+				// Stop the walk animation
+				animatorController.SetFloat( "WalkSpeed", 0 );
+
 			}else{
 				//Debug.Log ("target node is null, getting next node. Next node is " + targetNode);
 				//We have somewhere to go
@@ -69,12 +79,26 @@ public class PathfindingPlayer : MonoBehaviour {
 					//cantFindNewPath = false;
 					//Debug.Log ("Moving " + (1f/(10f*(currentNode.cost+targetNode.cost))) + " spaces");
 					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
-				}else if (!targetNode.GetIsOccupied()){
+
+					// Frank's Janky Turning Code
+					if ( targetNode.GetPositionAbove().x > transform.position.x )	// Is it time to turn right?
+						transform.eulerAngles = new Vector3( 0, 90, 0 );
+					else if ( targetNode.GetPositionAbove().x < transform.position.x )	// Is it time to turn left?
+						transform.eulerAngles = new Vector3( 0, 270, 0 );
+					else if ( targetNode.GetPositionAbove().z > transform.position.z )	// Is it time to turn forward?
+						transform.eulerAngles = new Vector3( 0, 0, 0 );
+					else if ( targetNode.GetPositionAbove().z < transform.position.z )	// Is it time to turn left?
+						transform.eulerAngles = new Vector3( 0, 180, 0 );
+					/* */
+
+					animatorController.SetFloat( "WalkSpeed", 1 );
+
+				} else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);
 					//currentNode.SetIsOccupied(false);
 					moveToTargetNode = true;
 					waitingForOccupiedNodeCount = 0;
-				}else{
+				} else {
 					//we are still waiting for the occupied node
 					waitingForOccupiedNodeCount++;
 					if (waitingForOccupiedNodeCount > TIME_TO_WAIT_FOR_OCCUPIED_NODE/* && !cantFindNewPath*/){
