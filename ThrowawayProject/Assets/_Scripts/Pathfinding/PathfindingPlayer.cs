@@ -51,7 +51,9 @@ public class PathfindingPlayer : MonoBehaviour {
 				}
 
 				// Stop the walk animation
-				animatorController.SetFloat( "WalkSpeed", 0 );
+				if (animatorController){
+					animatorController.SetFloat( "WalkSpeed", 0 );
+				}
 
 			}else{
 				//Debug.Log ("target node is null, getting next node. Next node is " + targetNode);
@@ -91,7 +93,9 @@ public class PathfindingPlayer : MonoBehaviour {
 						transform.eulerAngles = new Vector3( 0, 180, 0 );
 					/* */
 
-					animatorController.SetFloat( "WalkSpeed", 1 );
+					if (animatorController){
+						animatorController.SetFloat( "WalkSpeed", 1 );
+					}
 
 				} else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);

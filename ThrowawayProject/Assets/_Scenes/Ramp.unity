@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -885,6 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1306,6 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2042,6 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2204,6 +2208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -4886,6 +4891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -8293,6 +8299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -8453,6 +8460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -8801,6 +8809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -9959,6 +9968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -11498,6 +11508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -11657,6 +11668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -12450,6 +12462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -13888,6 +13901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14120,6 +14134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14236,6 +14251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14581,8 +14597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingNode: {fileID: 0}
-  targetNode: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -14640,6 +14654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -15313,6 +15328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -16731,6 +16747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -17191,6 +17208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -17468,6 +17486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -19293,6 +19312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -19670,6 +19690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -22433,6 +22454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -25239,6 +25261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -25599,6 +25622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -25889,6 +25913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -26338,6 +26363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -28930,6 +28956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -29426,6 +29453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}

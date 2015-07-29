@@ -217,6 +217,13 @@ public class Monolith : MonoBehaviour {
 			float lowObjectAngleXY = angleToObjectXY - objectAngleXY;
 			float highObjectAngleXY = angleToObjectXY + objectAngleXY;
 			
+			/*if (lowObjectAngleXZ < 0){ lowObjectAngleXZ += Mathf.PI*2; }
+			if (highObjectAngleXZ < 0){ highObjectAngleXZ += Mathf.PI*2; }
+			if (lowObjectAngleXY < 0){ lowObjectAngleXY += Mathf.PI*2; }
+			if (highObjectAngleXY < 0){ highObjectAngleXY += Mathf.PI*2; }*/
+			//if (highObjectAngleXZ > Mathf.PI*2){ highObjectAngleXZ -= Mathf.PI*2; }
+			//if (highObjectAngleXY > Mathf.PI*2){ highObjectAngleXY -= Mathf.PI*2; }
+			
 			foreach (GameObject blocker in blockers){
 
 				if (Vector3.Distance (obj.transform.position, light.transform.position) < Vector3.Distance (obj.transform.position, blocker.transform.position)){
@@ -235,11 +242,9 @@ public class Monolith : MonoBehaviour {
 				Vector3 lowerYPos = rend.bounds.center - new Vector3(0f, rend.bounds.size.y/2f, 0f);
 				Vector3 upperYPos = rend.bounds.center + new Vector3(0f, rend.bounds.size.y/2f, 0f);
 				Vector3 lowerZPos = rend.bounds.center - new Vector3(0f, 0f, rend.bounds.size.z/2f);
-				//Debug.DrawLine (light.transform.position, lowerZPos, Color.magenta);
-				Debug.DrawRay (light.transform.position, 10f*(lowerZPos - light.transform.position), Color.magenta);
+				//Debug.DrawRay (light.transform.position, 10f*(lowerZPos - light.transform.position), Color.magenta);
 				Vector3 upperZPos = rend.bounds.center + new Vector3(0f, 0f, rend.bounds.size.z/2f);
-				//Debug.DrawLine (light.transform.position, upperZPos, Color.magenta);
-				Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);
+				//Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);
 				
 				//Find the angle TO the LOWER X end of the BLOCKER from the LIGHT in the XZ plane
 				float angleToLowerX = Mathf.Atan2(light.transform.position.z - lowerXPos.z, light.transform.position.x - lowerXPos.x);
@@ -249,13 +254,45 @@ public class Monolith : MonoBehaviour {
 				float angleToLowerZ = Mathf.Atan2(light.transform.position.z - lowerZPos.z, light.transform.position.x - lowerZPos.x);
 				//Find the angle TO the UPPER Z end of the BLOCKER from the LIGHT in the XZ plane
 				float angleToUpperZ = Mathf.Atan2(light.transform.position.z - upperZPos.z, light.transform.position.x - upperZPos.x);
+				
+				//Make sure that all of the above values are in the same neighborhood
+				if (Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ) - Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ) > Mathf.PI){
+					if (angleToLowerX < 0){
+						angleToLowerX += Mathf.PI*2;
+					}
+					if (angleToUpperX < 0){
+						angleToUpperX += Mathf.PI*2;
+					}
+					if (angleToLowerZ < 0){
+						angleToLowerZ += Mathf.PI*2;
+					}
+					if (angleToUpperZ < 0){
+						angleToUpperZ += Mathf.PI*2;
+					}
+				}
+				
+				/*if (angleToLowerX < 0){ angleToLowerX += Mathf.PI*2; }
+				if (angleToUpperX < 0){ angleToUpperX += Mathf.PI*2; }
+				if (angleToLowerZ < 0){ angleToLowerZ += Mathf.PI*2; }
+				if (angleToUpperZ < 0){ angleToUpperZ += Mathf.PI*2; }*/
+				
+				//Debug.Log ("AngleToLowerX: " + angleToLowerX + ", angleToUpperX: " + angleToUpperX + ", angleToLowerZ: " + angleToLowerZ + ", angleToUpperZ: " + angleToUpperZ);
+
+				/*while (Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ) - Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ) > Mathf.PI){
+					if (angleToLowerX == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ)){
+						angleToLowerX += Mathf.PI;
+					}else if (angleToUpperX == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ)){
+						angleToUpperX += Mathf.PI;
+					}else if (angleToLowerZ == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ)){
+						angleToLowerZ += Mathf.PI;
+					}else if (angleToUpperZ == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ)){
+						angleToUpperZ += Mathf.PI;
+					}
+				}*/
 
 				//Find the angles in the XZ plane
 				float lowestAngleXZ = Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ);
 				float highestAngleXZ = Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerZ, angleToUpperZ);
-
-				//Debug.Log ("Min angle: " + lowestAngleXZ + ", Max angle: " + highestAngleXZ);
-				//Debug.Log ("Min angle to object: " + (angleToObjectXZ - objectAngleXZ) + ", Max angle to object: " + (angleToObjectXZ + objectAngleXZ));
 
 				//Find the angle TO the LOWER X end of the BLOCKER from the LIGHT in the XZ plane
 				angleToLowerX = Mathf.Atan2(light.transform.position.y - lowerXPos.y, light.transform.position.x - lowerXPos.x);
@@ -265,43 +302,89 @@ public class Monolith : MonoBehaviour {
 				float angleToLowerY = Mathf.Atan2(light.transform.position.y - lowerYPos.y, light.transform.position.x - lowerYPos.x);
 				//Find the angle TO the UPPER Z end of the BLOCKER from the LIGHT in the XZ plane
 				float angleToUpperY = Mathf.Atan2(light.transform.position.y - upperYPos.y, light.transform.position.x - upperYPos.x);
+
+				//Make sure that all of the above values are in the same neighborhood
+				if (Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY) - Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY) > Mathf.PI){
+					if (angleToLowerX < 0){
+						angleToLowerX += Mathf.PI*2;
+					}
+					if (angleToUpperX < 0){
+						angleToUpperX += Mathf.PI*2;
+					}
+					if (angleToLowerY < 0){
+						angleToLowerY += Mathf.PI*2;
+					}
+					if (angleToUpperY < 0){
+						angleToUpperY += Mathf.PI*2;
+					}
+				}
+				
+				/*if (angleToLowerX < 0){ angleToLowerX += Mathf.PI*2; }
+				if (angleToUpperX < 0){ angleToUpperX += Mathf.PI*2; }
+				if (angleToLowerY < 0){ angleToLowerY += Mathf.PI*2; }
+				if (angleToUpperY < 0){ angleToUpperY += Mathf.PI*2; }*/
+				
+				/*while (Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY) - Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY) > Mathf.PI){
+					if (angleToLowerX == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY)){
+						angleToLowerX += Mathf.PI;
+					}else if (angleToUpperX == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY)){
+						angleToUpperX += Mathf.PI;
+					}else if (angleToLowerY == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY)){
+						angleToLowerY += Mathf.PI;
+					}else if (angleToUpperY == Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY)){
+						angleToUpperY += Mathf.PI;
+					}
+				}*/
 				
 				//Find the angles in the XZ plane
 				float lowestAngleXY = Mathf.Min (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY);
 				float highestAngleXY = Mathf.Max (angleToLowerX, angleToUpperX, angleToLowerY, angleToUpperY);
-				
-				//Debug.Log ("Min angle: " + lowestAngleXY + ", Max angle: " + highestAngleXY);
-				//Debug.Log ("Min angle to object: " + (lowObjectAngleXY) + ", Max angle to object: " + (highObjectAngleXY));
+
+				/*if (highObjectAngleXZ < lowObjectAngleXZ){
+					if (lowestAngleXZ < Mathf.PI){
+						lowestAngleXZ += Mathf.PI*2;
+					}
+					if (highestAngleXZ < Mathf.PI){
+						highestAngleXZ += Mathf.PI*2;
+					}
+					highObjectAngleXZ += Mathf.PI*2;
+				}*/
 
 				//Any angles that will be compared to each other need to be with PI of each other
 				while (Mathf.Abs (lowestAngleXZ - lowObjectAngleXZ) > Mathf.PI){
 					if (lowestAngleXZ < lowObjectAngleXZ){
-						lowestAngleXZ += Mathf.PI;
+						lowestAngleXZ += Mathf.PI*2;
 					}else{
-						lowObjectAngleXZ += Mathf.PI;
+						lowObjectAngleXZ += Mathf.PI*2;
 					}
 				}
 				while (Mathf.Abs (highestAngleXZ - highObjectAngleXZ) > Mathf.PI){
 					if (highestAngleXZ < highObjectAngleXZ){
-						highestAngleXZ += Mathf.PI;
+						highestAngleXZ += Mathf.PI*2;
 					}else{
-						highObjectAngleXZ += Mathf.PI;
+						highObjectAngleXZ += Mathf.PI*2;
 					}
 				}
 				while (Mathf.Abs (lowestAngleXY - lowObjectAngleXY) > Mathf.PI){
 					if (lowestAngleXY < lowObjectAngleXY){
-						lowestAngleXY += Mathf.PI;
+						lowestAngleXY += Mathf.PI*2;
 					}else{
-						lowObjectAngleXY += Mathf.PI;
+						lowObjectAngleXY += Mathf.PI*2;
 					}
 				}
 				while (Mathf.Abs (highestAngleXY - highObjectAngleXY) > Mathf.PI){
 					if (highestAngleXY < highObjectAngleXY){
-						highestAngleXY += Mathf.PI;
+						highestAngleXY += Mathf.PI*2;
 					}else{
-						highObjectAngleXY += Mathf.PI;
+						highObjectAngleXY += Mathf.PI*2;
 					}
 				}
+				
+				//Debug.Log ("XZ - Min angle: " + lowestAngleXZ + ", Max angle: " + highestAngleXZ);
+				//Debug.Log ("XZ - Min angle to object: " + (lowObjectAngleXZ) + ", Max angle to object: " + (highObjectAngleXZ));
+
+				//Debug.Log ("XY - Min angle: " + lowestAngleXY + ", Max angle: " + highestAngleXY);
+				//Debug.Log ("XY - Min angle to object: " + (lowObjectAngleXY) + ", Max angle to object: " + (highObjectAngleXY));
 
 				
 				//Now test to see if this blocker is blocking the object from this light
