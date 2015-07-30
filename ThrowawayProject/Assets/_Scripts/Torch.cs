@@ -11,6 +11,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	float fadeAmount = 0f;
 	int fadeCounter = 0;
 
+	float shrinkAmount = 0f;
+	int shrinkCounter = 0;
+
 	// Use this for initialization
 	void Start () {
 		light = this.GetComponent<Light> ();
@@ -22,6 +25,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		light.shadows = LightShadows.Hard;
 		if (range != -1) {
 			light.range = range;
+		} else {
+			range = light.range;
 		}
 	}
 	
@@ -32,6 +37,14 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			fadeCounter--;
 			if (light.intensity <= 0 || light.intensity >= 8 || fadeCounter==0) {
 				fadeAmount = 0;
+			}
+		}
+
+		if (shrinkCounter > 0) {
+			light.range += shrinkAmount;
+			shrinkCounter--;
+			if (light.range <= 0 || light.range >= range || shrinkCounter==0){
+				shrinkAmount = 0;
 			}
 		}
 	}
@@ -62,5 +75,15 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	void MyLight.FadeOut(int time){
 		fadeCounter = time;
 		fadeAmount = -((float)light.intensity) / time;
+	}
+
+	void MyLight.Shrink(int time){
+		shrinkCounter = time;
+		shrinkAmount = -((float)light.range) / time;
+	}
+
+	void MyLight.UnShrink(int time){
+		shrinkCounter = time;
+		shrinkAmount = ((float)range) / time;
 	}
 }
