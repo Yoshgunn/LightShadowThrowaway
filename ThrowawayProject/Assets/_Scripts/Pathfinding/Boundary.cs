@@ -29,6 +29,10 @@ public class Boundary : MonoBehaviour {
 		//Add this to the list of all boundaries
 		allBoundaries.Add (this);
 	}
+
+	public static void EndScene(){
+		allBoundaries = new List<Boundary>();
+	}
 	
 	// Update is called once per frame
 	void Update () {

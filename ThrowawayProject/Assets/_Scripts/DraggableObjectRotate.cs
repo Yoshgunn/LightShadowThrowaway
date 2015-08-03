@@ -9,6 +9,7 @@ public class DraggableObjectRotate : MonoBehaviour {
 	public bool rotateInY;
 	public bool rotateInZ;
 	public bool moveWhilePlayerIsHere = false;
+	public bool orientationBackwards;
 
 	private Vector3 normal;
 	private bool dragging = false;
@@ -89,7 +90,7 @@ public class DraggableObjectRotate : MonoBehaviour {
 			if (angle>rotateBackSpeed && angle<90-rotateBackSpeed){
 				//Debug.Log ("Angle: " + angle);
 				//It should 'snap' into place
-				if (angle<45){
+				if ((angle>45 && !orientationBackwards) || (angle<45 && orientationBackwards)){
 					rotator.RotateAround (transform.position, normal, (sign?1:-1)*rotateBackSpeed);
 				}else{
 					rotator.RotateAround (transform.position, normal, (sign?-1:1)*rotateBackSpeed);

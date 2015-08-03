@@ -197,6 +197,7 @@ public class Monolith : MonoBehaviour {
 			
 			if (Vector3.Distance (obj.transform.position, light.transform.position) > lightComponent.GetRange () + Mathf.Sqrt (2)){
 				//If the 'light' can't reach the object, then don't worry about it
+				Debug.Log ("Light can't reach!");
 				continue;
 			}
 			
@@ -234,7 +235,10 @@ public class Monolith : MonoBehaviour {
 
 				Renderer rend = blocker.gameObject.GetComponent<Renderer>();
 				if (!rend){
-					continue;
+					rend = blocker.gameObject.GetComponentInChildren<Renderer>();
+					if (!rend){
+						continue;
+					}
 				}
 				
 				Vector3 lowerXPos = rend.bounds.center - new Vector3(rend.bounds.size.x/2f, 0f, 0f);
@@ -242,9 +246,15 @@ public class Monolith : MonoBehaviour {
 				Vector3 lowerYPos = rend.bounds.center - new Vector3(0f, rend.bounds.size.y/2f, 0f);
 				Vector3 upperYPos = rend.bounds.center + new Vector3(0f, rend.bounds.size.y/2f, 0f);
 				Vector3 lowerZPos = rend.bounds.center - new Vector3(0f, 0f, rend.bounds.size.z/2f);
-				//Debug.DrawRay (light.transform.position, 10f*(lowerZPos - light.transform.position), Color.magenta);
 				Vector3 upperZPos = rend.bounds.center + new Vector3(0f, 0f, rend.bounds.size.z/2f);
-				//Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);
+
+				/*Debug.DrawRay (light.transform.position, 10f*(lowerXPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(upperXPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(lowerYPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(lowerYPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(upperYPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(lowerZPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);*/
 				
 				//Find the angle TO the LOWER X end of the BLOCKER from the LIGHT in the XZ plane
 				float angleToLowerX = Mathf.Atan2(light.transform.position.z - lowerXPos.z, light.transform.position.x - lowerXPos.x);

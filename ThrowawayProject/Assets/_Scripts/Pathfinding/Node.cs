@@ -69,6 +69,10 @@ public class Node : MonoBehaviour {
 		//this.gameObject.AddComponent<Light> ();
 	}
 	
+	public static void EndScene(){
+		allNodes = new List<Node>();
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		/*if (marked) {
@@ -449,6 +453,10 @@ public class Node : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	public static int GetNumNodes(){
+		return allNodes.Count;
 	}
 
 	//Function to rebuild this node

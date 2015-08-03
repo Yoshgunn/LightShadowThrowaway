@@ -30,7 +30,7 @@ public class GhostMonolith : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		bool inShadowThisFrame = Monolith.AmIInShadow (this.gameObject, lights, blockingTriggers);
-		//Debug.Log ("Is in shadow: " + inShadowThisFrame);
+		Debug.Log ("Is in shadow: " + inShadowThisFrame);
 		if (inShadowThisFrame != wasInShadowLastFrame) {
 			ToggleHidden();
 		}

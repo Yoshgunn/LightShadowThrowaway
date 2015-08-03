@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 0
+  range: -1
 --- !u!4 &270075820
 Transform:
   m_ObjectHideFlags: 0
@@ -857,6 +858,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &732401665
 Transform:
   m_ObjectHideFlags: 0
@@ -1235,7 +1237,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1491,6 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 0
+  range: -1
 --- !u!1001 &1685345677
 Prefab:
   m_ObjectHideFlags: 0
@@ -1662,7 +1665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1728,7 +1731,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1894,7 +1897,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2119,6 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 0
+  range: -1
 --- !u!1001 &1998908227
 Prefab:
   m_ObjectHideFlags: 0

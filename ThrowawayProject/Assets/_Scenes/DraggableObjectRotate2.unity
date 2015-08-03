@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -679,6 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1590,6 +1592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1800,6 +1803,7 @@ MonoBehaviour:
   rotateInY: 0
   rotateInZ: 1
   moveWhilePlayerIsHere: 0
+  orientationBackwards: 0
 --- !u!54 &578967396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2141,6 +2145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2546,6 +2551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2943,8 +2949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingNode: {fileID: 0}
-  targetNode: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -3502,6 +3506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -3997,6 +4002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -4448,6 +4454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -4657,6 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -4895,6 +4903,7 @@ MonoBehaviour:
   rotateInY: 0
   rotateInZ: 1
   moveWhilePlayerIsHere: 0
+  orientationBackwards: 1
 --- !u!54 &2094616065
 Rigidbody:
   m_ObjectHideFlags: 0

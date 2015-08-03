@@ -37,6 +37,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log ("Number of nodes: " + Node.GetNumNodes());
 		//Debug.Log ("Framerate: " + 1f / Time.deltaTime);
 
 		//Figure out if we have to move somewhere
