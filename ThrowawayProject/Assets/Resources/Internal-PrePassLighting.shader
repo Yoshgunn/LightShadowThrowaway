@@ -62,6 +62,7 @@ half4 CalculateLight (unity_v2f_deferred i)
 		
 		float att = dot(tolight, tolight) * _LightPos.w;
 		att = att * att * att * att * att * att * att * att * att * att;
+		//att = 0.0;
 		atten = tex2D (_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;
 		
 		atten *= UnityDeferredComputeShadow (tolight, fadeDist, uv);

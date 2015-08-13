@@ -5,10 +5,8 @@ public class ButtonNextLevel : MonoBehaviour {
 
 	public void LoadLevel(string levelName){
 		//Take care of ending the current scene
-		//TODO: This should probably be done in the gamecontroller rather than here.
-		Node.EndScene ();
-		Boundary.EndScene ();
+		GameController.EndLevel (levelName);
 
-		Application.LoadLevel (levelName);
+		//Application.LoadLevel (levelName);
 	}
 }

@@ -628,7 +628,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
-  range: -1
+  maxRange: -1
+  maxIntensity: -1
+  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &454929624
 Transform:
   m_ObjectHideFlags: 0
@@ -1151,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &991878984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1895,7 +1897,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
-  range: -1
+  maxRange: -1
+  maxIntensity: -1
+  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1979416171
 GameObject:
   m_ObjectHideFlags: 0

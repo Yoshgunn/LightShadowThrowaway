@@ -386,6 +386,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &216325474
 MonoBehaviour:
@@ -712,6 +713,7 @@ MonoBehaviour:
   rotateInY: 1
   rotateInZ: 0
   moveWhilePlayerIsHere: 1
+  orientationBackwards: 0
 --- !u!54 &578967396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -846,7 +848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &991878984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,8 +860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingNode: {fileID: 0}
-  targetNode: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -1044,6 +1044,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &1198698549
 Transform:
   m_ObjectHideFlags: 0
@@ -1292,11 +1293,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  placeholder: {fileID: 0}
 --- !u!1 &1979416171
 GameObject:
   m_ObjectHideFlags: 0

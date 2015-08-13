@@ -78,7 +78,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 423790}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &423790
 Transform:
   m_ObjectHideFlags: 1
@@ -89,9 +89,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 454286}
   - {fileID: 414762}
   - {fileID: 478574}
-  - {fileID: 454286}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &454286
@@ -105,7 +105,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 423790}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!4 &478574
 Transform:
   m_ObjectHideFlags: 1
@@ -117,7 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 423790}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!23 &2330570
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -225,6 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
+  maxRange: -1
+  maxIntensity: -1
+  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11486978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd949495bb76eb14ebd69808b693d7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorController: {fileID: 0}
 --- !u!136 &13684852
 CapsuleCollider:
   m_ObjectHideFlags: 1

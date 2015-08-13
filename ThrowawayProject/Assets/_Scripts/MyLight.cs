@@ -8,4 +8,8 @@ public interface MyLight {
 	void FadeIn(int time);
 	void Shrink (int time);
 	void UnShrink (int time);
+	void FlickerOn (int time);
+	void FlickerOff (int time);
+	void FlickerOn ();
+	void FlickerOff ();
 }

@@ -33,6 +33,8 @@ public class PathfindingPlayer : MonoBehaviour {
 
 		// We need to get the Animator Controller for Animation Blending
 		animatorController = GetComponentInChildren<Animator>();
+		
+		transform.GetChild (0).transform.GetComponent<Light>().enabled = false;
 	}
 	
 	// Update is called once per frame

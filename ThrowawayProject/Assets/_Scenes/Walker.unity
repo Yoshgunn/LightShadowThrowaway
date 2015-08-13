@@ -274,6 +274,45 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 42407867}
+--- !u!1 &43307337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 43307339}
+  - 114: {fileID: 43307338}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &43307338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43307337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &43307339
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43307337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
 --- !u!1001 &43361212
 Prefab:
   m_ObjectHideFlags: 0
@@ -1633,7 +1672,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 0
-  range: -1
+  maxRange: -1
+  maxIntensity: -1
+  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &454929624
 Transform:
   m_ObjectHideFlags: 0
@@ -1761,6 +1802,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 551698789}
   - 108: {fileID: 551698788}
+  - 114: {fileID: 551698790}
   m_Layer: 0
   m_Name: Point light (1)
   m_TagString: Untagged
@@ -1812,6 +1854,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!114 &551698790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551698787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startsOn: 1
+  maxRange: 10
+  maxIntensity: -1
+  myColor: {r: .507352948, g: 1, b: .653448284, a: 1}
 --- !u!1 &565787667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,6 +2392,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 714365907}
   - 108: {fileID: 714365906}
+  - 114: {fileID: 714365908}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -2386,6 +2444,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 27
+--- !u!114 &714365908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714365905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startsOn: 1
+  maxRange: 10
+  maxIntensity: -1
+  myColor: {r: .838235259, g: .240376264, b: .40117985, a: 1}
 --- !u!1001 &720220187
 Prefab:
   m_ObjectHideFlags: 0
