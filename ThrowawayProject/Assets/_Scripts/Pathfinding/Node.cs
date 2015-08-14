@@ -15,7 +15,7 @@ public class Node : MonoBehaviour {
 
 	public float cost = 1;
 	public byte type = NORMAL;
-	public Node redirectTo = null;
+	public GameObject redirectTo = null;
 
 	public Boundary[] boundaries = new Boundary[4];
 	public Transform placeholder = null;
@@ -23,6 +23,7 @@ public class Node : MonoBehaviour {
 	private bool marked = false;	//Is this node part of the path?
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
 	private float fScore = -1;		//Estimated total cost from start to goal through this node.
+	private Node redirectToNode;
 
 	//Might have to do something like 'associated nodes', so that something on a ramp can occupy all three of the nodes for the ramp...
 	private bool isOccupied = false;	//Whether or not something is currently occupying this node.
@@ -68,6 +69,10 @@ public class Node : MonoBehaviour {
 			//If there are more than four boundaries, everything will break
 		}*/
 		//this.gameObject.AddComponent<Light> ();
+
+		if (redirectTo) {
+			redirectToNode = redirectTo.GetComponentInChildren<Node> ();
+		}
 	}
 	
 	public static void EndScene(){
@@ -140,6 +145,10 @@ public class Node : MonoBehaviour {
 
 	public float GetPathfindingCost(){
 		return cost + ((isOccupied)?ADDITIONAL_OCCUPIED_PATHFINDING_COST:0f);
+	}
+
+	public Node GetRedirectToNode(){
+		return redirectToNode;
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
