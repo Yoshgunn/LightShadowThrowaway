@@ -8,11 +8,13 @@ public class GhostMonolith : MonoBehaviour {
 
 	bool wasInShadowLastFrame = false;
 	int curChild = 0;
-	int numChildren = 0;
+	int numChildren = 2;
 
 	// Use this for initialization
 	void Start () {
-		numChildren = this.transform.childCount;
+		this.transform.GetChild (0).gameObject.SetActive (true);
+		this.transform.GetChild (1).gameObject.SetActive (false);
+		/*numChildren = this.transform.childCount;
 
 		bool foundOne = false;
 		for (int i=1; i<numChildren; i++) {
@@ -24,7 +26,7 @@ public class GhostMonolith : MonoBehaviour {
 				foundOne = true;
 				curChild = i;
 			}
-		}
+		}*/
 	}
 	
 	// Update is called once per frame

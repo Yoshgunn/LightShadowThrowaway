@@ -1197,7 +1197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &719285990
 Transform:
   m_ObjectHideFlags: 0
@@ -2012,6 +2012,10 @@ Prefab:
       propertyPath: m_Range
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: maxRange
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
   m_IsPrefabParent: 0
@@ -2143,7 +2147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsOn: 1
-  maxRange: -1
+  maxRange: 2
   maxIntensity: -1
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1857150451
