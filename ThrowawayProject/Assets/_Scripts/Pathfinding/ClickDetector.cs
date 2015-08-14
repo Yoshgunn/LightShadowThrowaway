@@ -20,6 +20,7 @@ public class ClickDetector : MonoBehaviour {
 	}
 
 	public void Activate(){
+		Debug.Log ("ACTIVATING!");
 		Node.FindPath (this.node);
 	}
 }

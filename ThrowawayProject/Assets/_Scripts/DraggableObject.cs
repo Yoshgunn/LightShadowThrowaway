@@ -8,6 +8,7 @@ public class DraggableObject : MonoBehaviour {
 
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
+	public bool canMoveWithPlayer;
 
 	private bool dragging = false;
 	private Plane floorPlane;
@@ -125,6 +126,8 @@ public class DraggableObject : MonoBehaviour {
 				nodeIWantToBeOn.RecalculateEdges(false);
 				nodeIWantToBeOn.SetIsOccupied(true);
 				myNode = nodeIWantToBeOn;
+				Node.DisconnectGroup (nodes);
+				nodesConnected = false;
 			}
 
 			//TODO: The easiest way to do this might be:
@@ -170,11 +173,13 @@ public class DraggableObject : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		dragging = true;
-		startLocation = this.transform.position;
+		if (canMoveWithPlayer || System.Array.IndexOf (nodes,PathfindingPlayer.PLAYER.GetCurrentNode()) < 0){
+			dragging = true;
+			startLocation = this.transform.position;
 
-		Node.DisconnectGroup (nodes);
-		nodesConnected = false;
+			//Node.DisconnectGroup (nodes);
+			//nodesConnected = false;
+		}
 	}
 
 	void OnMouseUp(){
@@ -187,11 +192,18 @@ public class DraggableObject : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			hits = Physics.RaycastAll (ray, 100f);
 			//hits = Physics.RaycastAll(transform.position, transform.forward, 100.0F);
-			
+
+			//Reconnect the nodes
+			/*foreach (Node n in nodes){
+				n.RecalculateEdges(true);
+			}
+			nodesConnected = true;*/
+
+			//This should only happen if the click detector is a (great/grand) child of this object
 			foreach (RaycastHit hit in hits){
-				//Debug.Log ("Raycasthit: " + hit.collider.gameObject);
+				//Debug.Log ("Raycasthit: " + hit.collider.gameObject.transform.position);
 				ClickDetector clicker = hit.collider.transform.GetComponent<ClickDetector>();
-				if (clicker){
+				if (clicker && clicker.transform.IsChildOf(this.transform)){
 					clicker.Activate();
 					break;
 				}
