@@ -66,10 +66,11 @@ public class Doorway : MonoBehaviour, Triggerable {
 
 					//First we move to the other doorway and start fading in...
 					if (counter2 == Application.targetFrameRate / 2) {
+						Debug.Log ("Coming out the other end!");
 						//transitioning = false;
 						//counter = Application.targetFrameRate/2;
 						//PathfindingPlayer.PLAYER.GetComponentInChildren<MyLight>().FadeIn(Application.targetFrameRate);
-						PathfindingPlayer.PLAYER.GetComponentInChildren<MyLight> ().UnShrink (Application.targetFrameRate);
+						PathfindingPlayer.PLAYER.GetComponentInChildren<MyLight> ().UnShrink (Application.targetFrameRate/2);
 						//PathfindingPlayer.PLAYER.SetTargetNode(connectedTo.GetComponentInChildren<Boundary>().GetConnectedTo().GetNode ());
 						//PathfindingPlayer.PLAYER.SetTargetNode (connectedTo.GetNode ());
 						PathfindingPlayer.PLAYER.transform.position = connectedTo.transform.position;
@@ -79,7 +80,7 @@ public class Doorway : MonoBehaviour, Triggerable {
 						//Up the count of how many times we've gone through these doors
 						this.IncrementNumberOfTimesThrough ();
 						this.connectedTo.IncrementNumberOfTimesThrough ();
-						counter2--;
+						//counter2--;
 					}
 
 					//...then once we're faded in, we move to the next node

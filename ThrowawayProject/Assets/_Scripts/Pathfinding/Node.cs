@@ -15,6 +15,7 @@ public class Node : MonoBehaviour {
 
 	public float cost = 1;
 	public byte type = NORMAL;
+	public Node redirectTo = null;
 
 	public Boundary[] boundaries = new Boundary[4];
 	public Transform placeholder = null;

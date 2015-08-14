@@ -46,6 +46,11 @@ public class PathfindingPlayer : MonoBehaviour {
 		if (targetNode == null) {
 			targetNode = currentNode.GetNextNode ();
 			if (targetNode == null) {
+				//First, see if we should 'redirect' anywhere
+				if (currentNode.redirectTo){
+					Node.FindPath (currentNode.redirectTo);
+					return;
+				}
 				//We are on the current node and not moving. In this case, make sure we are in the correct spot
 				//This is mostly here so that moving platforms will work
 				transform.position = currentNode.GetPositionAbove();

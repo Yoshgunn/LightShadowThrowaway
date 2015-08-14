@@ -77,9 +77,11 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		}
 
 		if (shrinkCounter > 0) {
+			//Debug.Log ("Shrink counter: " + shrinkCounter + ", Shrink amount: " + shrinkAmount + ", currentRange: " + currentRange + ", light.range: " + thisLight.range + ", maxRange: " + maxRange);
 			thisLight.range += shrinkAmount;
+			currentRange += shrinkAmount;
 			shrinkCounter--;
-			if (thisLight.range <= 0 || thisLight.range >= currentRange || shrinkCounter==0){
+			if (thisLight.range >= maxRange || shrinkCounter==0){
 				shrinkAmount = 0;
 			}
 		}
@@ -101,7 +103,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 				Debug.Log ("Breaking early");
 				flickerCounter = 0;
 			}*/
-		} else if (currentIntensity > 0 && currentRange > 0){
+		} else if (currentIntensity > 0 && currentRange > 0 && shrinkCounter <=0){
 			//We're just doing normal, static flicker
 			flickerCounter--;
 			//Now do the random 'flickery' effect
@@ -149,8 +151,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	}
 
 	void MyLight.UnShrink(int time){
+		Debug.Log ("UNSRHINK" + maxRange);
 		shrinkCounter = time;
-		shrinkAmount = ((float)currentRange) / time;
+		shrinkAmount = ((float)maxRange) / time;
 	}
 	
 	void MyLight.FlickerOn(int time){
