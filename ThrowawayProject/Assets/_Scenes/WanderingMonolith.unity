@@ -1278,7 +1278,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 423790, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 478574, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 454286, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414762, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330570, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176042, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
@@ -1712,7 +1732,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 25.2299995
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2078,6 +2098,68 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 1520735484}
+--- !u!1001 &1632672981
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 441000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 13754556, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13754556, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_AABB.m_Center.z
+      value: -1.1920929e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 13754556, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_AABB.m_Extent.y
+      value: .499999851
+      objectReference: {fileID: 0}
+    - target: {fileID: 13754556, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_AABB.m_Extent.z
+      value: 5.96046306e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 13754556, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1646762684
 Prefab:
   m_ObjectHideFlags: 0

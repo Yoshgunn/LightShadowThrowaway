@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -887,6 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1309,6 +1311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1924,6 +1927,33 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 105874726}
+--- !u!1 &113784359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 512278842}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 113784360}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113784360
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 512278842}
+  m_GameObject: {fileID: 113784359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
 --- !u!1 &115168604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -2209,6 +2240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -4892,6 +4924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -5894,6 +5927,33 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 1848442981}
+--- !u!1 &366195746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 633201162}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 366195747}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &366195747
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 633201162}
+  m_GameObject: {fileID: 366195746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
 --- !u!1 &368891534
 GameObject:
   m_ObjectHideFlags: 0
@@ -8300,6 +8360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -8461,6 +8522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -8810,6 +8872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -9969,6 +10032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -11509,6 +11573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -11669,6 +11734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -12463,6 +12529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -13902,6 +13969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14135,6 +14203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14252,6 +14321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -14655,6 +14725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -15329,6 +15400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -16748,6 +16820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -17209,6 +17282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -17487,6 +17561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -17888,7 +17963,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.44000006
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19313,6 +19388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -19691,6 +19767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -22455,6 +22532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -23704,6 +23782,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1636461702}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1636717100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1696417829}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1636717101}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1636717101
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1696417829}
+  m_GameObject: {fileID: 1636717100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!1 &1637033415
 GameObject:
   m_ObjectHideFlags: 0
@@ -24269,6 +24374,10 @@ Prefab:
     - target: {fileID: 423790, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 190400, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
@@ -25262,6 +25371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -25623,6 +25733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -25914,6 +26025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -26364,6 +26476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -28957,6 +29070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -29454,6 +29568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
