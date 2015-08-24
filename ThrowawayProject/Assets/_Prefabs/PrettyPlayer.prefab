@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 482132}
   - 108: {fileID: 10860526}
+  - 114: {fileID: 11418142}
   m_Layer: 0
   m_Name: Jack Light
   m_TagString: Untagged
@@ -1371,6 +1372,21 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11418142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startsOn: 1
+  maxRange: -1
+  maxIntensity: -1
+  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &11461990
 MonoBehaviour:
   m_ObjectHideFlags: 1

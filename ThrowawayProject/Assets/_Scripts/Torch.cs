@@ -20,7 +20,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 
 	private Light thisLight;
 
-	public bool startsOn;
+	public bool startsOn = true;
 	public float maxRange = -1f;
 	public float maxIntensity = -1f;
 	public Color myColor = Color.black;
