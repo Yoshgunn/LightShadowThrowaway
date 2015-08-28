@@ -3,18 +3,14 @@ using System.Collections;
 
 public class Monolith : MonoBehaviour {
 
-	public bool loops = true;
-	public bool stopsAtFinalState = false;
-
 	//bool hidden = false;
-	bool triggered = true;
+	bool triggered = false;
 	//int lastNumObst = 0;
 	//bool[] areTriggersBlocking;
 	//GameObject[] childs;
 	int curChild = 0;
 	int numChildren;
 	int numLights;
-	int childDiff = 1;
 	//bool completedOnce = false;
 	
 	public GameObject[] blockingTriggers;		//These have to go in bottom-to-top style
@@ -25,7 +21,7 @@ public class Monolith : MonoBehaviour {
 		//Determine which child is the current state.
 		bool foundOne = false;
 		numChildren = this.transform.childCount;
-		for (int i=0; i<numChildren; i++) {
+		for (int i=1; i<numChildren; i++) {
 			if (foundOne){
 				this.transform.GetChild (i).gameObject.SetActive(false);
 				continue;
@@ -37,10 +33,6 @@ public class Monolith : MonoBehaviour {
 			//this.transform.GetChild (i).gameObject.SetActive(false);
 			//children = this.children
 			//childs[i].SetActive(false);
-		}
-
-		if (curChild == 0) {
-			this.transform.GetChild (0).gameObject.SetActive(true);
 		}
 	}
 	
@@ -98,11 +90,6 @@ public class Monolith : MonoBehaviour {
 	}
 	
 	void ToggleHidden(){	//TODO: Update this so that it doesn't just turn off the one node - it should find and turn off all nodes.
-		//Check if we should stop at the final state
-		if (curChild == numChildren-1 && stopsAtFinalState) {
-			return;
-		}
-
 		//Hide the current child
 		//First, remove all of it's nodes from the pathfinding graph
 		Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
@@ -111,21 +98,12 @@ public class Monolith : MonoBehaviour {
 		}
 		this.transform.GetChild (curChild).gameObject.SetActive (false);
 		
-		//Go to the next child (which should now become active)
-		curChild += childDiff;
-		if (curChild > numChildren-1 || curChild < 0) {
-			if (loops){
-				curChild %= numChildren;
-			}else{
-				childDiff = -childDiff;
-				curChild += 2*childDiff;
-			}
-		}
-		//curChild = (curChild + 1) % numChildren;
+		//Go to the next child (which should now become active
+		curChild = (curChild + 1) % numChildren;
 		
 		//Show the next child
 		this.transform.GetChild (curChild).gameObject.SetActive (true);
-		//Now add it to the pathfinding graph
+		//Now remove it from the pathfinding graph
 		nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
 		foreach (Node node in nodes) {
 			node.RecalculateEdges(true);
@@ -209,7 +187,6 @@ public class Monolith : MonoBehaviour {
 		foreach (GameObject light in lights) {
 			if ((light.GetComponent<MyLight>()==null || !light.GetComponent<MyLight>().GetIsOn()) && (light.GetComponentInChildren<MyLight>()==null || !light.GetComponentInChildren<MyLight>().GetIsOn())){
 				//If the 'light' doesn't have a light component, or it does but the light isn't on, then don't worry about it
-				Debug.Log ("Light doesn't exist!");
 				continue;
 			}
 			

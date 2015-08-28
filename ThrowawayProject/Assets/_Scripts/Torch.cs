@@ -10,8 +10,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	public static int DEFAULT_FLICKER_ON_TIME = 30;
 	public static int DEFAULT_FLICKER_OFF_TIME = 30;
 	private static float STARTING_INTENSITY = 0.1f;
-	private static float DEFAULT_FLICKER_INTENSITY_CHANGE = 0.1f;
-	private static float DEFAULT_FLICKER_RANGE_CHANGE = 0.05f;
+	private static float FLICKER_INTENSITY_RANGE = 0.1f;
+	private static float FLICKER_RANGE_RANGE = 0.05f;
 	private static int FLICKER_FRAME_NUM = 5;
 
 	public static List<Torch> allTorches = new List<Torch>();
@@ -21,10 +21,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	private Light thisLight;
 
 	public bool startsOn = true;
-	public float maxRange = DEFAULT_MAX_RANGE;
-	public float maxIntensity = DEFAULT_MAX_INTENSITY;
-	public float flickerRangeChange = DEFAULT_FLICKER_RANGE_CHANGE;
-	public float flickerIntensityChange = DEFAULT_FLICKER_INTENSITY_CHANGE;
+	public float maxRange = -1f;
+	public float maxIntensity = -1f;
 	public Color myColor = Color.black;
 
 	float currentRange = 2;
@@ -45,12 +43,6 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		thisLight = this.GetComponent<Light> ();
 		if (thisLight == null) {
 			thisLight = this.gameObject.AddComponent<Light> ();
-		} else {
-			maxRange = thisLight.range;
-			maxIntensity = thisLight.intensity;
-			if (thisLight.color.r != 1 || thisLight.color.g != 1 || thisLight.color.b != 1){
-				myColor = thisLight.color;
-			}
 		}
 		//light = this.gameObject.AddComponent<Light> ();
 		thisLight.enabled = startsOn;
@@ -59,18 +51,12 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		thisLight.range = currentRange;
 
 		//Handle default values
-		if (maxRange < 0) {
+		if (maxRange == -1) {
 			maxRange = DEFAULT_MAX_RANGE;
 		}
 		currentRange = maxRange;
-		if (maxIntensity < 0) {
+		if (maxIntensity == -1) {
 			maxIntensity = DEFAULT_MAX_INTENSITY;
-		}
-		if (flickerRangeChange < 0) {
-			flickerRangeChange = DEFAULT_FLICKER_RANGE_CHANGE;
-		}
-		if (flickerIntensityChange < 0) {
-			flickerIntensityChange = DEFAULT_FLICKER_INTENSITY_CHANGE;
 		}
 		if (myColor.r == 0 && myColor.g == 0 && myColor.b == 0){
 			myColor = DEFAULT_COLOR;
@@ -108,8 +94,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			if (flickerCounter%FLICKER_FRAME_NUM == 0){
 				thisLight.range = currentRange;
 				thisLight.intensity = currentIntensity;
-				thisLight.range += Random.Range (-1f, 1f)*DEFAULT_FLICKER_RANGE_CHANGE;
-				thisLight.intensity += Random.Range (-1f, 1f)*DEFAULT_FLICKER_INTENSITY_CHANGE;
+				thisLight.range += Random.Range (-1f, 1f)*FLICKER_RANGE_RANGE;
+				thisLight.intensity += Random.Range (-1f, 1f)*FLICKER_INTENSITY_RANGE;
 			}
 
 			flickerCounter--;
@@ -125,8 +111,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 				thisLight.range = currentRange;
 				thisLight.intensity = currentIntensity;
 				flickerCounter = 0;
-				thisLight.range += Random.Range (-1f, 1f)*DEFAULT_FLICKER_RANGE_CHANGE;
-				thisLight.intensity += Random.Range (-1f, 1f)*DEFAULT_FLICKER_INTENSITY_CHANGE;
+				thisLight.range += Random.Range (-1f, 1f)*FLICKER_RANGE_RANGE;
+				thisLight.intensity += Random.Range (-1f, 1f)*FLICKER_INTENSITY_RANGE;
 			}
 		}
 	}

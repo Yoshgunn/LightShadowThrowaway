@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class SilhouetteMonolith : MonoBehaviour {
 
-	public bool loops = true;
-	public bool stopsAtFinalState = false;
-
 	bool hidden = false;
 	int lastNumObst = 0;
 	bool[] areTriggersBlocking;
@@ -14,7 +11,6 @@ public class SilhouetteMonolith : MonoBehaviour {
 	int curChild = 0;
 	int numChildren;
 	bool completedOnce = false;
-	int childDiff = 1;
 
 	bool playerAngleAboveThisAngle = false;
 
@@ -34,8 +30,8 @@ public class SilhouetteMonolith : MonoBehaviour {
 		//Determine which child is the current state.
 		bool foundOne = false;
 		numChildren = this.transform.childCount;
-		for (int i=0; i<numChildren; i++) {
-			//Debug.Log ("Child " + i + ": " + this.transform.GetChild (i));
+		for (int i=1; i<numChildren; i++) {
+			Debug.Log ("Child " + i + ": " + this.transform.GetChild (i));
 			if (foundOne){
 				this.transform.GetChild (i).gameObject.SetActive(false);
 				continue;
@@ -47,10 +43,6 @@ public class SilhouetteMonolith : MonoBehaviour {
 			//this.transform.GetChild (i).gameObject.SetActive(false);
 			//children = this.children
 			//childs[i].SetActive(false);
-		}
-
-		if (curChild == 0) {
-			this.transform.GetChild (0).gameObject.SetActive(true);
 		}
 	}
 	
@@ -141,10 +133,6 @@ public class SilhouetteMonolith : MonoBehaviour {
 	}*/
 
 	void ToggleHidden(){
-		//ACTUALLY first of all, don't do anything if we're at the final state
-		if (curChild == numChildren - 1 && stopsAtFinalState) {
-			return;
-		}
 
 		//First of all, only toggle it if there is NO light on it
 		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
@@ -160,16 +148,7 @@ public class SilhouetteMonolith : MonoBehaviour {
 			}
 
 			//Go to the next child (which should now become active)
-			curChild += childDiff;
-			if (curChild > numChildren-1 || curChild < 0) {
-				if (loops){
-					curChild %= numChildren;
-				}else{
-					childDiff = -childDiff;
-					curChild += 2*childDiff;
-				}
-			}
-			//curChild = (curChild + 1) % numChildren;
+			curChild = (curChild + 1) % numChildren;
 
 			//Show the next child
 			if (this.transform.GetChild (curChild)){
