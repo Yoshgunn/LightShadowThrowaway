@@ -8,6 +8,7 @@ public class Node : MonoBehaviour {
 	public static byte NORMAL = 0;
 	public static byte RAMP = 1;
 	public static byte LADDER = 2;
+	public static byte DOORWAY = 3;
 	private static float ADDITIONAL_OCCUPIED_PATHFINDING_COST = 20;
 
 	public static Node currentNode;
@@ -288,7 +289,7 @@ public class Node : MonoBehaviour {
 	public static Node GetNodeDirectlyUnder(Vector3 location){
 		foreach (Node node in allNodes) {
 			//if (node.transform.position == new Vector3(location.x, location.y-0.5f, location.z)){
-			if (node.GetPositionAbove () == location){
+			if (node && node.GetPositionAbove () == location){
 				return node;
 			}
 		}

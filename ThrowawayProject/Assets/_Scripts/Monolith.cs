@@ -220,7 +220,7 @@ public class Monolith : MonoBehaviour {
 			
 			if (Vector3.Distance (obj.transform.position, light.transform.position) > lightComponent.GetRange () + Mathf.Sqrt (2)){
 				//If the 'light' can't reach the object, then don't worry about it
-				Debug.Log ("Light can't reach!");
+				//Debug.Log ("Light can't reach!");
 				continue;
 			}
 			

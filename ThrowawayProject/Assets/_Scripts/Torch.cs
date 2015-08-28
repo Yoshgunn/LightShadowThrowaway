@@ -12,7 +12,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	private static float STARTING_INTENSITY = 0.1f;
 	private static float DEFAULT_FLICKER_INTENSITY_CHANGE = 0.1f;
 	private static float DEFAULT_FLICKER_RANGE_CHANGE = 0.05f;
-	private static int FLICKER_FRAME_NUM = 5;
+	private static int DEFAULT_FLICKER_FRAME_NUM = 5;
 
 	public static List<Torch> allTorches = new List<Torch>();
 
@@ -25,6 +25,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	public float maxIntensity = DEFAULT_MAX_INTENSITY;
 	public float flickerRangeChange = DEFAULT_FLICKER_RANGE_CHANGE;
 	public float flickerIntensityChange = DEFAULT_FLICKER_INTENSITY_CHANGE;
+	public int flickerLength = DEFAULT_FLICKER_FRAME_NUM;
 	public Color myColor = Color.black;
 
 	float currentRange = 2;
@@ -72,6 +73,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		if (flickerIntensityChange < 0) {
 			flickerIntensityChange = DEFAULT_FLICKER_INTENSITY_CHANGE;
 		}
+		if (flickerLength <= 0) {
+			flickerLength = DEFAULT_FLICKER_FRAME_NUM;
+		}
 		if (myColor.r == 0 && myColor.g == 0 && myColor.b == 0){
 			myColor = DEFAULT_COLOR;
 		}
@@ -105,11 +109,11 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			currentRange += flickerRangeAmount;
 			currentIntensity += flickerIntensityAmount;
 			//Now do the random 'flickery' effect
-			if (flickerCounter%FLICKER_FRAME_NUM == 0){
+			if (flickerCounter%flickerLength == 0){
 				thisLight.range = currentRange;
 				thisLight.intensity = currentIntensity;
-				thisLight.range += Random.Range (-1f, 1f)*DEFAULT_FLICKER_RANGE_CHANGE;
-				thisLight.intensity += Random.Range (-1f, 1f)*DEFAULT_FLICKER_INTENSITY_CHANGE;
+				thisLight.range += Random.Range (-1f, 1f)*flickerRangeChange;
+				thisLight.intensity += Random.Range (-1f, 1f)*flickerIntensityChange;
 			}
 
 			flickerCounter--;
@@ -121,12 +125,12 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			//We're just doing normal, static flicker
 			flickerCounter--;
 			//Now do the random 'flickery' effect
-			if (flickerCounter == -FLICKER_FRAME_NUM){
+			if (flickerCounter == -flickerLength){
 				thisLight.range = currentRange;
 				thisLight.intensity = currentIntensity;
 				flickerCounter = 0;
-				thisLight.range += Random.Range (-1f, 1f)*DEFAULT_FLICKER_RANGE_CHANGE;
-				thisLight.intensity += Random.Range (-1f, 1f)*DEFAULT_FLICKER_INTENSITY_CHANGE;
+				thisLight.range += Random.Range (-1f, 1f)*flickerRangeChange;
+				thisLight.intensity += Random.Range (-1f, 1f)*flickerIntensityChange;
 			}
 		}
 	}
