@@ -137,6 +137,14 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 
 	void Triggerable.Trigger(){
 		thisLight.enabled = !thisLight.enabled;
+		if (thisLight.enabled) {
+			currentRange = 2;
+			currentIntensity = 0f;
+			thisLight.range = currentRange;
+			thisLight.range = currentIntensity;
+			((MyLight)this).FlickerOn ();
+			//MyLight.FlickerOn();
+		}
 	}
 
 	void Triggerable.UnTrigger(){

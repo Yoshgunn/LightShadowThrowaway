@@ -158,6 +158,7 @@ public class Node : MonoBehaviour {
 		//Debug.Log ("Recalculating: " + willBeActive);
 		if (willBeActive) {
 			foreach (Boundary b in boundaries) {
+				b.Disconnect();
 				b.Connect ();
 			}
 		} else {

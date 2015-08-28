@@ -21,6 +21,8 @@ public class PortalMonolith : MonoBehaviour {
 	public GameObject[] blockingTriggers;		//These have to go in bottom-to-top style
 	//public GameObject player;
 	public GameObject[] lights;
+	public bool directionMatters;
+	public bool debugging;
 
 	//public LayerMask layerMask;
 
@@ -161,7 +163,7 @@ public class PortalMonolith : MonoBehaviour {
 			Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
 			curChild += direction * childDiff;
 			Debug.Log ("Intermediary: " + curChild);
-			if (currentBlockerDiff!=0){
+			if (currentBlockerDiff!=0 && directionMatters){
 				Debug.Log ("Current blocker diff: " + currentBlockerDiff);
 				curChild -= currentBlockerDiff;
 				currentBlockerDiff = 0;

@@ -20,7 +20,9 @@ public class Button : MonoBehaviour, Trigger {
 
 		triggerables = new Triggerable[triggerableTransforms.Length];
 		for (int i=0; i<triggerableTransforms.Length; i++) {
-			triggerables[i] = triggerableTransforms[i].GetComponent<Triggerable>();
+			//if (triggerableTransforms[i]){
+				triggerables[i] = triggerableTransforms[i].GetComponent<Triggerable>();
+			//}
 		}
 
 		//Debug.Log ("Triggerables length: " + triggerables.Length);
@@ -36,7 +38,9 @@ public class Button : MonoBehaviour, Trigger {
 			isTriggering = true;
 			this.gameObject.transform.Translate(new Vector3(0f, -0.05f, 0f));
 			foreach (Triggerable triggerable in triggerables) {
-				triggerable.Trigger ();
+				//if (triggerable){
+					triggerable.Trigger ();
+				//}
 			}
 		//} else if (isTriggering && !PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode) && retriggerable) {
 		} else if (isTriggering && !myNode.GetIsOccupied() && retriggerable) {

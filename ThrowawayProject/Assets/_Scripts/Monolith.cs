@@ -207,7 +207,7 @@ public class Monolith : MonoBehaviour {
 		//Loop through each light
 		//See if it's hidden by looping through each object
 		foreach (GameObject light in lights) {
-			if ((light.GetComponent<MyLight>()==null || !light.GetComponent<MyLight>().GetIsOn()) && (light.GetComponentInChildren<MyLight>()==null || !light.GetComponentInChildren<MyLight>().GetIsOn())){
+			if (!light.activeInHierarchy || ((light.GetComponent<MyLight>()==null || !light.GetComponent<MyLight>().GetIsOn()) && (light.GetComponentInChildren<MyLight>()==null || !light.GetComponentInChildren<MyLight>().GetIsOn()))){
 				//If the 'light' doesn't have a light component, or it does but the light isn't on, then don't worry about it
 				Debug.Log ("Light doesn't exist!");
 				continue;
@@ -218,7 +218,7 @@ public class Monolith : MonoBehaviour {
 				lightComponent = light.GetComponentInChildren<MyLight>();
 			}
 			
-			if (Vector3.Distance (obj.transform.position, light.transform.position) > lightComponent.GetRange () + Mathf.Sqrt (2)){
+			if (Vector3.Distance (obj.transform.position, light.transform.position) > lightComponent.GetRange () + Mathf.Sqrt (2)/2.0){
 				//If the 'light' can't reach the object, then don't worry about it
 				//Debug.Log ("Light can't reach!");
 				continue;

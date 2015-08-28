@@ -12,7 +12,7 @@ public class Boundary : MonoBehaviour {
 	private Boundary connectedTo = null;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Application.targetFrameRate = 30;
 		//Set the node for this boundary
 		this.node = this.transform.parent.GetComponent<Node> ();
