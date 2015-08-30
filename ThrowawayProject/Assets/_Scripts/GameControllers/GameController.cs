@@ -6,13 +6,21 @@ public class GameController : MonoBehaviour {
 
 	public static GameController ENV;
 
+	public GameObject finalNodeGO;
+
 	private int torchLightTimer = 30;
 	private int fadeOutTimer = 0;
 	private string levelToLoad;
+	private Node finalNode;
+	private bool levelOver = false;
 
 	// Use this for initialization
 	public virtual void Start () {
 		ENV = this;
+
+		if (finalNodeGO) {
+			finalNode = finalNodeGO.GetComponentInChildren<Node> ();
+		}
 	}
 
 	public virtual void EndInstance (string levelName){
@@ -55,6 +63,13 @@ public class GameController : MonoBehaviour {
 				if (PathfindingPlayer.PLAYER)
 					PathfindingPlayer.PLAYER.transform.GetChild (0).transform.GetComponent<Light>().enabled = false;
 			}
+		}
+
+		//If the player is on the final node, end the level
+		if (PathfindingPlayer.PLAYER.GetCurrentNode () == finalNode && PathfindingPlayer.PLAYER.GetTargetNode () == null && !levelOver) {
+			levelOver = true;
+			EndLevel("Menu");
+
 		}
 	}
 
