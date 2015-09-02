@@ -5,6 +5,7 @@ public class Monolith : MonoBehaviour {
 
 	public bool loops = true;
 	public bool stopsAtFinalState = false;
+	public int numberOfChanges = 0;
 
 	//bool hidden = false;
 	bool triggered = true;
@@ -15,6 +16,7 @@ public class Monolith : MonoBehaviour {
 	int numChildren;
 	int numLights;
 	int childDiff = 1;
+	int numChanges = 0;
 	//bool completedOnce = false;
 	
 	public GameObject[] blockingTriggers;		//These have to go in bottom-to-top style
@@ -102,6 +104,12 @@ public class Monolith : MonoBehaviour {
 		if (curChild == numChildren-1 && stopsAtFinalState) {
 			return;
 		}
+
+		//If we've already toggled as many times as we should, then don't toggle again
+		if (numberOfChanges > 0 && numChanges >= numberOfChanges) {
+			return;
+		}
+		numChanges++;
 
 		//Hide the current child
 		//First, remove all of it's nodes from the pathfinding graph

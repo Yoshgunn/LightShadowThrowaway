@@ -46,6 +46,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		thisLight = this.GetComponent<Light> ();
 		if (thisLight == null) {
 			thisLight = this.gameObject.AddComponent<Light> ();
+			//Only enable shadows if we created the light - if we didn't maybe we don't want shadows!
+			thisLight.shadows = LightShadows.Hard;
 		} else {
 			maxRange = thisLight.range;
 			maxIntensity = thisLight.intensity;
@@ -55,7 +57,6 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		}
 		//light = this.gameObject.AddComponent<Light> ();
 		thisLight.enabled = startsOn;
-		thisLight.shadows = LightShadows.Hard;
 		thisLight.intensity = currentIntensity;
 		thisLight.range = currentRange;
 
@@ -80,6 +81,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			myColor = DEFAULT_COLOR;
 		}
 		thisLight.color = myColor;
+
+		//Adjust max range so that it takes into account the flickering
+		maxRange -= flickerRangeChange;
 
 		allTorches.Add (this.GetComponent<Torch>());
 	}
