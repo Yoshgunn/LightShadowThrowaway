@@ -436,17 +436,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47473d512e692641a3094f4e32760f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSound: {fileID: 8300000, guid: 45e6f981be0dc4c4dbba83b602ebe78c, type: 3}
-  bellsEnabled: 1
-  bells:
-  - {fileID: 8300000, guid: a09f73fcbf965c84289f4c3cddeb55eb, type: 3}
-  - {fileID: 8300000, guid: 25d887ee62f37784582d5c3c60741374, type: 3}
-  - {fileID: 8300000, guid: 44e7217d5f44e0e4b80e8cc072c758c5, type: 3}
-  - {fileID: 8300000, guid: 89d9bccf52823964c804a76fa199b6fa, type: 3}
-  - {fileID: 8300000, guid: 0f2ff613a99992f4aaccd8b396d94635, type: 3}
-  - {fileID: 8300000, guid: 0e759c0894d692a42bb1e7d8a302d471, type: 3}
-  playNextBell: 0
-  bellChaos: -5
+  beginningSound: {fileID: 8300000, guid: 45e6f981be0dc4c4dbba83b602ebe78c, type: 3}
+  streams:
+  - name: Bowl Hits
+    soundList:
+    - {fileID: 8300000, guid: a09f73fcbf965c84289f4c3cddeb55eb, type: 3}
+    - {fileID: 8300000, guid: 25d887ee62f37784582d5c3c60741374, type: 3}
+    - {fileID: 8300000, guid: 44e7217d5f44e0e4b80e8cc072c758c5, type: 3}
+    - {fileID: 8300000, guid: 89d9bccf52823964c804a76fa199b6fa, type: 3}
+    isEnabledOnStart: 0
+    isEnabled: 0
+    playNextSound: 0
+    calmTime: 0
+    calmTimeRandomness: 0
+  - name: Tingles
+    soundList:
+    - {fileID: 8300000, guid: 2c355a05ec97c7545988a1ddfc3f0c60, type: 3}
+    - {fileID: 8300000, guid: 2baa4ad2c59b41c49baaec44470f4a9d, type: 3}
+    - {fileID: 8300000, guid: 8ea0d8ba4dfe76d44bcb360049a7d24c, type: 3}
+    - {fileID: 8300000, guid: 65d15e9fc0e8204408881bf50a256b17, type: 3}
+    - {fileID: 8300000, guid: dcc309263e764b647abb40873b20899f, type: 3}
+    - {fileID: 8300000, guid: cda5b47fdafd5bb43b1124da97f5f8d8, type: 3}
+    isEnabledOnStart: 0
+    isEnabled: 0
+    playNextSound: 0
+    calmTime: 0
+    calmTimeRandomness: 0
+  - name: Dark Breaths
+    soundList:
+    - {fileID: 8300000, guid: 477712b88d8ba0747922214ce9458b7c, type: 3}
+    - {fileID: 8300000, guid: 599d8a3fa35441b489c73fdf278d36d0, type: 3}
+    - {fileID: 8300000, guid: 70dcd1f036f885743aa1d026b61b620f, type: 3}
+    - {fileID: 8300000, guid: eeac3a563104b2048b7dda2c504f8347, type: 3}
+    - {fileID: 8300000, guid: 6d93ceeeac4f7f34ead32ea68da3b92e, type: 3}
+    - {fileID: 8300000, guid: fa17d8650bee05d49acbc56929ea2db9, type: 3}
+    - {fileID: 8300000, guid: 16d090ed1f74663449200fbae4071eaa, type: 3}
+    - {fileID: 8300000, guid: 4fff979cbabb05c429ee0fb33e27f712, type: 3}
+    - {fileID: 8300000, guid: 8c228216d40832b49a204de3dca7c08a, type: 3}
+    - {fileID: 8300000, guid: d27a039cd215e244a9553c78644c58a6, type: 3}
+    - {fileID: 8300000, guid: 518eb3f635349644d8269ec9581c4cb4, type: 3}
+    isEnabledOnStart: 1
+    isEnabled: 0
+    playNextSound: 0
+    calmTime: -2
+    calmTimeRandomness: 2
+  - name: Creepy Test
+    soundList:
+    - {fileID: 8300000, guid: 6f2085c8460e1624fbf7a8a5e8f49176, type: 3}
+    isEnabledOnStart: 0
+    isEnabled: 0
+    playNextSound: 0
+    calmTime: -7.5
+    calmTimeRandomness: 1.5
+  - name: Light Breaths
+    soundList:
+    - {fileID: 8300000, guid: 6f2085c8460e1624fbf7a8a5e8f49176, type: 3}
+    - {fileID: 8300000, guid: 726369be8ec483e4f9f2c11da08cd8ae, type: 3}
+    - {fileID: 8300000, guid: a42d5bbc3c7aab54c8805d8b9578448e, type: 3}
+    isEnabledOnStart: 1
+    isEnabled: 0
+    playNextSound: 0
+    calmTime: -2
+    calmTimeRandomness: 2
 --- !u!1001 &110845665
 Prefab:
   m_ObjectHideFlags: 0
@@ -2325,7 +2376,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84c17da09b317874494627143913fa47, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .330000013
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3266,7 +3317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &943769402
 Transform:
   m_ObjectHideFlags: 0
@@ -3293,6 +3344,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: -1
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &953161620
 Prefab:
@@ -3374,7 +3428,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: .956862748, b: .839215696, a: 1}
-  m_Intensity: 1
+  m_Intensity: .469999999
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3901,7 +3955,7 @@ Camera:
   m_GameObject: {fileID: 1108205074}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -3909,11 +3963,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
+  near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 13
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3933,7 +3987,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1108205074}
   m_LocalRotation: {x: .146446586, y: -.853553474, z: .353553444, w: .353553295}
-  m_LocalPosition: {x: 5, y: 8.39999962, z: 5}
+  m_LocalPosition: {x: 5, y: 8, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5185,6 +5239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &1461492148
 Transform:
   m_ObjectHideFlags: 0
@@ -7060,7 +7115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 107068, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 122682, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_IsActive
@@ -7068,7 +7123,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Range
-      value: 3
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Intensity
@@ -7076,15 +7131,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Color.r
-      value: .279411793
+      value: .397058845
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Color.g
-      value: 1
+      value: .925152183
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Color.b
-      value: .880730152
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 482132, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7130,7 +7185,12 @@ Prefab:
       propertyPath: m_AABB.m_Center.z
       value: -1.1920929e-07
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11418142, guid: 52a5d11545b627b4dbac751763134484, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 52a5d11545b627b4dbac751763134484, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2041525345 stripped
@@ -7151,7 +7211,10 @@ MonoBehaviour:
   startsOn: 1
   maxRange: -1
   maxIntensity: -1
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
+  myColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &2063797106
 Prefab:
   m_ObjectHideFlags: 0
