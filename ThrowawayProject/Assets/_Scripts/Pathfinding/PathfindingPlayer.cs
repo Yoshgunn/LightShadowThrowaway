@@ -49,18 +49,19 @@ public class PathfindingPlayer : MonoBehaviour {
 				//First, see if we should 'redirect' anywhere
 				if (currentNode.GetRedirectToNode()){
 					Node.FindPath (currentNode.GetRedirectToNode());
-					return;
-				}
-				//We are on the current node and not moving. In this case, make sure we are in the correct spot
-				//This is mostly here so that moving platforms will work
-				transform.position = currentNode.GetPositionAbove();
-				if (!currentNode.GetIsOccupied()){
-					currentNode.SetIsOccupied(true);
-				}
+					//return;
+				}else{
+					//We are on the current node and not moving. In this case, make sure we are in the correct spot
+					//This is mostly here so that moving platforms will work
+					transform.position = currentNode.GetPositionAbove();
+					if (!currentNode.GetIsOccupied()){
+						currentNode.SetIsOccupied(true);
+					}
 
-				// Stop the walk animation
-				if (animatorController){
-					animatorController.SetFloat( "WalkSpeed", 0 );
+					// Stop the walk animation
+					if (animatorController){
+						animatorController.SetFloat( "WalkSpeed", 0 );
+					}
 				}
 
 			}else{
@@ -76,7 +77,9 @@ public class PathfindingPlayer : MonoBehaviour {
 					moveToTargetNode = false;
 				}
 			}
-		} else {
+		}
+
+		if (targetNode != null) {
 			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
 				Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();

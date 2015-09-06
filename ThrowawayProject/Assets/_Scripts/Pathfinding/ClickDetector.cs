@@ -21,6 +21,7 @@ public class ClickDetector : MonoBehaviour {
 
 	public void Activate(){
 		Debug.Log ("ACTIVATING!");
+		MyCamera.CAM.ShakeCamera (1, 40);
 		Node.FindPath (this.node);
 	}
 }

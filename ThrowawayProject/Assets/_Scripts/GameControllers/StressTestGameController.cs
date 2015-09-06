@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class StressTestGameController : GameController {
 
 	public GameObject upperLevel;
+	public GameObject cam;
 
 	// Use this for initialization
 	public void Start () {
 		base.Start ();
+
+		//cam.GetComponent<MyCamera> ().SetMode (0, new Vector3 (7,9,-5));
 	}
 
 	public void EndInstance (string levelName){
