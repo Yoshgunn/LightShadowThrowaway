@@ -290,6 +290,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: -1
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &185993927
 Transform:
@@ -1306,6 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -1677,18 +1681,6 @@ Prefab:
     - target: {fileID: 454468, guid: 7dd8ae2511c67d642955375bcd1f4877, type: 2}
       propertyPath: m_RootOrder
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 11460976, guid: 7dd8ae2511c67d642955375bcd1f4877, type: 2}
-      propertyPath: cost
-      value: .400000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 11454112, guid: 7dd8ae2511c67d642955375bcd1f4877, type: 2}
-      propertyPath: cost
-      value: .300000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406528, guid: 7dd8ae2511c67d642955375bcd1f4877, type: 2}
-      propertyPath: cost
-      value: .300000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7dd8ae2511c67d642955375bcd1f4877, type: 2}

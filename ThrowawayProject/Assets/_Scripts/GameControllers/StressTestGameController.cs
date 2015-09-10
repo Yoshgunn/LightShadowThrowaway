@@ -11,7 +11,7 @@ public class StressTestGameController : GameController {
 	public void Start () {
 		base.Start ();
 
-		//cam.GetComponent<MyCamera> ().SetMode (0, new Vector3 (7,9,-5));
+		cam.GetComponent<MyCamera> ().SetMode (4, new Vector3 (10,10,10));
 	}
 
 	public void EndInstance (string levelName){

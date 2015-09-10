@@ -1119,6 +1119,10 @@ Prefab:
       propertyPath: maxRange
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: flickerLength
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
   m_IsPrefabParent: 0
@@ -1334,6 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -2302,6 +2307,7 @@ MonoBehaviour:
   - {fileID: 425061401}
   lights: []
   directionMatters: 1
+  debugging: 0
 --- !u!23 &2067437740
 MeshRenderer:
   m_ObjectHideFlags: 0

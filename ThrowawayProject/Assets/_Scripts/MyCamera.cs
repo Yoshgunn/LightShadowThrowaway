@@ -51,7 +51,11 @@ public class MyCamera : MonoBehaviour {
 			//Figure out how far we should move, and then move that far
 			diff = Vector3.Normalize(targetPos - cam.transform.position) * speed;
 			//cam.transform.position = cam.transform.position + diff;
-			actualCamPos = actualCamPos + diff;
+			if (Vector3.Distance (actualCamPos, targetPos) < speed){
+				actualCamPos = targetPos;
+			}else{
+				actualCamPos = actualCamPos + diff;
+			}
 			break;
 		case ACCEL_MOVE_MODE:
 			//Figure out how far we should move, and then move that far
@@ -137,14 +141,19 @@ public class MyCamera : MonoBehaviour {
 			
 	}
 
-	Vector3 FindCameraPosFromTargetPos(Vector3 targetPos){
+	Vector3 FindCameraPosFromTargetPos(Vector3 target){
+		return target;
+		if (cam==null) {
+			cam = this.GetComponent<Camera> ();
+		}
 		Vector3 angles = cam.transform.eulerAngles;
 
 		float xPos = CAMERA_DISTANCE * Mathf.Sin ((360 - angles.y) * Mathf.PI / 180f);
 		float yPos = CAMERA_DISTANCE * Mathf.Cos ((90 - angles.x) * Mathf.PI / 180f);
 		float zPos = -CAMERA_DISTANCE * Mathf.Sin ((90 - angles.x) * Mathf.PI / 180f);
 
-		Vector3 newCamPos = new Vector3 (xPos, yPos, zPos) + targetPos + camPosBias;
+		Vector3 newCamPos = new Vector3 (xPos, yPos, zPos) + target + camPosBias;
+		Debug.Log ("New cam pos: " + newCamPos);
 		return newCamPos;
 	}
 
@@ -169,6 +178,7 @@ public class MyCamera : MonoBehaviour {
 	public void SetMode(int newMode, Vector3 target){
 		SetMode (newMode);
 		targetPos = FindCameraPosFromTargetPos(target);
+		//targetPos = target;
 	}
 
 	public void SetTargetPos(Vector3 target){

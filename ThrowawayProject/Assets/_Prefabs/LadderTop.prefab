@@ -641,8 +641,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142050}
-  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -1, y: 2, z: -2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428504}
@@ -674,7 +674,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180534}
   m_LocalRotation: {x: .70710665, y: 0, z: 0, w: .707107008}
-  m_LocalPosition: {x: 0, y: -.449999988, z: 0}
+  m_LocalPosition: {x: 0, y: -.0500000007, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 415990}
@@ -959,7 +959,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e9dc1a1655a229149842a37aba49f557, type: 2}
+  - {fileID: 2100000, guid: d9872c6e420f2b24e95a5f5dc3ee60cf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1414,6 +1414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 2
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1477,6 +1478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1529,6 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   type: 2
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
@@ -1548,6 +1551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   type: 2
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
