@@ -5,6 +5,8 @@ public class ClickDetector : MonoBehaviour {
 
 	private const float COLOR_FADE_RATE = 0.03f;
 	private const float COLOR_FADE_RATIO = 0.95f;
+	private static Color CLICK_EFFECT_GOOD = new Color (0.8f, 0.8f, 0.6f);
+	private static Color CLICK_EFFECT_BAD = new Color (1, 0, 0);
 
 	private Node node;
 	private Renderer rend;
@@ -23,7 +25,7 @@ public class ClickDetector : MonoBehaviour {
 				//color.a -= COLOR_FADE_RATE;
 				color.a *= COLOR_FADE_RATIO;
 				rend.material.color = color;
-				Debug.Log ("Color: " + color);
+				//Debug.Log ("Color: " + color);
 			} else {
 				color.a = 0;
 				rend.material.color = color;
@@ -42,15 +44,17 @@ public class ClickDetector : MonoBehaviour {
 		if (MyCamera.CAM) {
 			//MyCamera.CAM.ShakeCamera (1, 40);
 		}
+		
+		bool foundPath = Node.FindPath (this.node);
 
 		//Do the light fade effect
 		if (rend) {
 			rend.enabled = true;
-			color = rend.material.color;
+			//color = rend.material.color;
+			color = (foundPath)?CLICK_EFFECT_GOOD:CLICK_EFFECT_BAD;
 			color.a = 1;
 			rend.material.color = color;
+			rend.material.SetColor ("_EmissionColor", color);
 		}
-
-		Node.FindPath (this.node);
 	}
 }

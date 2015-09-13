@@ -190,7 +190,7 @@ public class Node : MonoBehaviour {
 	}
 
 	//Find a path from the current node to the target node
-	public static void FindPath(Node goal){
+	public static bool FindPath(Node goal){
 		Debug.Log ("Pathfinding...");
 
 		overallGoal = goal;
@@ -239,6 +239,7 @@ public class Node : MonoBehaviour {
 			if (current.Equals (goal)) {
 				//Then we're done!
 				ReconstructPath (cameFrom, goal);
+				return true;
 			}
 
 			//Debug.Log ("openSet.count: " + openSet.Count);
@@ -269,6 +270,9 @@ public class Node : MonoBehaviour {
 				}
 			}
 		}
+
+		//Couldn't find a path
+		return false;
 	}
 
 	//Estimated cost from node n1 to node n2. TODO: I might want to rewrite this to be something other than a distance function...
