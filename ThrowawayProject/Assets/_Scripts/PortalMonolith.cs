@@ -149,14 +149,19 @@ public class PortalMonolith : MonoBehaviour {
 			return;
 		}
 
+		//Debug.Log ("I should be toggling!");
 		//First of all, only toggle it if there is NO light on it
 		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
+			//Debug.Log ("And I'm in shadow!");
 			//Hide the current child
 			//First, remove all of it's nodes from the pathfinding graph
 			Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
 			foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
 			}
+			/*if (this.transform.GetChild (curChild).GetComponent<Node>()){
+				this.transform.GetChild (curChild).GetComponent<Node>().RecalculateEdges(false);
+			}*/
 			this.transform.GetChild (curChild).gameObject.SetActive (false);
 
 			//Go to the next child (which should now become active

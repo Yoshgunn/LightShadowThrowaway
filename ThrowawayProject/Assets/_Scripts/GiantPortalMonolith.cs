@@ -35,6 +35,14 @@ public class GiantPortalMonolith : MonoBehaviour {
 			}else{
 				childObj.transform.SetParent(obj.transform);
 				child.SetParent(obj.transform);
+				//If it's not enabled, make sure to remove it from pathfinding
+				/*Debug.Log (child + " should have its nodes disabled");
+				Debug.Log (child.GetComponentsInChildren<Node>());
+				Node[] nodes = child.GetComponentsInChildren<Node>();
+				foreach (Node n in nodes){
+					Debug.Log ("Removing node from pathfingind");
+					n.RecalculateEdges(false);
+				}*/
 			}
 
 			obj.AddComponent<PortalMonolith>();

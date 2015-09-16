@@ -76,6 +76,11 @@ public class Node : MonoBehaviour {
 			redirectToNode = redirectTo.GetComponentInChildren<Node> ();
 		}
 	}
+
+	void OnDisable(){
+		//Debug.Log ("Node being disabled!");
+		RecalculateEdges (false);
+	}
 	
 	public static void EndScene(){
 		allNodes = new List<Node>();

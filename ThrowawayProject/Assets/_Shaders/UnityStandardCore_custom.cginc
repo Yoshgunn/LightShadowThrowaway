@@ -69,7 +69,7 @@ UnityLight AdditiveLight (half3 normalWorld, half3 lightDir, half atten)
 	//atten = atten * atten * atten * atten;
 	//atten = 1/atten;
 	//l.color *= atten;
-	l.color *= sqrt(atten) * 2;
+	l.color *= sqrt(atten) * 5;
 	return l;
 }
 
