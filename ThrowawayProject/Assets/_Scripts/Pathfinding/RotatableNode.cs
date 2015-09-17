@@ -3,9 +3,9 @@ using System.Collections;
 
 public class RotatableNode : Node {
 
-	bool isActive = true;
+	//bool isActiveByRotation = true;
 	bool isFacingUp = true;
-	bool wasFacingUp;	//Whether or not it was facing up last frame
+	bool wasFacingUp = true;	//Whether or not it was facing up last frame
 
 	// Use this for initialization
 	void Start () {

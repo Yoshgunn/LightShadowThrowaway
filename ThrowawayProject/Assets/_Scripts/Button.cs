@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Button : MonoBehaviour, Trigger {
 
-	//TODO: Rather than have this declared publicly (which is a headache if we ever want to move the button),
-	//			it should figure out the node based on where it is (similar to how nodes find each other).
 	public bool retriggerable;
 	public bool unTriggerOnLeave;
 	public Transform[] triggerableTransforms;
+	public int[] delays;
 
 	private bool isTriggering = false;
 	private Triggerable[] triggerables;
 	private Node myNode;
+	private int[] currentDelays;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +25,14 @@ public class Button : MonoBehaviour, Trigger {
 			//}
 		}
 
+		if (delays.Length == 0) {
+			delays = new int[triggerableTransforms.Length];
+		}
+		currentDelays = new int[delays.Length];
+		for (int i=0;i<currentDelays.Length;i++){
+			currentDelays[i] = -1;
+		}
+
 		//Debug.Log ("Triggerables length: " + triggerables.Length);
 	}
 	
@@ -36,12 +44,24 @@ public class Button : MonoBehaviour, Trigger {
 			//Trigger all of the triggerables, and set isTriggered to true
 			//Debug.Log ("trigger");
 			isTriggering = true;
+			//This is the 'animation' for clicking the button
 			this.gameObject.transform.Translate(new Vector3(0f, -0.05f, 0f));
-			foreach (Triggerable triggerable in triggerables) {
+
+			//Set up the delays for each action
+			for (int i=0;i<delays.Length;i++){
+				currentDelays[i] = delays[i];
+				if (delays[i] == 0){
+					//Trigger this one now
+					triggerables[i].Trigger ();
+					currentDelays[i] = -1;
+				}
+			}
+
+			/*foreach (Triggerable triggerable in triggerables) {
 				//if (triggerable){
 					triggerable.Trigger ();
 				//}
-			}
+			}*/
 		//} else if (isTriggering && !PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode) && retriggerable) {
 		} else if (isTriggering && !myNode.GetIsOccupied() && retriggerable) {
 			//This means that something has moved off of the button. Only triggers if 'retriggerable' is true.
@@ -52,6 +72,17 @@ public class Button : MonoBehaviour, Trigger {
 				foreach (Triggerable triggerable in triggerables){
 					triggerable.UnTrigger ();
 				}
+			}
+		}
+
+		//Check for delayed triggers
+		for (int i=0; i<currentDelays.Length; i++) {
+			if (currentDelays[i] == 0){
+				//Trigger
+				triggerables[i].Trigger ();
+			}
+			if (currentDelays[i] >= 0){
+				currentDelays[i] --;
 			}
 		}
 	}

@@ -25,7 +25,7 @@ public class Node : MonoBehaviour {
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
 	private float fScore = -1;		//Estimated total cost from start to goal through this node.
 	private Node redirectToNode;
-	private bool isActive;			//Whether or not this node is currently connected to the pathfinding
+	public bool isActive;			//Whether or not this node is currently connected to the pathfinding
 
 	//Might have to do something like 'associated nodes', so that something on a ramp can occupy all three of the nodes for the ramp...
 	private bool isOccupied = false;	//Whether or not something is currently occupying this node.
