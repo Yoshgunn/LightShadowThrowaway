@@ -2558,6 +2558,10 @@ Prefab:
       propertyPath: isOpen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
+      propertyPath: isExitDoor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
   m_IsPrefabParent: 0

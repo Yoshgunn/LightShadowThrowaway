@@ -8,7 +8,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	private static float DEFAULT_MAX_INTENSITY = 2;
 	//Flicker values
 	public static int DEFAULT_FLICKER_ON_TIME = 30;
-	public static int DEFAULT_FLICKER_OFF_TIME = 30;
+	public static int DEFAULT_FLICKER_OFF_TIME = 300;
 	private static float STARTING_INTENSITY = 0.1f;
 	private static float DEFAULT_FLICKER_INTENSITY_CHANGE = 0.1f;
 	private static float DEFAULT_FLICKER_RANGE_CHANGE = 0.05f;

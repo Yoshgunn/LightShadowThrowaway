@@ -16,6 +16,7 @@ public class RotatableNode : Node {
 	void Update () {
 		if (isActive) {
 			isFacingUp = (Vector3.Angle(transform.up, Vector3.up)<=45);
+			//Debug.Log ("Isfacingup: " + isFacingUp + ", wasFacingUp: " + wasFacingUp);
 
 			if (wasFacingUp!=isFacingUp){
 				if (!isFacingUp){

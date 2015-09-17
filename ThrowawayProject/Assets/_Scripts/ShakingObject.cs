@@ -21,6 +21,12 @@ public class ShakingObject : MonoBehaviour, Triggerable {
 			Vector3 diff = Vector3.Normalize(new Vector3(Random.value, Random.value, Random.value)) * Mathf.Lerp (0f, shakeAmount, (shakeTimer*1f)/startShakeTimer);
 			this.transform.position = actualPos + diff;
 			shakeTimer--;
+			if (shakeTimer == 0){
+				Node[] nodes = transform.GetComponentsInChildren<Node>();
+				foreach (Node n in nodes){
+					n.RecalculateEdges();
+				}
+			}
 		}
 	}
 

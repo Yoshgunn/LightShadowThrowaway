@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -67,8 +68,9 @@ public class GameController : MonoBehaviour {
 
 		//If the player is on the final node, end the level
 		if (PathfindingPlayer.PLAYER.GetCurrentNode () == finalNode && PathfindingPlayer.PLAYER.GetTargetNode () == null && !levelOver) {
-			levelOver = true;
-			EndLevel("Menu");
+			//levelOver = true;
+			//EndLevel("Menu");
+			WinLevel ();
 
 		}
 	}
@@ -77,5 +79,27 @@ public class GameController : MonoBehaviour {
 		if (ENV) {
 			ENV.EndInstance (levelName);
 		}
+	}
+
+	public void WinLevel(){
+		//Winning the level:
+		//	First, fade all of the lights out
+		//	Then, get the name of the next level
+		//	Then, load that level
+
+		levelOver = true;
+		EndInstance(GetNameOfNextLevel ());
+	}
+
+	private static string GetNameOfNextLevel(){
+		string thisLevel = Application.loadedLevelName;
+		Debug.Log (thisLevel);
+		int i = thisLevel.IndexOf ('.');
+		string levelPrefix = thisLevel.Substring(0, i+1);
+		string levelSuffix = thisLevel.Substring(i+1);
+		int levelNum = Int32.Parse (levelSuffix);
+		levelNum++;
+		thisLevel = levelPrefix + levelNum;
+		return thisLevel;
 	}
 }

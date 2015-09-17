@@ -6,6 +6,7 @@ public class Doorway : MonoBehaviour, Triggerable {
 	public Doorway connectedTo;
 	public bool isOpen = true;
 	public int numTimesBeforeClosing;
+	public bool isExitDoor;
 
 	//GameObject doorway1;
 	//Node doorwayNode1;
@@ -46,6 +47,15 @@ public class Doorway : MonoBehaviour, Triggerable {
 					//We're in this doorway - make sure all of the conditions are met:
 					//There is a door to connect to
 					//There is a node on the other side of that door
+
+					//First check to see if this is the 'goal door'
+					if (isExitDoor){
+						//Since this is the exit door, just call the end level function on the game controller
+						inactive = true;
+						GameController.ENV.WinLevel();
+						return;
+					}
+
 					if (connectedTo && connectedTo.isOpen && connectedTo.GetComponentInChildren<Boundary> () && connectedTo.GetComponentInChildren<Boundary> ().GetConnectedTo ()) {
 						transitioning = true;
 						connectedTo.SetInactive(true);
