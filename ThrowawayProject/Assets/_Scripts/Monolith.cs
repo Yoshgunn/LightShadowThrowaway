@@ -208,8 +208,295 @@ public class Monolith : MonoBehaviour {
 		}
 		return isInShadow;
 	}*/
-	
+
+	/*public static bool AmIInShadow2(GameObject obj, GameObject[] lights, GameObject[] blockers){
+		bool isInShadow = true;
+
+		//Loop through each light and see if that light is blocked
+		foreach (GameObject light in lights) {
+
+			//If the light isn't a light or is inactive or whatever, consider it blocked
+			if (!light.activeInHierarchy || ((light.GetComponent<MyLight>()==null || !light.GetComponent<MyLight>().GetIsOn()) && (light.GetComponentInChildren<MyLight>()==null || !light.GetComponentInChildren<MyLight>().GetIsOn()))){
+				//This light doesn't exist or isn't on
+				Debug.Log ("Light doesn't exist or isn't on!");
+				continue;
+			}
+
+			//Get the light
+			MyLight lightComponent = light.GetComponent<MyLight>();
+			if (lightComponent==null){
+				lightComponent = light.GetComponentInChildren<MyLight>();
+			}
+
+			//If the light can't reach the object, then it is considered blocked
+			if (Vector3.Distance (obj.transform.position, light.transform.position) > lightComponent.GetRange()){
+				continue;
+			}
+
+			//Find the angle(s) from this light to the object
+			bool isBlocked = false;
+			float angleObj;
+			float angleObjL;
+			float angleObjR;
+			Vector3 relativePos = obj.transform.position - light.transform.position;
+			float angleOfObj = Mathf.Atan2 (Mathf.Sqrt (2)/2f, relativePos.magnitude);
+
+			//Different cases for each quadrant
+			if (relativePos.x >= 0 && relativePos.z >= 0){
+				//First Quadrant
+				angleObj = Mathf.Atan2 (relativePos.z, relativePos.x) * 180f / Mathf.PI;
+				//angleObjL = angleObj + angleOfObj;
+				//angleObjR = angleObj - angleOfObj;
+				//if (angleObjR < 0){
+				//	angleObjR += 360;
+				//}
+			}else if (relativePos.z >= 0){
+				//Second Quadrant
+				angleObj = 180 - (Mathf.Atan2(relativePos.z, -relativePos.x)*180f/Mathf.PI);
+				//angleObjL = angleObj + angleOfObj;
+				//angleObjR = angleObj - angleOfObj;
+			}else if (relativePos.x <= 0 && relativePos.z <= 0){
+				//Third Quadrant
+				angleObj = 180 + (Mathf.Atan2 (-relativePos.z, -relativePos.x)*180f/Mathf.PI);
+				//angleObjL = angleObj + angleOfObj;
+				//angleObjR = angleObj - angleOfObj;
+			}else{
+				//Fourth Quadrant
+				angleObj = 360 - (Mathf.Atan2 (-relativePos.z, relativePos.x)*180f/Mathf.PI);
+				//angleObjL = angleObj + angleOfObj;
+				//angleObjR = angleObj - angleOfObj;
+				//if (angleObjL >= 360){
+				//	angleObjL -= 360;
+				//}
+			}
+			angleObjL = angleObj + angleOfObj;
+			angleObjR = angleObj - angleOfObj;
+			
+			//Now do the same for the XY plane...
+			float angleObjTopXY;
+			float angleObjBottomXY;
+			
+			//Different cases for each quadrant
+			if (relativePos.x >= 0 && relativePos.y >= 0){
+				//First Quadrant
+				angleObj = Mathf.Atan2 (relativePos.y, relativePos.x) * 180f / Mathf.PI;
+			}else if (relativePos.y >= 0){
+				//Second Quadrant
+				angleObj = 180 - (Mathf.Atan2 (relativePos.y, -relativePos.x) * 180f/Mathf.PI);
+			}else if (relativePos.x <= 0 && relativePos.y <= 0){
+				//Third Quadrant
+				angleObj = 180 + (Mathf.Atan2 (-relativePos.y, -relativePos.x)*18f/Mathf.PI);
+			}else{
+				//Fourth Quadrant
+				angleObj = 360 - (Mathf.Atan2 (-relativePos.y, relativePos.x)*180f/Mathf.PI);
+			}
+			angleObjTopXY = angleObj + angleOfObj;
+			angleObjBottomXY = angleObj - angleOfObj;
+			
+			//Now do the same for the YZ plane...
+			float angleObjTopYZ;
+			float angleObjBottomYZ;
+			
+			//Different cases for each quadrant
+			if (relativePos.y >= 0 && relativePos.z >= 0){
+				//First Quadrant
+				angleObj = Mathf.Atan2 (relativePos.z, relativePos.y) * 180f / Mathf.PI;
+			}else if (relativePos.z >= 0){
+				//Second Quadrant
+				angleObj = 180 - (Mathf.Atan2 (relativePos.z, -relativePos.y) * 180f/Mathf.PI);
+			}else if (relativePos.y <= 0 && relativePos.z <= 0){
+				//Third Quadrant
+				angleObj = 180 + (Mathf.Atan2 (-relativePos.z, -relativePos.y)*18f/Mathf.PI);
+			}else{
+				//Fourth Quadrant
+				angleObj = 360 - (Mathf.Atan2 (-relativePos.z, relativePos.y)*180f/Mathf.PI);
+			}
+			angleObjTopXY = angleObj + angleOfObj;
+			angleObjBottomXY = angleObj - angleOfObj;
+
+			//Now calculate each of the angles for each blocker, and compare them to the angles for the object
+			foreach (GameObject blocker in blockers){
+				//Find the angle(s)
+				float angleBlkL;
+				float angleBlkR;
+
+				float angle1, angle2, angle3, angle4;
+				Renderer rend = blocker.gameObject.GetComponent<Renderer>();
+				if (!rend){
+					rend = blocker.gameObject.GetComponentInChildren<Renderer>();
+				}
+
+				Vector3 bounds = rend.bounds
+
+				Vector3 relativePosBlk = obj.transform.position - light.transform.position;
+				float angleOfBlk = Mathf.Atan2 (Mathf.Sqrt (2)/2f, relativePos.magnitude);
+				
+				//Different cases for each quadrant
+				if (relativePos.x >= 0 && relativePos.z >= 0){
+					//First Quadrant
+					angleObj = Mathf.Atan2 (relativePos.z, relativePos.x) * 180f / Mathf.PI;
+				}else if (relativePos.z >= 0){
+					//Second Quadrant
+					angleObj = 180 - (Mathf.Atan2(relativePos.z, -relativePos.x)*180f/Mathf.PI);
+					//angleObjL = angleObj + angleOfObj;
+					//angleObjR = angleObj - angleOfObj;
+				}else if (relativePos.x <= 0 && relativePos.z <= 0){
+					//Third Quadrant
+					angleObj = 180 + (Mathf.Atan2 (-relativePos.z, -relativePos.x)*180f/Mathf.PI);
+					//angleObjL = angleObj + angleOfObj;
+					//angleObjR = angleObj - angleOfObj;
+				}else{
+					//Fourth Quadrant
+					angleObj = 360 - (Mathf.Atan2 (-relativePos.z, relativePos.x)*180f/Mathf.PI);
+					//angleObjL = angleObj + angleOfObj;
+					//angleObjR = angleObj - angleOfObj;
+					//if (angleObjL >= 360){
+					//	angleObjL -= 360;
+					//}
+				}
+				angleObjL = angleObj + angleOfObj;
+				angleObjR = angleObj - angleOfObj;
+				
+				//Now do the same for the XY plane...
+				float angleObjTopXY;
+				float angleObjBottomXY;
+				
+				//Different cases for each quadrant
+				if (relativePos.x >= 0 && relativePos.y >= 0){
+					//First Quadrant
+					angleObj = Mathf.Atan2 (relativePos.y, relativePos.x) * 180f / Mathf.PI;
+				}else if (relativePos.y >= 0){
+					//Second Quadrant
+					angleObj = 180 - (Mathf.Atan2 (relativePos.y, -relativePos.x) * 180f/Mathf.PI);
+				}else if (relativePos.x <= 0 && relativePos.y <= 0){
+					//Third Quadrant
+					angleObj = 180 + (Mathf.Atan2 (-relativePos.y, -relativePos.x)*18f/Mathf.PI);
+				}else{
+					//Fourth Quadrant
+					angleObj = 360 - (Mathf.Atan2 (-relativePos.y, relativePos.x)*180f/Mathf.PI);
+				}
+				angleObjTopXY = angleObj + angleOfObj;
+				angleObjBottomXY = angleObj - angleOfObj;
+				
+				//Now do the same for the YZ plane...
+				float angleObjTopYZ;
+				float angleObjBottomYZ;
+				
+				//Different cases for each quadrant
+				if (relativePos.y >= 0 && relativePos.z >= 0){
+					//First Quadrant
+					angleObj = Mathf.Atan2 (relativePos.z, relativePos.y) * 180f / Mathf.PI;
+				}else if (relativePos.z >= 0){
+					//Second Quadrant
+					angleObj = 180 - (Mathf.Atan2 (relativePos.z, -relativePos.y) * 180f/Mathf.PI);
+				}else if (relativePos.y <= 0 && relativePos.z <= 0){
+					//Third Quadrant
+					angleObj = 180 + (Mathf.Atan2 (-relativePos.z, -relativePos.y)*18f/Mathf.PI);
+				}else{
+					//Fourth Quadrant
+					angleObj = 360 - (Mathf.Atan2 (-relativePos.z, relativePos.y)*180f/Mathf.PI);
+				}
+				angleObjTopXY = angleObj + angleOfObj;
+				angleObjBottomXY = angleObj - angleOfObj;
+			}
+		}
+	}*/
+
 	public static bool AmIInShadow(GameObject obj, GameObject[] lights, GameObject[] blockers){
+		//bool isInShadow = true;
+		Vector3 objPos = obj.transform.position;
+		
+		//Loop through each light and see if that light is blocked
+		foreach (GameObject light in lights) {
+			//Is this light blocked?
+			bool isBlocked = false;
+			
+			//If the light isn't a light or is inactive or whatever, consider it blocked
+			if (!light.activeInHierarchy || ((light.GetComponent<MyLight> () == null || !light.GetComponent<MyLight> ().GetIsOn ()) && (light.GetComponentInChildren<MyLight> () == null || !light.GetComponentInChildren<MyLight> ().GetIsOn ()))) {
+				//This light doesn't exist or isn't on
+				Debug.Log ("Light doesn't exist or isn't on!");
+				continue;
+			}
+			
+			//Get the light
+			MyLight lightComponent = light.GetComponent<MyLight> ();
+			if (lightComponent == null) {
+				lightComponent = light.GetComponentInChildren<MyLight> ();
+			}
+			
+			//If the light can't reach the object, then it is considered blocked
+			if (Vector3.Distance (objPos, light.transform.position) > lightComponent.GetRange ()) {
+				continue;
+			}
+
+			//Now loop through the blockers and determine if this light is blocked
+			foreach (GameObject blocker in blockers){
+				//Get the renderer for this blocker
+				Renderer rend = blocker.gameObject.GetComponent<Renderer>();
+				if (!rend){
+					rend = blocker.gameObject.GetComponentInChildren<Renderer>();
+					if (!rend){
+						continue;
+					}
+				}
+
+				//Check each of four rays to the object
+				Vector3[] vecs = new Vector3[4];
+				Vector3 relativePos = objPos - light.transform.position;
+				if (relativePos.x >= 0 && relativePos.z >= 0){
+					//First Quadrant
+					vecs[0] = new Vector3(relativePos.x - 0.5f, relativePos.y, relativePos.z + 0.5f);
+					vecs[1] = new Vector3(relativePos.x - 0.5f, relativePos.y + 0.5f, relativePos.z - 0.5f);
+					vecs[2] = new Vector3(relativePos.x - 0.5f, relativePos.y - 0.5f, relativePos.z - 0.5f);
+					vecs[3] = new Vector3(relativePos.x + 0.5f, relativePos.y, relativePos.z - 0.5f);
+				}else if (relativePos.z >= 0){
+					//Second Quadrant
+					vecs[0] = new Vector3(relativePos.x - 0.5f, relativePos.y, relativePos.z - 0.5f);
+					vecs[1] = new Vector3(relativePos.x + 0.5f, relativePos.y + 0.5f, relativePos.z - 0.5f);
+					vecs[2] = new Vector3(relativePos.x + 0.5f, relativePos.y - 0.5f, relativePos.z - 0.5f);
+					vecs[3] = new Vector3(relativePos.x + 0.5f, relativePos.y, relativePos.z + 0.5f);
+				}else if (relativePos.x <= 0 && relativePos.z <= 0){
+					//Third Quadrant
+					vecs[0] = new Vector3(relativePos.x + 0.5f, relativePos.y, relativePos.z - 0.5f);
+					vecs[1] = new Vector3(relativePos.x + 0.5f, relativePos.y + 0.5f, relativePos.z + 0.5f);
+					vecs[2] = new Vector3(relativePos.x + 0.5f, relativePos.y - 0.5f, relativePos.z + 0.5f);
+					vecs[3] = new Vector3(relativePos.x - 0.5f, relativePos.y, relativePos.z + 0.5f);
+				}else{
+					//Fourth Quadrant
+					vecs[0] = new Vector3(relativePos.x + 0.5f, relativePos.y, relativePos.z + 0.5f);
+					vecs[1] = new Vector3(relativePos.x - 0.5f, relativePos.y + 0.5f, relativePos.z + 0.5f);
+					vecs[2] = new Vector3(relativePos.x - 0.5f, relativePos.y - 0.5f, relativePos.z + 0.5f);
+					vecs[3] = new Vector3(relativePos.x - 0.5f, relativePos.y, relativePos.z - 0.5f);
+				}
+				Ray ray;
+				bool thisBlockerIsBlocking = true;
+				foreach (Vector3 vec in vecs){
+					//Does this vector intersect?
+					ray = new Ray(light.transform.position, vec);
+					Debug.DrawRay (light.transform.position, vec, Color.cyan);
+					if (!rend.bounds.IntersectRay(ray)){
+						//The light is hitting the object, so this blocker isn't blocking this light
+						thisBlockerIsBlocking = false;
+						break;
+					}
+				}
+				if (thisBlockerIsBlocking){
+					isBlocked = true;
+					break;
+				}
+			}
+
+			if (!isBlocked){
+				//This light isn't blocked by any of the blockers; return false;
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
+	public static bool AmIInShadow2(GameObject obj, GameObject[] lights, GameObject[] blockers){
+		//Debug.Log ("Am i in shadow?");
 		bool isInShadow = true;
 		
 		//Loop through each light
@@ -279,13 +566,13 @@ public class Monolith : MonoBehaviour {
 				Vector3 lowerZPos = rend.bounds.center - new Vector3(0f, 0f, rend.bounds.size.z/2f);
 				Vector3 upperZPos = rend.bounds.center + new Vector3(0f, 0f, rend.bounds.size.z/2f);
 
-				/*Debug.DrawRay (light.transform.position, 10f*(lowerXPos - light.transform.position), Color.magenta);
+				Debug.DrawRay (light.transform.position, 10f*(lowerXPos - light.transform.position), Color.magenta);
 				Debug.DrawRay (light.transform.position, 10f*(upperXPos - light.transform.position), Color.magenta);
 				Debug.DrawRay (light.transform.position, 10f*(lowerYPos - light.transform.position), Color.magenta);
 				Debug.DrawRay (light.transform.position, 10f*(lowerYPos - light.transform.position), Color.magenta);
 				Debug.DrawRay (light.transform.position, 10f*(upperYPos - light.transform.position), Color.magenta);
 				Debug.DrawRay (light.transform.position, 10f*(lowerZPos - light.transform.position), Color.magenta);
-				Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);*/
+				Debug.DrawRay (light.transform.position, 10f*(upperZPos - light.transform.position), Color.magenta);
 				
 				//Find the angle TO the LOWER X end of the BLOCKER from the LIGHT in the XZ plane
 				float angleToLowerX = Mathf.Atan2(light.transform.position.z - lowerXPos.z, light.transform.position.x - lowerXPos.x);

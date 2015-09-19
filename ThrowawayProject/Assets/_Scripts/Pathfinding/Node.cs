@@ -26,6 +26,7 @@ public class Node : MonoBehaviour {
 	private float fScore = -1;		//Estimated total cost from start to goal through this node.
 	private Node redirectToNode;
 	public bool isActive = true;			//Whether or not this node is currently connected to the pathfinding
+	private bool recalcTrueOnNextFrame = false;
 
 	//Might have to do something like 'associated nodes', so that something on a ramp can occupy all three of the nodes for the ramp...
 	private bool isOccupied = false;	//Whether or not something is currently occupying this node.
@@ -78,8 +79,17 @@ public class Node : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		//Debug.Log ("Node being disabled!");
+		Debug.Log ("Node being disabled!");
 		RecalculateEdges (false);
+	}
+
+	void OnEnable(){
+		//Debug.Log ("Node being enables");
+		//RecalculateEdges (true);
+
+		//We have to do it this way so that if another node is being disabled later in this frame, we don't get connected to it
+		//So we just enable this one on the next frame
+		recalcTrueOnNextFrame = true;
 	}
 	
 	public static void EndScene(){
@@ -88,6 +98,10 @@ public class Node : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (recalcTrueOnNextFrame) {
+			recalcTrueOnNextFrame = false;
+			RecalculateEdges(true);
+		}
 		/*if (marked) {
 			this.GetComponent<Light> ().enabled = true;
 		} else {
@@ -115,6 +129,17 @@ public class Node : MonoBehaviour {
 		return nextNode;
 	}
 
+	public Node GetNodePointingToMe(){
+		if (marked) {
+			foreach (Boundary b in boundaries) {
+				if (b.GetConnectedTo () && this == b.GetConnectedTo ().GetNode ().GetNextNode ()) {
+					return b.GetConnectedTo ().GetNode ();
+				}
+			}
+		}
+		return null;
+	}
+
 	public void SetNextNode(Node n){
 		if (n == null) {
 			//Debug.Log ("Resetting next node for " + this);
@@ -140,6 +165,10 @@ public class Node : MonoBehaviour {
 
 	public void SetMarked(bool b){
 		this.marked = b;
+	}
+
+	public bool GetMarked(){
+		return this.marked;
 	}
 
 	public void SetIsOccupied(bool b){

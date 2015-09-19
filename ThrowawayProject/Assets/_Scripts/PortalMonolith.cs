@@ -111,7 +111,7 @@ public class PortalMonolith : MonoBehaviour {
 
 		if (crossedInFront) {
 			currentBlockerDiff += count - countTemp;
-			Debug.Log ("Crossed in front of a pillar: " + currentBlockerDiff);
+			//Debug.Log ("Crossed in front of a pillar: " + currentBlockerDiff);
 		}
 
 		//currentBlockerDiff = 
@@ -149,27 +149,38 @@ public class PortalMonolith : MonoBehaviour {
 			return;
 		}
 
-		//Debug.Log ("I should be toggling!");
+		if (debugging) {
+			Debug.Log ("I should be toggling!");
+		}
 		//First of all, only toggle it if there is NO light on it
 		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
-			//Debug.Log ("And I'm in shadow!");
+			if (debugging){
+				Debug.Log ("And I'm in shadow!");
+			}
 			//Hide the current child
 			//First, remove all of it's nodes from the pathfinding graph
-			Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//We don't have to do this; they'll be removed automatically when they're disabled
+			//Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (false);
-			}
-			/*if (this.transform.GetChild (curChild).GetComponent<Node>()){
-				this.transform.GetChild (curChild).GetComponent<Node>().RecalculateEdges(false);
 			}*/
+
+			Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+			Node pointingToMe=null, mePointingTo=null;
+			if (nodes.Length==1 && nodes[0].GetMarked ()){
+				//We want to preserve pathfinding...
+				pointingToMe = nodes[0].GetNodePointingToMe();
+				mePointingTo = nodes[0].GetNextNode();
+			}
+
 			this.transform.GetChild (curChild).gameObject.SetActive (false);
 
 			//Go to the next child (which should now become active
-			Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
+			//Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
 			curChild += direction * childDiff;
-			Debug.Log ("Intermediary: " + curChild);
+			//Debug.Log ("Intermediary: " + curChild);
 			if (currentBlockerDiff!=0 && directionMatters){
-				Debug.Log ("Current blocker diff: " + currentBlockerDiff);
+				//Debug.Log ("Current blocker diff: " + currentBlockerDiff);
 				curChild -= currentBlockerDiff;
 				currentBlockerDiff = 0;
 			}
@@ -184,17 +195,28 @@ public class PortalMonolith : MonoBehaviour {
 					curChild += 2*direction * childDiff;
 				}
 			}
-			Debug.Log ("New child: " + curChild);
+			//Debug.Log ("New child: " + curChild);
 			//curChild = (curChild + 1) % numChildren;
 
 			//Show the next child
 			this.transform.GetChild (curChild).gameObject.SetActive (true);
-			//Now remove it from the pathfinding graph
-			nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
-			foreach (Node node in nodes) {
+			//Now add it to the pathfinding graph
+			//We don't have to do this; they'll get added when they're enabled
+			//nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+			/*foreach (Node node in nodes) {
 				node.RecalculateEdges (true);
-			}
+			}*/
 			//hidden = !hidden;
+
+			//Now reset the pathfinding
+			nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
+			if (nodes.Length==1){
+				nodes[0].SetMarked (true);
+				nodes[0].SetNextNode(mePointingTo);
+				if (pointingToMe){
+					pointingToMe.SetNextNode(nodes[0]);
+				}
+			}
 
 
 			//Toggle the meshrenderer and the navmeshobstacle (these should always be opposite), as well as the bool value 'hidden'
