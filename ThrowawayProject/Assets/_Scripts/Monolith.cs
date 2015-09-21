@@ -402,7 +402,7 @@ public class Monolith : MonoBehaviour {
 		}
 	}*/
 
-	public static bool AmIInShadow(GameObject obj, GameObject[] lights, GameObject[] blockers){
+	public static bool AmIInShadow2(GameObject obj, GameObject[] lights, GameObject[] blockers){
 		//bool isInShadow = true;
 		Vector3 objPos = obj.transform.position;
 		
@@ -495,7 +495,7 @@ public class Monolith : MonoBehaviour {
 		return true;
 	}
 	
-	public static bool AmIInShadow2(GameObject obj, GameObject[] lights, GameObject[] blockers){
+	public static bool AmIInShadow(GameObject obj, GameObject[] lights, GameObject[] blockers){
 		//Debug.Log ("Am i in shadow?");
 		bool isInShadow = true;
 		

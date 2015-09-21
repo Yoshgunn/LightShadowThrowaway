@@ -14,7 +14,7 @@ public class PortalMonolith : MonoBehaviour {
 	//GameObject[] childs;
 	int curChild = 0;
 	int numChildren;
-	bool completedOnce = false;
+	bool completedOnce = true;
 	int childDiff = 1;
 	int currentBlockerDiff = 0;
 
@@ -133,7 +133,8 @@ public class PortalMonolith : MonoBehaviour {
 					//lastNumObst = countTemp;
 				//}
 				//Debug.Log ("Count: " + count + ", tempCount: " + countTemp + ", lastNumObst: " + lastNumObst);
-				ToggleHidden(lastNumObst - count);
+				//ToggleHidden(lastNumObst - count);
+				ToggleHidden(lastNumObst - countTemp);
 			}
 		}
 		lastNumObst = count;
@@ -156,6 +157,7 @@ public class PortalMonolith : MonoBehaviour {
 		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
 			if (debugging){
 				Debug.Log ("And I'm in shadow!");
+				Debug.Log ("Direction: " + direction);
 			}
 			//Hide the current child
 			//First, remove all of it's nodes from the pathfinding graph
@@ -167,10 +169,23 @@ public class PortalMonolith : MonoBehaviour {
 
 			Node[] nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
 			Node pointingToMe=null, mePointingTo=null;
+			bool thisIsTargetNode = false, thisIsOverallGoal = false;
 			if (nodes.Length==1 && nodes[0].GetMarked ()){
 				//We want to preserve pathfinding...
+				if (debugging){
+					Debug.Log ("Preserving pathfinding...");
+				}
 				pointingToMe = nodes[0].GetNodePointingToMe();
+				if (pointingToMe && debugging){
+					Debug.Log ("There's a node pointing to me");
+				}
 				mePointingTo = nodes[0].GetNextNode();
+				/*if (PathfindingPlayer.PLAYER.GetTargetNode() == nodes[0]){
+					thisIsTargetNode = true;
+				}
+				if (Node.IsOverallGoal(nodes[0])){
+					thisIsOverallGoal = true;
+				}*/
 			}
 
 			this.transform.GetChild (curChild).gameObject.SetActive (false);
@@ -211,11 +226,23 @@ public class PortalMonolith : MonoBehaviour {
 			//Now reset the pathfinding
 			nodes = this.transform.GetChild (curChild).GetComponentsInChildren<Node> ();
 			if (nodes.Length==1){
-				nodes[0].SetMarked (true);
+				if (debugging){
+					Debug.Log ("Finished preserving pathfinding...");
+				}
+				nodes[0].SetMarked (true);	//Only do this if it was marked before...
 				nodes[0].SetNextNode(mePointingTo);
 				if (pointingToMe){
+					if (debugging)
+						Debug.Log ("Pointed the node to the new me");
 					pointingToMe.SetNextNode(nodes[0]);
 				}
+
+				/*if (thisIsTargetNode){
+					PathfindingPlayer.PLAYER.SetTargetNode(nodes[0]);
+				}
+				if (thisIsOverallGoal){
+					Node.SetOverallGoal(nodes[0]);
+				}*/
 			}
 
 

@@ -79,7 +79,7 @@ public class Node : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		Debug.Log ("Node being disabled!");
+		//Debug.Log ("Node being disabled!");
 		RecalculateEdges (false);
 	}
 
@@ -130,6 +130,7 @@ public class Node : MonoBehaviour {
 	}
 
 	public Node GetNodePointingToMe(){
+		//TODO: This isn't always returning the correct value, because the boundaries may not be connected anymore!
 		if (marked) {
 			foreach (Boundary b in boundaries) {
 				if (b.GetConnectedTo () && this == b.GetConnectedTo ().GetNode ().GetNextNode ()) {
@@ -185,6 +186,17 @@ public class Node : MonoBehaviour {
 
 	public Node GetRedirectToNode(){
 		return redirectToNode;
+	}
+
+	public static bool IsOverallGoal(Node n){
+		if (overallGoal == n) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void SetOverallGoal(Node n){
+		overallGoal = n;
 	}
 
 	//Figures out if this node should be connected/disconnected from other nodes
