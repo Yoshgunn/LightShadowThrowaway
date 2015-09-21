@@ -148,6 +148,25 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			thisLight.range = currentIntensity;
 			((MyLight)this).FlickerOn ();
 			//MyLight.FlickerOn();
+
+			Debug.Log ("Sound on!");
+			AudioSource[] torchSounds = gameObject.GetComponents<AudioSource>();
+			// Turn on the Torch Loop sound
+			torchSounds[0].volume = 0.1f;
+			
+			// Trigger the Ignite sound and the Creepy Alert sound
+			torchSounds[2].Play();
+			torchSounds[3].Play();
+		}
+		else 
+		{
+			Debug.Log ("Sound off!");
+			AudioSource[] torchSounds = gameObject.GetComponents<AudioSource>();
+			// Shut off the Torch Loop sound
+			torchSounds[0].volume = 0;
+
+			// Trigger the Extinguish sound
+			torchSounds[1].Play();
 		}
 	}
 

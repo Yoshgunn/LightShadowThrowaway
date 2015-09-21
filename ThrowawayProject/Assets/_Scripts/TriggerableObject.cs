@@ -26,15 +26,17 @@ public class TriggerableObject : MonoBehaviour, Triggerable {
 	}
 
 	void Triggerable.Trigger(){
-		Debug.Log ("Triggering");
+		Debug.Log ("Triggering " + gameObject.name);
 		if (triggerCount % triggerOnceEvery == 0) {
 			this.transform.Rotate (rotateOnTrigger);
 			this.transform.Translate (translateOnTrigger);
 
 			if (toggleEnabled && !this.isActiveAndEnabled){
 				this.gameObject.SetActive(true);
+				Debug.Log ("Turning " + gameObject.name + " on!");
 			}else if (toggleEnabled){
 				this.gameObject.SetActive(false);
+				Debug.Log ("Turning " + gameObject.name + " off...");
 				foreach (Node n in nodes){
 					n.RecalculateEdges(false);
 				}

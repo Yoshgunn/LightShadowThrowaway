@@ -81,10 +81,10 @@ public class SoundMachine : MonoBehaviour
 			if ( stream.isEnabled && ( Time.time > stream.playNextSound ) )
 			{
 				int randomNumber = Random.Range( 0, stream.soundList.Length );
-				Debug.Log ("Playing clip " + randomNumber + " of Sound Stream " + stream.name);
+				// Debug.Log ("Playing clip " + randomNumber + " of Sound Stream " + stream.name);
 				AudioSource.PlayClipAtPoint( stream.soundList[randomNumber], Vector3.zero, stream.volume );
 				float randomCalmTime = stream.calmTime + Random.Range( -stream.calmTimeRandomness, stream.calmTimeRandomness );
-				Debug.Log ( randomCalmTime );
+				// Debug.Log ( randomCalmTime );
 				stream.playNextSound = Time.time + stream.soundList[randomNumber].length + randomCalmTime;
 			}
 		}
