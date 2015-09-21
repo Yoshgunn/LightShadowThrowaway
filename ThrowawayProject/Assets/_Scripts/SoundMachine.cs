@@ -37,7 +37,7 @@ public class SoundMachine : MonoBehaviour
 		public bool isEnabled;
 		public float playNextSound;
 		public float volume;
-		public float volumeRandomness;	// Not yet implemented
+		public float volumeRandomness;
 		public float calmTime;
 		public float calmTimeRandomness;
 
@@ -80,10 +80,15 @@ public class SoundMachine : MonoBehaviour
 		{
 			if ( stream.isEnabled && ( Time.time > stream.playNextSound ) )
 			{
+				// Pick a random sound to play, and a random volume
 				int randomNumber = Random.Range( 0, stream.soundList.Length );
+				float randomVolume = Random.Range( -stream.volumeRandomness, stream.volumeRandomness );
+				Debug.Log ( stream.name + " volume is currently " + (stream.volume + randomVolume) );
+
 				// Debug.Log ("Playing clip " + randomNumber + " of Sound Stream " + stream.name);
-				AudioSource.PlayClipAtPoint( stream.soundList[randomNumber], Vector3.zero, stream.volume );
+				AudioSource.PlayClipAtPoint( stream.soundList[randomNumber], Vector3.zero, ( stream.volume + randomVolume ) );
 				float randomCalmTime = stream.calmTime + Random.Range( -stream.calmTimeRandomness, stream.calmTimeRandomness );
+
 				// Debug.Log ( randomCalmTime );
 				stream.playNextSound = Time.time + stream.soundList[randomNumber].length + randomCalmTime;
 			}
