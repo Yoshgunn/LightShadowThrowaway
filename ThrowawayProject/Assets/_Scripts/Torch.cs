@@ -139,6 +139,10 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		}
 	}
 
+	void OnEnable(){
+		this.GetComponent<MyLight>().FlickerOn ();
+	}
+
 	void Triggerable.Trigger(){
 		thisLight.enabled = !thisLight.enabled;
 		if (thisLight.enabled) {

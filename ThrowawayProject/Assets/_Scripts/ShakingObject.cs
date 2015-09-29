@@ -7,8 +7,8 @@ public class ShakingObject : MonoBehaviour, Triggerable {
 	Vector3 actualPos;
 	//Vector3 shakeAmount;
 	int shakeTimer = 0;
-	public int startShakeTimer = 0;
-	public float shakeAmount = 0;
+	public int startShakeTimer = 20;
+	public float shakeAmount = 0.1f;
 
 	// Use this for initialization
 	void Start () {

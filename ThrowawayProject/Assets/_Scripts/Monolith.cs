@@ -425,12 +425,18 @@ public class Monolith : MonoBehaviour {
 			}
 			
 			//If the light can't reach the object, then it is considered blocked
-			if (Vector3.Distance (objPos, light.transform.position) > lightComponent.GetRange ()) {
+			float lightDistance = Vector3.Distance (objPos, light.transform.position);
+			if (lightDistance > lightComponent.GetRange ()) {
 				continue;
 			}
 
 			//Now loop through the blockers and determine if this light is blocked
 			foreach (GameObject blocker in blockers){
+				//If the light is closer to the object than the blocker, this blocker can't block this light
+				if (lightDistance < Vector3.Distance (objPos, blocker.transform.position)){
+					continue;
+				}
+
 				//Get the renderer for this blocker
 				Renderer rend = blocker.gameObject.GetComponent<Renderer>();
 				if (!rend){

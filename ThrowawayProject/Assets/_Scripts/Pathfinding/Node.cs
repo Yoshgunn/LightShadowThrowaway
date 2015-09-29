@@ -125,6 +125,15 @@ public class Node : MonoBehaviour {
 		return neighbors;
 	}
 
+	public bool IsConnectedTo(Node n){
+		foreach (Boundary b in boundaries) {
+			if (b.GetConnectedTo() != null && b.GetConnectedTo().GetNode().Equals(n)){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public Node GetNextNode(){
 		return nextNode;
 	}

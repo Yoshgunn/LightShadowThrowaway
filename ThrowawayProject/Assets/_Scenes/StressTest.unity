@@ -1501,6 +1501,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 143586, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
   m_IsPrefabParent: 0
@@ -4682,7 +4686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &387064619
 Light:
   m_ObjectHideFlags: 0
@@ -27573,7 +27577,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Intensity
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 10860526, guid: 52a5d11545b627b4dbac751763134484, type: 2}
       propertyPath: m_Color.r
