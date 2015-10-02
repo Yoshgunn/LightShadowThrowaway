@@ -11,6 +11,7 @@ public class PortalMonolith : MonoBehaviour {
 	int lastNumObst = 0;
 	int directionNumObst = 0;
 	bool[] areTriggersBlocking;
+	bool[] blockerAngleWasAbovePlayerAngle;
 	//GameObject[] childs;
 	int curChild = 0;
 	int numChildren;
@@ -21,6 +22,7 @@ public class PortalMonolith : MonoBehaviour {
 	public GameObject[] blockingTriggers;		//These have to go in bottom-to-top style
 	//public GameObject player;
 	public GameObject[] lights;
+	public bool ignoreShadow;
 	public bool directionMatters;
 	public bool debugging;
 
@@ -29,6 +31,7 @@ public class PortalMonolith : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		areTriggersBlocking = new bool[blockingTriggers.Length];
+		blockerAngleWasAbovePlayerAngle = new bool[blockingTriggers.Length];
 		//childs = new GameObject[this.transform.childCount];
 		//childs = this.transform.chil;
 
@@ -57,7 +60,59 @@ public class PortalMonolith : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log ("is visible: " + this.transform.GetComponentInChildren<Renderer> ().enabled);
-		TestShouldBeHidden ();
+		TestShouldBeHidden2 ();
+	}
+
+	void TestShouldBeHidden2(){
+		int numberObjectsPast = 0;
+		float playerX = PathfindingPlayer.PLAYER.transform.position.x;
+		float playerZ = PathfindingPlayer.PLAYER.transform.position.z;
+		float thisX = this.transform.position.x;
+		float thisZ = this.transform.position.z;
+		float angleToPlayer = Mathf.Atan2 (playerZ - thisZ, playerX - thisX);
+		float squaredDistanceToPlayer = (playerX - thisX) * (playerX - thisX) + (playerZ - thisZ) * (playerZ - thisZ);
+		float angleToObstacle;
+		float squaredDistanceToObstacle;
+		int diff = 0;	//The number of difference since last frame (accounting for direction)
+		
+		for (int i=0;i<blockingTriggers.Length;i++){
+			//Debug.Log ("Found a blocker");
+			Vector3 pos = blockingTriggers[i].transform.position;
+			//what is the angle/distance for this blocker?
+			angleToObstacle = Mathf.Atan2 (pos.z - thisZ, pos.x - thisX);
+			squaredDistanceToObstacle = (pos.x - thisX)*(pos.x - thisX) + (pos.z - thisZ)*(pos.z - thisZ);
+
+			if (Mathf.Abs (angleToPlayer - angleToObstacle) > Mathf.PI){
+				if (angleToPlayer > angleToObstacle){
+					angleToObstacle += Mathf.PI*2;
+				}else{
+					angleToPlayer += Mathf.PI*2;
+				}
+			}
+
+			bool blockerAngleIsAbovePlayerAngle = (angleToObstacle > angleToPlayer);
+			bool crossedInFront = false;
+
+			if (blockerAngleIsAbovePlayerAngle != blockerAngleWasAbovePlayerAngle[i] && Mathf.Abs (angleToPlayer - angleToObstacle) < Mathf.PI/4f){
+				//If we're on a different side of this blocker than we were, and the angle is small enough (since the player can only move so fast)
+				Debug.Log ("Crossed a blocker. playerdist: " + squaredDistanceToPlayer + ", obstdist: " + squaredDistanceToObstacle);
+				//We crossed this blocker
+				//Did we cross in front or behind?
+				crossedInFront = (Mathf.Abs (squaredDistanceToObstacle) > Mathf.Abs (squaredDistanceToPlayer));
+				blockerAngleWasAbovePlayerAngle[i] = blockerAngleIsAbovePlayerAngle;
+
+				if (!crossedInFront){
+					Debug.Log ("Crossed behind");
+					diff += (blockerAngleIsAbovePlayerAngle)?(1):(-1);
+				}
+			}
+
+
+		}
+
+		if (diff!=0){
+			ToggleHidden(diff);
+		}
 	}
 
 	void TestShouldBeHidden(){
@@ -122,9 +177,12 @@ public class PortalMonolith : MonoBehaviour {
 				ToggleHidden(countTemp - lastNumObst);
 			}
 		}*/
-		//Debug.Log ("Count: " + count + ", tempCount: " + countTemp%numChildren + ", lastNumObst: " + lastNumObst%numChildren + ", completed onmce : " + completedOnce);
-		if (countTemp != lastNumObst && completedOnce) {
-			if (countTemp%numChildren != lastNumObst%numChildren){
+		if (debugging)
+			Debug.Log ("Count: " + count + ", tempCount: " + countTemp + ", lastNumObst: " + lastNumObst + ", completed onmce : " + completedOnce);
+
+
+		if (count != lastNumObst && completedOnce) {
+			//if (countTemp%numChildren != lastNumObst%numChildren){
 				//Debug.Log ("Got here!");
 				//Debug.Log ("Am i in shadow? " + Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers));
 				//if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)){
@@ -135,7 +193,7 @@ public class PortalMonolith : MonoBehaviour {
 				//Debug.Log ("Count: " + count + ", tempCount: " + countTemp + ", lastNumObst: " + lastNumObst);
 				//ToggleHidden(lastNumObst - count);
 				ToggleHidden(lastNumObst - countTemp);
-			}
+			//}
 		}
 		lastNumObst = count;
 		if (!completedOnce) {
@@ -154,7 +212,7 @@ public class PortalMonolith : MonoBehaviour {
 			Debug.Log ("I should be toggling!");
 		}
 		//First of all, only toggle it if there is NO light on it
-		if (Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
+		if (ignoreShadow || Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
 			if (debugging){
 				Debug.Log ("And I'm in shadow!");
 				Debug.Log ("Direction: " + direction);

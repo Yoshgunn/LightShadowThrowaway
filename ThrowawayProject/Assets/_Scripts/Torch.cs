@@ -121,10 +121,10 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			}
 
 			flickerCounter--;
-			/*if ((thisLight.range <= 0 || thisLight.range >= maxRange) && (thisLight.intensity <= 0 || thisLight.intensity >= maxIntensity)){
+			if ((thisLight.range <= 0 || thisLight.range >= maxRange) && (thisLight.intensity <= 0 || thisLight.intensity >= maxIntensity)){
 				Debug.Log ("Breaking early");
 				flickerCounter = 0;
-			}*/
+			}
 		} else if (currentIntensity > 0 && currentRange > 0 && shrinkCounter <=0){
 			//We're just doing normal, static flicker
 			flickerCounter--;
@@ -146,7 +146,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	void Triggerable.Trigger(){
 		thisLight.enabled = !thisLight.enabled;
 		if (thisLight.enabled) {
-			currentRange = 2;
+			currentRange = 0;
 			currentIntensity = 0f;
 			thisLight.range = currentRange;
 			thisLight.range = currentIntensity;
@@ -211,7 +211,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	
 	void MyLight.FlickerOn(int time){
 		flickerCounter = time;
+		currentRange = 0;
 		currentIntensity = STARTING_INTENSITY;
+		Debug.Log ("macx range: " + maxRange);
 		flickerRangeAmount = (maxRange - currentRange) / time;
 		flickerIntensityAmount = (maxIntensity - currentIntensity) / time;
 		Debug.Log ("Flickering on in " + time + " frames");

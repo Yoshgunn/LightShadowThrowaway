@@ -14,13 +14,17 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	GameObject myObject;
 	Vector3 startingPos;
 	Vector3 targetPos;
+	//Vector3 targetRelativePos;
+	//Vector3 currentRelativePos;
 	Node[] nodes;
 	
 	// Use this for initialization
 	void Start () {
-		targetPos = transform.GetChild (0).transform.position;
+		targetPos = transform.GetChild (0).transform.localPosition;
 		myObject = transform.GetChild (1).gameObject;
-		startingPos = myObject.transform.position;
+		startingPos = myObject.transform.localPosition;
+		//targetRelativePos = targetPos - startingPos;
+		//currentRelativePos = Vector3.zero;
 		nodes = myObject.GetComponentsInChildren<Node> ();
 
 		//Set up the 'default' values
@@ -31,9 +35,9 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	
 	// Update is called once per frame
 	void Update () {
-		if (triggered) {
+		/*if (triggered) {
 			//Move toward the target position
-			if (Vector3.Distance (myObject.transform.position, targetPos) < speed){
+			if (Vector3.Distance (currentRelativePos, targetRelativePos) < speed){
 				//Re-enable all of the nodes in this object
 				if (!nodesActive) {
 					//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
@@ -43,8 +47,10 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 					nodesActive = true;
 				}
 				myObject.transform.position = targetPos;
+				currentRelativePos = targetRelativePos;
 			}else{
 				myObject.transform.Translate(Vector3.Normalize(targetPos - myObject.transform.position)*speed);
+				currentRelativePos += Vector3.Normalize (targetPos - 
 			}
 		} else {
 			//Move toward the starting position
@@ -60,6 +66,38 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 				myObject.transform.position = startingPos;
 			}else{
 				myObject.transform.Translate(Vector3.Normalize(startingPos - myObject.transform.position)*speed);
+			}
+		}*/
+
+		if (triggered) {
+			//Move toward the target position
+			if (Vector3.Distance (myObject.transform.localPosition, targetPos) < speed){
+				//Re-enable all of the nodes in this object
+				if (!nodesActive) {
+					//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+					foreach (Node node in nodes) {
+						node.RecalculateEdges (true);
+					}
+					nodesActive = true;
+				}
+				myObject.transform.localPosition = targetPos;
+			}else{
+				myObject.transform.Translate(Vector3.Normalize(targetPos - myObject.transform.localPosition)*speed);
+			}
+		} else {
+			//Move toward the starting position
+			if (Vector3.Distance (myObject.transform.localPosition, startingPos) < speed){
+				//Re-enable all of the nodes in this object
+				if (!nodesActive) {
+					//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
+					foreach (Node node in nodes) {
+						node.RecalculateEdges (true);
+					}
+					nodesActive = true;
+				}
+				myObject.transform.localPosition = startingPos;
+			}else{
+				myObject.transform.Translate(Vector3.Normalize(startingPos - myObject.transform.localPosition)*speed);
 			}
 		}
 	}
