@@ -17,6 +17,8 @@ public class Button : MonoBehaviour, Trigger {
 	public AudioClip pressSound;
 	public AudioClip resetSound;
 
+	public Animator buttonAnimator;
+
 	// Use this for initialization
 	void Start () {
 		//Get the node we're on
@@ -38,6 +40,9 @@ public class Button : MonoBehaviour, Trigger {
 		}
 
 		//Debug.Log ("Triggerables length: " + triggerables.Length);
+
+		// Get our Animator, which is in our children
+		buttonAnimator = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -50,7 +55,7 @@ public class Button : MonoBehaviour, Trigger {
 			isTriggering = true;
 
 			// This is the 'animation' for clicking the button
-			this.gameObject.transform.Translate(new Vector3(0f, -0.09f, 0f));
+			buttonAnimator.SetTrigger( "PressButton" );
 
 			// Play a pressing sound
 			speakers.PlayOneShot ( pressSound ); 
@@ -76,7 +81,7 @@ public class Button : MonoBehaviour, Trigger {
 			isTriggering = false;
 
 			// Animation
-			this.gameObject.transform.Translate(new Vector3(0f, 0.09f, 0f));
+			buttonAnimator.SetTrigger( "ResetButton" );
 
 			// Sound
 			speakers.PlayOneShot ( resetSound, 1 ); 
