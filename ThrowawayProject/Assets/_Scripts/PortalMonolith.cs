@@ -71,6 +71,7 @@ public class PortalMonolith : MonoBehaviour {
 		float thisZ = this.transform.position.z;
 		float angleToPlayer = Mathf.Atan2 (playerZ - thisZ, playerX - thisX);
 		float squaredDistanceToPlayer = (playerX - thisX) * (playerX - thisX) + (playerZ - thisZ) * (playerZ - thisZ);
+		//Debug.Log ("Player distance: " + squaredDistanceToPlayer);
 		float angleToObstacle;
 		float squaredDistanceToObstacle;
 		int diff = 0;	//The number of difference since last frame (accounting for direction)
@@ -110,9 +111,11 @@ public class PortalMonolith : MonoBehaviour {
 
 		}
 
-		if (diff!=0){
+		if (diff!=0/* && completedOnce*/){
 			ToggleHidden(diff);
 		}
+
+		//completedOnce = true;
 	}
 
 	void TestShouldBeHidden(){

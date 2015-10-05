@@ -360,6 +360,16 @@ public class Node : MonoBehaviour {
 		return null;
 	}
 
+	public static Node[] GetNodesDirectlyUnder(Vector3 location){
+		List<Node> nodeList = new List<Node>();
+		foreach (Node node in allNodes) {
+			if (node && node.gameObject.activeSelf && node.GetPositionAbove() == location){
+				nodeList.Add (node);
+			}
+		}
+		return nodeList.ToArray ();
+	}
+
 	//Function to get the node at a specific space
 	public static Node GetNodeAt(Vector3 location){
 		foreach (Node node in allNodes) {

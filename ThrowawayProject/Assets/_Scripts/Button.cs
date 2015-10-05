@@ -7,10 +7,12 @@ public class Button : MonoBehaviour, Trigger {
 	public bool unTriggerOnLeave;
 	public Transform[] triggerableTransforms;
 	public int[] delays;
+	public bool debugging;
 
 	private bool isTriggering = false;
 	private Triggerable[] triggerables;
 	private Node myNode;
+	private Node[] myNodes;
 	private int[] currentDelays;
 
 	public AudioSource speakers;
@@ -19,10 +21,13 @@ public class Button : MonoBehaviour, Trigger {
 
 	public Animator buttonAnimator;
 
+	bool getNode = false;
+
 	// Use this for initialization
 	void Start () {
 		//Get the node we're on
 		myNode = Node.GetNodeDirectlyUnder (this.transform.position);
+		myNodes = Node.GetNodesDirectlyUnder (this.transform.position);
 
 		triggerables = new Triggerable[triggerableTransforms.Length];
 		for (int i=0; i<triggerableTransforms.Length; i++) {
@@ -45,10 +50,22 @@ public class Button : MonoBehaviour, Trigger {
 		buttonAnimator = GetComponentInChildren<Animator>();
 	}
 	
+	void OnEnable(){
+
+	}
+	
 	// Update is called once per frame
 	void Update () {
+		bool nodeOccupied = false;
+
+		foreach (Node n in myNodes) {
+			if (n.GetIsOccupied()){
+				nodeOccupied = true;
+				break;
+			}
+		}
 		//if (!isTriggering && PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode)) {
-		if (!isTriggering && myNode.GetIsOccupied()) {
+		if (!isTriggering && nodeOccupied/*myNode && myNode.GetIsOccupied()*/) {
 			//This means that something has moved onto the button
 			//Trigger all of the triggerables, and set isTriggered to true
 			//Debug.Log ("trigger");
@@ -76,7 +93,7 @@ public class Button : MonoBehaviour, Trigger {
 				//}
 			}*/
 		//} else if (isTriggering && !PathfindingPlayer.PLAYER.GetCurrentNode().Equals (myNode) && retriggerable) {
-		} else if (isTriggering && !myNode.GetIsOccupied() && retriggerable) {
+		} else if (isTriggering && !nodeOccupied/*myNode && !myNode.GetIsOccupied()*/ && retriggerable) {
 			//This means that something has moved off of the button. Only triggers if 'retriggerable' is true.
 			isTriggering = false;
 
