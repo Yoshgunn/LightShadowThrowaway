@@ -1825,7 +1825,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 58241948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.25, z: 0}
+  m_LocalPosition: {x: 0, y: 4.01900005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 260091952}
@@ -1840,7 +1840,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: .610750496, b: .257352948, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 4
   m_Range: 2.5
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2707,6 +2707,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1 &99753621
@@ -3365,6 +3366,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &136134715
@@ -3913,6 +3915,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1001 &188804447
@@ -4230,15 +4233,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 92bc1aa5406d8e243880aa1e46ae7ef4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bc1aa5406d8e243880aa1e46ae7ef4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .0529999994
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bc1aa5406d8e243880aa1e46ae7ef4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: .148000002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 92bc1aa5406d8e243880aa1e46ae7ef4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4340,6 +4343,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1 &232214137
@@ -5528,6 +5532,7 @@ MonoBehaviour:
   - {fileID: 1729388165}
   lights:
   - {fileID: 18672199}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &358127748
@@ -6253,7 +6258,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 428774149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.5, z: .611000001}
+  m_LocalPosition: {x: 0, y: 4.84000015, z: .917999983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2024027917}
@@ -6823,7 +6828,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479001542}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: .587000012, y: 4.5, z: 0}
+  m_LocalPosition: {x: .962000012, y: 4.84000015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 57347975}
@@ -7004,6 +7009,7 @@ MonoBehaviour:
   translateOnTrigger: {x: 0, y: 0, z: 0}
   toggleEnabled: 1
   triggerOnceEvery: 1
+  offset: 0
 --- !u!1 &515537181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9655,6 +9661,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1 &644316379
@@ -10117,6 +10124,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!4 &677232246
@@ -10261,6 +10269,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &708820820
@@ -11319,6 +11328,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .499999881
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
   m_IsPrefabParent: 0
@@ -11513,6 +11526,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &788871504
@@ -12159,6 +12173,7 @@ MonoBehaviour:
   - {fileID: 1729388165}
   lights:
   - {fileID: 18672199}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1 &889558407
@@ -12624,6 +12639,10 @@ Prefab:
     - target: {fileID: 400000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
       propertyPath: m_LocalScale.z
       value: .49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
@@ -14726,6 +14745,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1 &988884591
@@ -14990,6 +15010,10 @@ Prefab:
     - target: {fileID: 400000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
       propertyPath: m_LocalScale.z
       value: .499999911
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
@@ -16718,7 +16742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1170682656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17517,7 +17541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -.707106829
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_LocalRotation.y
@@ -17525,11 +17549,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_RootOrder
@@ -17537,12 +17561,28 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1c80b4be9f305da40bd2972f925b9228, type: 2}
+    - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecdf0e36784857949a15a109d2fa6c94, type: 3}
   m_IsPrefabParent: 0
@@ -17823,6 +17863,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1289953096
@@ -19779,6 +19820,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1373047858
@@ -20185,7 +20227,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1394522545}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 1.54299998, z: -.614000022}
+  m_LocalPosition: {x: 0, y: 1.54299998, z: -.866999984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 295741236}
@@ -21799,6 +21841,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1001 &1559440023
@@ -22639,7 +22682,7 @@ Transform:
   m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
   m_Children: []
   m_Father: {fileID: 2024027917}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1001 &1631033909
 Prefab:
   m_ObjectHideFlags: 0
@@ -23291,6 +23334,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1694953143
@@ -25522,6 +25566,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1791516356
@@ -26990,6 +27035,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1907444613
@@ -27798,6 +27844,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .49999997
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7913134563c292240b9f0c41325ddb72, type: 3}
   m_IsPrefabParent: 0
@@ -28512,6 +28562,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1 &1985233351
@@ -28559,6 +28610,7 @@ MonoBehaviour:
   translateOnTrigger: {x: 0, y: 0, z: 0}
   toggleEnabled: 0
   triggerOnceEvery: 2
+  offset: 0
 --- !u!1001 &1987902526
 Prefab:
   m_ObjectHideFlags: 0
@@ -29144,8 +29196,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
-  - {fileID: 1641022252}
   - {fileID: 1630993305}
+  - {fileID: 1641022252}
   m_Father: {fileID: 428774150}
   m_RootOrder: 0
 --- !u!1 &2032104022
@@ -29280,6 +29332,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1 &2038307913
@@ -29811,6 +29864,7 @@ MonoBehaviour:
   - {fileID: 1194058725}
   lights:
   - {fileID: 796402257}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!1001 &2051007827
