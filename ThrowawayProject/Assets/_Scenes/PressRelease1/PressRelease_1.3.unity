@@ -286,6 +286,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &51545747
@@ -1067,6 +1068,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &282280568
@@ -2264,6 +2266,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!114 &562858029
@@ -2933,6 +2936,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &774782504
@@ -3414,6 +3418,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &882161644
@@ -3703,6 +3708,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 1
 --- !u!114 &975512495
@@ -3870,6 +3876,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1020621137
@@ -4228,6 +4235,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1122657770
@@ -4395,6 +4403,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1183395722
@@ -5239,6 +5248,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1386912664
@@ -5366,6 +5376,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1397795742
@@ -5543,6 +5554,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1432046895
@@ -5620,6 +5632,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1465757679
@@ -5751,6 +5764,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1482729993
@@ -6071,6 +6085,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1573938003
@@ -6198,6 +6213,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1612857740
@@ -6591,6 +6607,7 @@ MonoBehaviour:
   - {fileID: 1783214350}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!114 &1741194700
@@ -7041,6 +7058,7 @@ MonoBehaviour:
   - {fileID: 691106469}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!4 &1875963891

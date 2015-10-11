@@ -126,6 +126,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
+      propertyPath: isExitDoor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
   m_IsPrefabParent: 0
@@ -174,6 +178,7 @@ MonoBehaviour:
   - {fileID: 576595874}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &35333487
@@ -1904,6 +1909,7 @@ MonoBehaviour:
   - {fileID: 225318281}
   lights:
   - {fileID: 758715601}
+  ignoreShadow: 0
   directionMatters: 0
   debugging: 0
 --- !u!1001 &1799003431

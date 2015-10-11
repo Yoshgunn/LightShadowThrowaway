@@ -939,6 +939,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 610946237}
   - 114: {fileID: 610946238}
+  - 114: {fileID: 610946239}
   m_Layer: 0
   m_Name: Monolith
   m_TagString: Untagged
@@ -966,7 +967,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 610946236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4543a1af8c10184db1f694254124934, type: 3}
   m_Name: 
@@ -980,6 +981,25 @@ MonoBehaviour:
   - {fileID: 23385195}
   - {fileID: 112208957}
   loops: 1
+  initialState: 0
+--- !u!114 &610946239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 610946236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab33f2ac40bb2fb448c32291c427d341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingTriggers:
+  - {fileID: 23385195}
+  - {fileID: 112208957}
+  lights: []
+  ignoreShadow: 0
+  directionMatters: 0
+  debugging: 0
 --- !u!1001 &615036407
 Prefab:
   m_ObjectHideFlags: 0
