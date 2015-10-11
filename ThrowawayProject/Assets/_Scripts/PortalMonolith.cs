@@ -6,7 +6,8 @@ public class PortalMonolith : MonoBehaviour {
 
 	const float ANGLE_ADJUSTMENT = 0.0001f;
 	
-	bool loops = true;
+	public bool loops = true;
+	public bool reverseDirection = false;
 	bool stopsAtFinalState = false;
 
 	bool hidden = false;
@@ -59,6 +60,10 @@ public class PortalMonolith : MonoBehaviour {
 
 		if (curChild == 0) {
 			this.transform.GetChild (0).gameObject.SetActive(true);
+		}
+
+		if (reverseDirection) {
+			childDiff = -childDiff;
 		}
 	}
 	
@@ -522,7 +527,7 @@ public class PortalMonolith : MonoBehaviour {
 		//First of all, only toggle it if there is NO light on it
 		if (ignoreShadow || Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
 			if (debugging){
-				Debug.Log ("And I'm in shadow!");
+				Debug.Log ("And I'm in shadow (or ignoring shadows)!");
 				Debug.Log ("Direction: " + direction);
 			}
 			//Hide the current child
@@ -560,11 +565,11 @@ public class PortalMonolith : MonoBehaviour {
 			//Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
 			curChild += direction * childDiff;
 			//Debug.Log ("Intermediary: " + curChild);
-			if (currentBlockerDiff!=0 && directionMatters){
+			/*if (currentBlockerDiff!=0 && directionMatters){
 				//Debug.Log ("Current blocker diff: " + currentBlockerDiff);
 				curChild -= currentBlockerDiff;
 				currentBlockerDiff = 0;
-			}
+			}*/
 			if (curChild > numChildren-1 || curChild < 0) {
 				if (loops){
 					curChild %= numChildren;
@@ -572,8 +577,8 @@ public class PortalMonolith : MonoBehaviour {
 						curChild += numChildren;
 					}
 				}else{
-					childDiff = -childDiff;
-					curChild += 2*direction * childDiff;
+					//childDiff = -childDiff;
+					curChild -= direction * childDiff;
 				}
 			}
 			//Debug.Log ("New child: " + curChild);

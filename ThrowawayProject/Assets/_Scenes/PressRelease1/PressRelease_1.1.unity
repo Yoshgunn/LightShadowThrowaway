@@ -413,7 +413,7 @@ MonoBehaviour:
   lights:
   - {fileID: 1247461358}
   directionMatters: 0
-  startsEnabled: 1
+  startsEnabled: 0
 --- !u!1 &255386748
 GameObject:
   m_ObjectHideFlags: 0
