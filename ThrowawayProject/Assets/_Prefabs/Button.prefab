@@ -257,7 +257,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151382}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e57ba034a7fe51041b0db0cd43171690, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e489e73c502ceab4da36932dcd02ae1c, type: 3}
   m_Controller: {fileID: 9100000, guid: 801ff5e5d22dec347ba12e8b21e232aa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -281,9 +281,11 @@ MonoBehaviour:
   unTriggerOnLeave: 0
   triggerableTransforms: []
   delays: 
+  debugging: 0
   speakers: {fileID: 8285738}
   pressSound: {fileID: 8300000, guid: fa089d8960856324bb7914675e79542d, type: 3}
   resetSound: {fileID: 8300000, guid: 56f7ef276f904e74eb345bb01846fef0, type: 3}
+  buttonAnimator: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -311,6 +313,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 801ff5e5d22dec347ba12e8b21e232aa, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: e489e73c502ceab4da36932dcd02ae1c, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143586}
