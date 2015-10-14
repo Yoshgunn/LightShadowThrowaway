@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public static GameController ENV;
+	public static int FPS = 24;
 
 	public GameObject finalNodeGO;
 

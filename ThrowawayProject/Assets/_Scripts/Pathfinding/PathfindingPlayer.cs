@@ -4,7 +4,7 @@ using System.Collections;
 public class PathfindingPlayer : MonoBehaviour {
 	//TODO: Enable 'redirection', where you can click while moving to move toward a different place.
 
-	private static int TIME_TO_MOVE_ONE_SPACE = 10;
+	private static float TIME_TO_MOVE_ONE_SPACE = 0.5f;	//in seconds
 	private static int TIME_TO_WAIT_FOR_OCCUPIED_NODE = 1;		//2 seconds? 1?
 
 	public static PathfindingPlayer PLAYER;
@@ -12,7 +12,7 @@ public class PathfindingPlayer : MonoBehaviour {
 	private Node currentNode;
 	private Node targetNode = null;
 	private float speed = 0.05f;
-	private int countBetweenSpaces = 0;
+	private float countBetweenSpaces = 0;
 	bool moveToTargetNode = false;
 	bool clickWhileMoving = false;
 	private int waitingForOccupiedNodeCount = 0;
@@ -80,10 +80,11 @@ public class PathfindingPlayer : MonoBehaviour {
 		}
 
 		if (targetNode != null) {
-			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
-				Debug.Log ("count: " + countBetweenSpaces);
+			//I don't remember what this block does, but I'm commenting it out...
+			/*if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
+				//Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
-			}
+			}*/
 			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > speed) {
 				//Move toward the target node
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
@@ -91,7 +92,11 @@ public class PathfindingPlayer : MonoBehaviour {
 				if (moveToTargetNode){
 					//cantFindNewPath = false;
 					//Debug.Log ("Moving " + (1f/(10f*(currentNode.cost+targetNode.cost))) + " spaces");
-					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
+					//Debug.Log ("Delta time: " + (GameController.FPS*Time.deltaTime));
+					//this.transform.position = (currentNode.GetPositionAbove() + (GameController.FPS*Time.deltaTime)*(targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
+					countBetweenSpaces += Time.deltaTime;
+					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
+					//Translate by: 
 
 					// Frank's Janky Turning Code
 					if ( targetNode.GetPositionAbove().x > transform.position.x )	// Is it time to turn right?

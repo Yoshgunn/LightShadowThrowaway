@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PortalMonolith : MonoBehaviour {
 
-	const float ANGLE_ADJUSTMENT = 0.0001f;
+	const float ANGLE_ADJUSTMENT = 0.000001f;
 	
 	public bool loops = true;
 	public bool reverseDirection = false;
@@ -74,6 +74,11 @@ public class PortalMonolith : MonoBehaviour {
 	}
 
 	void TestShouldBeHidden3(){
+		if (debugging) {
+			foreach (GameObject obj in blockingTriggers){
+				Debug.DrawRay(PathfindingPlayer.PLAYER.transform.position, obj.transform.position - PathfindingPlayer.PLAYER.transform.position);
+            }
+		}
 		//For each obstacle, figure out if:
 		//	The angle to the obstacle is clamped by the current and previous angles to the player
 		//	The angle to the player is clamped by the current and previous angles to the obstacle
