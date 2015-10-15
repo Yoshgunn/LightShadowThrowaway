@@ -79,6 +79,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 			//Get the target pos
 			if (!wasTriggered){
 				targetPos = transform.GetChild (curChild).transform.localPosition;
+				Debug.Log ("Setting new child as target: " + targetPos);
 				//Debug.Log ("Setting the target position to: " + targetPos);
 				curChild++;
 				if (curChild >= transform.childCount-1){
@@ -124,6 +125,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	}
 	
 	void Triggerable.Trigger(){
+		//Debug.Log ("Triggered!");
 		//First, disable all of the nodes in this object
 		if (nodesActive) {
 			//Node[] nodes = myObject.GetComponentsInChildren<Node> ();
@@ -134,7 +136,11 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 			Node.DisconnectGroup(nodes);
 			nodesActive = false;
 		}
-		triggered = true;
+		if (triggered) {
+			wasTriggered = false;
+		} else {
+			triggered = true;
+		}
 	}
 	
 	void Triggerable.UnTrigger(){

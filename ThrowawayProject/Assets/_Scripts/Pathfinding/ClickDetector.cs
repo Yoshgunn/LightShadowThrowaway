@@ -40,6 +40,9 @@ public class ClickDetector : MonoBehaviour {
 	}
 
 	public void Activate(){
+		if (!GameController.GetIsPlayerEnabled ()) {
+			return;
+		}
 		Debug.Log ("ACTIVATING!");
 		if (MyCamera.CAM) {
 			//MyCamera.CAM.ShakeCamera (1, 40);

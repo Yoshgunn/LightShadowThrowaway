@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
 	public static GameController ENV;
 	public static int FPS = 24;
 
+	private static bool isPlayerEnabled = true;
+
 	public GameObject finalNodeGO;
 
 	private int torchLightTimer = 30;
@@ -102,5 +104,19 @@ public class GameController : MonoBehaviour {
 		levelNum++;
 		thisLevel = levelPrefix + levelNum;
 		return thisLevel;
+	}
+
+	public static void DisablePlayer(){
+		isPlayerEnabled = false;
+		//PathfindingPlayer.PLAYER.SetTargetNode (null);
+		Node.ClearPathfinding ();
+	}
+
+	public static void EnablePlayer(){
+		isPlayerEnabled = true;
+	}
+
+	public static bool GetIsPlayerEnabled(){
+		return isPlayerEnabled;
 	}
 }

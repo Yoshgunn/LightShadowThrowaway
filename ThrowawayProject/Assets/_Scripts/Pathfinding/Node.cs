@@ -546,6 +546,12 @@ public class Node : MonoBehaviour {
 		return allNodes.Count;
 	}
 
+	public static void ClearPathfinding(){
+		foreach (Node n in allNodes) {
+			n.SetMarked(false);
+		}
+	}
+
 	//Function to rebuild this node
 	//	loop through all boundaries
 	//	if any of them have the same position as a boundary in this node, add a connector (to both nodes)
