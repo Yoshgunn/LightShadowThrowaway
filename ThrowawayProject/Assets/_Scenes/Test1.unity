@@ -993,6 +993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab33f2ac40bb2fb448c32291c427d341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loops: 1
+  reverseDirection: 0
   blockingTriggers:
   - {fileID: 23385195}
   - {fileID: 112208957}

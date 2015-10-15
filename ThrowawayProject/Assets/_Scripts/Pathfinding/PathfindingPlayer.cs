@@ -173,6 +173,7 @@ public class PathfindingPlayer : MonoBehaviour {
 		//Do any preparation that needs to be done for pathfinding
 		if (targetNode) {
 			clickWhileMoving = true;
+			currentNode.SetIsOccupied(false);
 		}
 	}
 
