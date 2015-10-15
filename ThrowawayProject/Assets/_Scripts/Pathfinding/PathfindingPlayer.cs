@@ -85,7 +85,7 @@ public class PathfindingPlayer : MonoBehaviour {
 				//Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
 			}*/
-			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > speed) {
+			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > Time.deltaTime/TIME_TO_MOVE_ONE_SPACE) {
 				//Move toward the target node
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
 				//this.transform.Translate (Vector3.Normalize (targetNode.transform.position - currentNode.transform.position) * speed);
@@ -95,7 +95,7 @@ public class PathfindingPlayer : MonoBehaviour {
 					//Debug.Log ("Delta time: " + (GameController.FPS*Time.deltaTime));
 					//this.transform.position = (currentNode.GetPositionAbove() + (GameController.FPS*Time.deltaTime)*(targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
 					countBetweenSpaces += Time.deltaTime;
-					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
+					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), currentNode.GetPositionAbove()))));
 					//Translate by: 
 
 					// Frank's Janky Turning Code

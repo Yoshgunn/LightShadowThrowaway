@@ -5,51 +5,51 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Menu.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Monolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/PortalMonolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/ButtonTorch1.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Spotlight.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Ramp.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/MovingPlatform.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/DraggableObject.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Ladder.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/GhostMonolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/WanderingMonolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Doorway.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/DraggableObjectRotate.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/DraggableObjectRotate2.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/SilhouetteMonolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Walker.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/GhostMonolith.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/RotatingObject.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/RotatingPlatform.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/Curves.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/LightRay.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/FloatingDraggableObject.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/ShadowTrigger.unity
   - enabled: 1
     path: Assets/_Scenes/StressTest.unity

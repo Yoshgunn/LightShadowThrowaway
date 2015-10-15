@@ -4,6 +4,7 @@ using System.Collections;
 public class Walker : MonoBehaviour {
 
 	private static float DEFAULT_SPEED = 0.04f;
+	private static float TIME_TO_MOVE_ONE_SPACE = 1f;	//in seconds
 
 	public int direction = 0;
 	public bool clockwise = false;
@@ -11,6 +12,7 @@ public class Walker : MonoBehaviour {
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
 	public int[] allowedTerrain;
+	float timeToMoveOneSpace = TIME_TO_MOVE_ONE_SPACE;
 
 	Node myNode;
 	Node targetNode = null;
@@ -18,7 +20,7 @@ public class Walker : MonoBehaviour {
 	//int directionChange = 1;
 	float frameSpeed;
 	bool moveToTargetNode = false;
-	int countBetweenSpaces = 0;
+	float countBetweenSpaces = 0;
 
 	Boundary lastBoundary = null;		//Used to record where we came from to get to the current node, so that we can get the next node in the right direction
 
@@ -30,6 +32,8 @@ public class Walker : MonoBehaviour {
 		//Set up the 'default' values
 		if (speed <= 0) {
 			speed = DEFAULT_SPEED;
+		} else {
+			timeToMoveOneSpace = 1/(speed*GameController.FPS);
 		}
 		frameSpeed = 1f / (2f*speed);
 		if (allowedTerrain.Length == 0) {
@@ -94,17 +98,19 @@ public class Walker : MonoBehaviour {
 			}*/
 		} else {
 			//Move toward the target node
-			if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*frameSpeed){
+			/*if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*frameSpeed){
 				Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
-			}
+			}*/
 
-			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > speed){
+			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > Time.deltaTime/timeToMoveOneSpace){
 				//If we're not moving (because the place we want to move to is occupied), figure out what to do.
 				if (moveToTargetNode){
 					//Debug.Log ("Moving toward target node");
 					//this.transform.Translate (Vector3.Normalize(targetNode.GetPositionAbove() - this.transform.position)*speed);
-					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(++countBetweenSpaces)/(frameSpeed*(myNode.cost+targetNode.cost)));
+					//this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(++countBetweenSpaces)/(frameSpeed*(myNode.cost+targetNode.cost)));
+					countBetweenSpaces += Time.deltaTime;
+					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(countBetweenSpaces)/((timeToMoveOneSpace/2f)*(myNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), myNode.GetPositionAbove()))));
 				}else if (!targetNode.GetIsOccupied()){
 					targetNode.SetIsOccupied(true);
 					//myNode.SetIsOccupied(false);

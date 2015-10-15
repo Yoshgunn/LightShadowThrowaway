@@ -5,6 +5,7 @@ public class Floater : MonoBehaviour, Triggerable {
 
 	private static float DEFAULT_SPEED = 0.03f;
 	private static int STOP_TIME = 10;
+	private static float TIME_TO_MOVE_ONE_SPACE = 1f;	//in seconds
 
 	public bool looping;
 	public bool triggerable;
@@ -12,6 +13,7 @@ public class Floater : MonoBehaviour, Triggerable {
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
 	public int stopTime = -1;
+	float timeToMoveOneSpace = TIME_TO_MOVE_ONE_SPACE;
 
 	private Transform platform = null;
 	//private Node[] nodes;
@@ -43,6 +45,8 @@ public class Floater : MonoBehaviour, Triggerable {
 		//Set up the 'default' values
 		if (speed == 0) {
 			speed = DEFAULT_SPEED;
+		} else {
+			timeToMoveOneSpace = 1/(speed*GameController.FPS);
 		}
 		if (stopTime < 0) {
 			stopTime = STOP_TIME;
@@ -55,7 +59,7 @@ public class Floater : MonoBehaviour, Triggerable {
 		if (!triggered) {
 			return;
 		}
-		if (Vector3.Distance (platform.position, targetTransform.position) <= speed) {
+		if (Vector3.Distance (platform.position, targetTransform.position) <= Time.deltaTime/timeToMoveOneSpace) {
 			//Debug.Log ("Changing Target");
 			platform.position = targetTransform.position;
 			currentTargetIndex += incrementAmount;
@@ -87,7 +91,7 @@ public class Floater : MonoBehaviour, Triggerable {
 				//Rather than just removing them all, use Node.DisconnectGroup() to disconnect the nodes but leave them connected to each other
 				//Node.DisconnectGroup(nodes);
 			}else if (timer<0){
-				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * speed);
+				platform.Translate (Vector3.Normalize (targetTransform.position - platform.position) * Time.deltaTime/timeToMoveOneSpace);
 
 				//Get rid of the below. It used to connect the nodes together after moving them one frame. There's a better way, which has been implemented.
 				/*if (timer==-1){

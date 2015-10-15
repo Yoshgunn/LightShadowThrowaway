@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: .300000012
+  cost: 1
   type: 2
   redirectTo: {fileID: 0}
   boundaries:
@@ -1178,6 +1178,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!114 &11465608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1189,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: .300000012
+  cost: 1
   type: 2
   redirectTo: {fileID: 0}
   boundaries:
@@ -1198,6 +1199,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!114 &11467898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1220,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: .400000006
+  cost: 1
   type: 2
   redirectTo: {fileID: 0}
   boundaries:
@@ -1229,6 +1231,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!114 &11482710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,7 +1260,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: cost
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184164}

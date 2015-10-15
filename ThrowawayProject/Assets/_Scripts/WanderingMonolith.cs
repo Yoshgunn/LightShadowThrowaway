@@ -4,9 +4,11 @@ using System.Collections;
 public class WanderingMonolith : MonoBehaviour, Triggerable {
 
 	private static float DEFAULT_SPEED = 0.02f;
+	private static float TIME_TO_MOVE_ONE_SPACE = 2f;	//in seconds
 
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
+	float timeToMoveOneSpace = TIME_TO_MOVE_ONE_SPACE;
 	
 	bool triggered = false;
 	bool wasTriggered = false;
@@ -32,6 +34,8 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		//Set up the 'default' values
 		if (speed == 0) {
 			speed = DEFAULT_SPEED;
+		} else {
+			timeToMoveOneSpace = 1/(speed*GameController.FPS);
 		}
 	}
 	
@@ -84,7 +88,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 			}
 			//Move toward the target position
 			//Debug.Log ("Moving toward target");
-			if (Vector3.Distance (myObject.transform.localPosition, targetPos) < speed){
+			if (Vector3.Distance (myObject.transform.localPosition, targetPos) < Time.deltaTime/timeToMoveOneSpace){
 				//Debug.Log ("Got there");
 				//Re-enable all of the nodes in this object
 				if (!nodesActive) {
@@ -99,7 +103,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 				wasTriggered = false;
 			}else{
 				//Debug.Log ("just moving!");
-				myObject.transform.Translate(Vector3.Normalize(targetPos - myObject.transform.localPosition)*speed);
+				myObject.transform.Translate(Vector3.Normalize(targetPos - myObject.transform.localPosition)*(Time.deltaTime/timeToMoveOneSpace));
 			}
 		}/* else {
 			//Move toward the starting position

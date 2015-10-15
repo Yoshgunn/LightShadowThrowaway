@@ -5,6 +5,7 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 
 	private static int DEFAULT_SPEED = 1;
 	private static int STOP_TIME = 60;
+	private static float TIME_TO_ROTATE_ONE_DEGREE = 1/60f;	//in seconds
 
 	public int rotateAmount = 90;
 	public bool rotateInX = false;
@@ -16,9 +17,10 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 	//These attributes will have default values. However, they can be changed.
 	public int speed;
 	public int stopTime = -1;
+	float timeToRotateOneDegree = TIME_TO_ROTATE_ONE_DEGREE;
 
 	//private int myRotation = 0;
-	private int rotationAmount = 0;
+	private float rotationAmount = 0;
 	//private bool rotating = false;
 	private Transform rotator;
 	private bool nodesActive = true;
@@ -41,6 +43,8 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 		}
 		if (stopTime < 0) {
 			stopTime = STOP_TIME;
+		} else {
+			timeToRotateOneDegree = 1/(speed*GameController.FPS);
 		}
 	}
 	
@@ -70,11 +74,12 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 
 				if (rotationAmount < rotateAmount) {
 					//If we're still rotating
-					rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-speed:speed));
-					rotationAmount += speed;
+					rotator.RotateAround (this.transform.position, axis, (rotateBackwards?-Time.deltaTime/timeToRotateOneDegree:Time.deltaTime/timeToRotateOneDegree));
+					rotationAmount += Time.deltaTime/timeToRotateOneDegree;
 				} else {
 					//If we're done rotating...
-					//TODO: Maybe we should snap to position, in case rounding errors cause the rotation to be wrong...
+					//Snap to position, in case rounding errors cause the rotation to be wrong...
+					rotator.RotateAround (this.transform.position, axis, (rotateBackwards?(rotationAmount - rotateAmount):-(rotationAmount - rotateAmount)));
 					//Re-enable the nodes
 					//Node[] nodes = rotator.GetComponentsInChildren<Node> ();
 					foreach (Node node in nodes) {

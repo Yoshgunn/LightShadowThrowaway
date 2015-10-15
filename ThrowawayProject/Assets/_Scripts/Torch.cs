@@ -7,7 +7,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	private static float DEFAULT_MAX_RANGE = 4;
 	private static float DEFAULT_MAX_INTENSITY = 2;
 	//Flicker values
-	public static int DEFAULT_FLICKER_ON_TIME = 30;
+	public static float DEFAULT_FLICKER_ON_TIME = 1;	//in seconds
 	public static int DEFAULT_FLICKER_OFF_TIME = 300;
 	private static float STARTING_INTENSITY = 0.1f;
 	private static float DEFAULT_FLICKER_INTENSITY_CHANGE = 0.1f;
@@ -33,6 +33,7 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	float flickerRangeAmount = 0f;
 	float flickerIntensityAmount = 0f;
 	int flickerCounter = 0;
+	float flickerTimer = 0;
 
 	float fadeAmount = 0f;
 	int fadeCounter = 0;
@@ -209,24 +210,26 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		shrinkAmount = ((float)maxRange) / time;
 	}
 	
-	void MyLight.FlickerOn(int time){
-		flickerCounter = time;
+	void MyLight.FlickerOn(float time){
+		flickerCounter = (int)(time*GameController.FPS);
+		flickerTimer = time;
 		currentRange = 0;
 		currentIntensity = STARTING_INTENSITY;
 		Debug.Log ("macx range: " + maxRange);
 		flickerRangeAmount = (maxRange - currentRange) / time;
 		flickerIntensityAmount = (maxIntensity - currentIntensity) / time;
-		Debug.Log ("Flickering on in " + time + " frames");
+		Debug.Log ("Flickering on in " + time + " seconds");
 		//currentIntensity = maxIntensity;
 		//this.light.intensity = currentIntensity;
 		//light.range = currentRange;
 	}
 	
-	void MyLight.FlickerOff(int time){
-		flickerCounter = time;
+	void MyLight.FlickerOff(float time){
+		flickerCounter = (int)(time*GameController.FPS);
+		flickerTimer = time;
 		flickerRangeAmount = -(1f) / time;
 		flickerIntensityAmount = -((float)currentIntensity) / time;
-		Debug.Log ("Flickering off in " + time + " frames");
+		Debug.Log ("Flickering off in " + time + " seconds");
 	}
 	
 	void MyLight.FlickerOn(){

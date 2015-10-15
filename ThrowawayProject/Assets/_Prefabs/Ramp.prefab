@@ -953,13 +953,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: .200000003
+  cost: 1
+  type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!114 &11410852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1037,13 +1040,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: .200000003
+  cost: 1
+  type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!114 &11464044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1089,19 +1095,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  type: 0
+  redirectTo: {fileID: 0}
   boundaries:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  isActive: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: cost
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 158406}

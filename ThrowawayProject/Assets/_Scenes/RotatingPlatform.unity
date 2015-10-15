@@ -351,8 +351,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1576622999}
   - {fileID: 1654546656}
+  - {fileID: 1576622999}
   - {fileID: 96939850}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -630,6 +630,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: -1
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &454929624
 Transform:
@@ -1165,6 +1168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &991878985
 Transform:
   m_ObjectHideFlags: 0
@@ -1773,7 +1777,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 183123298}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1001 &1646762684
 Prefab:
   m_ObjectHideFlags: 0
@@ -1852,7 +1856,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 183123298}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!108 &1654546657
 Light:
   m_ObjectHideFlags: 0
@@ -1899,6 +1903,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: -1
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1979416171
 GameObject:

@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &43307339
 Transform:
   m_ObjectHideFlags: 0
@@ -1674,6 +1675,9 @@ MonoBehaviour:
   startsOn: 0
   maxRange: -1
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &454929624
 Transform:
@@ -1868,6 +1872,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: 10
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: .507352948, g: 1, b: .653448284, a: 1}
 --- !u!1 &565787667
 GameObject:
@@ -1959,7 +1966,7 @@ MonoBehaviour:
   direction: 0
   clockwise: 0
   speed: .0199999996
-  allowedTerrain: 
+  allowedTerrain: 000000000100000002000000
 --- !u!4 &574590262
 Transform:
   m_ObjectHideFlags: 0
@@ -2458,6 +2465,9 @@ MonoBehaviour:
   startsOn: 1
   maxRange: 10
   maxIntensity: -1
+  flickerRangeChange: .0500000007
+  flickerIntensityChange: .100000001
+  flickerLength: 5
   myColor: {r: .838235259, g: .240376264, b: .40117985, a: 1}
 --- !u!1001 &720220187
 Prefab:
