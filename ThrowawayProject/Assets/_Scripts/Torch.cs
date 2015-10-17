@@ -36,10 +36,10 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 	float flickerTimer = 0;
 
 	float fadeAmount = 0f;
-	int fadeCounter = 0;
+	float fadeCounter = 0;
 
 	float shrinkAmount = 0f;
-	int shrinkCounter = 0;
+	float shrinkCounter = 0;
 
 
 	// Use this for initialization
@@ -189,22 +189,22 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		return this.GetComponent<Light> ().range;
 	}
 	
-	void MyLight.FadeIn(int time){
+	void MyLight.FadeIn(float time){
 		fadeCounter = time;
 		fadeAmount = 1f / time;
 	}
 	
-	void MyLight.FadeOut(int time){
+	void MyLight.FadeOut(float time){
 		fadeCounter = time;
 		fadeAmount = -((float)thisLight.intensity) / time;
 	}
 
-	void MyLight.Shrink(int time){
+	void MyLight.Shrink(float time){
 		shrinkCounter = time;
 		shrinkAmount = -((float)thisLight.range) / time;
 	}
 
-	void MyLight.UnShrink(int time){
+	void MyLight.UnShrink(float time){
 		Debug.Log ("UNSRHINK" + maxRange);
 		shrinkCounter = time;
 		shrinkAmount = ((float)maxRange) / time;

@@ -8,6 +8,7 @@ public class Button : MonoBehaviour, Trigger {
 	public Transform[] triggerableTransforms;
 	public float[] delays;
 	public bool debugging;
+	public float disablePlayerDuration;
 
 	private bool isTriggering = false;
 	private Triggerable[] triggerables;
@@ -22,6 +23,7 @@ public class Button : MonoBehaviour, Trigger {
 	public Animator buttonAnimator;
 
 	bool getNode = false;
+	float disablePlayerTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -87,6 +89,12 @@ public class Button : MonoBehaviour, Trigger {
 				}
 			}
 
+			//Disable the player
+			if (disablePlayerDuration > 0){
+				GameController.DisablePlayer();
+				disablePlayerTimer = disablePlayerDuration;
+			}
+
 			/*foreach (Triggerable triggerable in triggerables) {
 				//if (triggerable){
 					triggerable.Trigger ();
@@ -123,6 +131,14 @@ public class Button : MonoBehaviour, Trigger {
 				if (currentDelays[i] < 0){
 					currentDelays[i] = 0;
 				}
+			}
+		}
+
+		//Player enable
+		if (disablePlayerTimer > 0) {
+			disablePlayerTimer -= Time.deltaTime;
+			if (disablePlayerTimer <= 0){
+				GameController.EnablePlayer();
 			}
 		}
 	}
