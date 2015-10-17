@@ -6,8 +6,8 @@ public class ShakingObject : MonoBehaviour, Triggerable {
 	//Shake stuff
 	Vector3 actualPos;
 	//Vector3 shakeAmount;
-	int shakeTimer = 0;
-	public int startShakeTimer = 20;
+	float shakeTimer = 0f;
+	public float startShakeTimer = 0.5f;
 	public float shakeAmount = 0.1f;
 
 	// Use this for initialization
@@ -18,10 +18,10 @@ public class ShakingObject : MonoBehaviour, Triggerable {
 	// Update is called once per frame
 	void Update () {
 		if (shakeTimer > 0) {
-			Vector3 diff = Vector3.Normalize(new Vector3(Random.value, Random.value, Random.value)) * Mathf.Lerp (0f, shakeAmount, (shakeTimer*1f)/startShakeTimer);
+			Vector3 diff = Vector3.Normalize(new Vector3(Random.value-0.5f, Random.value-0.5f, Random.value-0.5f)) * Mathf.Lerp (0f, shakeAmount, shakeTimer/startShakeTimer);
 			this.transform.position = actualPos + diff;
-			shakeTimer--;
-			if (shakeTimer == 0){
+			shakeTimer-=Time.deltaTime;
+			if (shakeTimer <= 0){
 				Node[] nodes = transform.GetComponentsInChildren<Node>();
 				foreach (Node n in nodes){
 					n.RecalculateEdges();

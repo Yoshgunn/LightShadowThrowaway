@@ -6,14 +6,14 @@ public class Button : MonoBehaviour, Trigger {
 	public bool retriggerable;
 	public bool unTriggerOnLeave;
 	public Transform[] triggerableTransforms;
-	public int[] delays;
+	public float[] delays;
 	public bool debugging;
 
 	private bool isTriggering = false;
 	private Triggerable[] triggerables;
 	private Node myNode;
 	private Node[] myNodes;
-	private int[] currentDelays;
+	private float[] currentDelays;
 
 	public AudioSource speakers;
 	public AudioClip pressSound;
@@ -37,9 +37,9 @@ public class Button : MonoBehaviour, Trigger {
 		}
 
 		if (delays.Length == 0) {
-			delays = new int[triggerableTransforms.Length];
+			delays = new float[triggerableTransforms.Length];
 		}
-		currentDelays = new int[delays.Length];
+		currentDelays = new float[delays.Length];
 		for (int i=0;i<currentDelays.Length;i++){
 			currentDelays[i] = -1;
 		}
@@ -80,7 +80,7 @@ public class Button : MonoBehaviour, Trigger {
 			// Set up the delays for each action
 			for (int i=0;i<delays.Length;i++){
 				currentDelays[i] = delays[i];
-				if (delays[i] == 0){
+				if (delays[i] <= 0){
 					//Trigger this one now
 					triggerables[i].Trigger ();
 					currentDelays[i] = -1;
@@ -116,9 +116,13 @@ public class Button : MonoBehaviour, Trigger {
 			if (currentDelays[i] == 0){
 				//Trigger
 				triggerables[i].Trigger ();
-			}
-			if (currentDelays[i] >= 0){
-				currentDelays[i] --;
+				currentDelays[i] = -1;
+			}else if (currentDelays[i] > 0){
+				//currentDelays[i] --;
+				currentDelays[i] -= Time.deltaTime;
+				if (currentDelays[i] < 0){
+					currentDelays[i] = 0;
+				}
 			}
 		}
 	}

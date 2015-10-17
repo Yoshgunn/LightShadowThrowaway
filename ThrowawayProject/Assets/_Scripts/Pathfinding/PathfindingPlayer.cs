@@ -4,7 +4,7 @@ using System.Collections;
 public class PathfindingPlayer : MonoBehaviour {
 	//TODO: Enable 'redirection', where you can click while moving to move toward a different place.
 
-	private static float TIME_TO_MOVE_ONE_SPACE = 0.5f;	//in seconds
+	private static float TIME_TO_MOVE_ONE_SPACE = 0.2f;	//in seconds
 	private static int TIME_TO_WAIT_FOR_OCCUPIED_NODE = 1;		//2 seconds? 1?
 
 	public static PathfindingPlayer PLAYER;
@@ -80,11 +80,11 @@ public class PathfindingPlayer : MonoBehaviour {
 		}
 
 		if (targetNode != null) {
-			//I don't remember what this block does, but I'm commenting it out...
-			/*if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
+			//If the player moves PAST the target space, send him back to the target space
+			if (targetNode && countBetweenSpaces > (currentNode.cost + targetNode.cost)*(TIME_TO_MOVE_ONE_SPACE/2f)){
 				//Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
-			}*/
+			}
 			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > Time.deltaTime/TIME_TO_MOVE_ONE_SPACE) {
 				//Move toward the target node
 				//TODO: Instead of just moving, set the position to the correct interpolation between the two nodes. That way, you'll keep up with moving nodes.
@@ -96,7 +96,6 @@ public class PathfindingPlayer : MonoBehaviour {
 					//this.transform.position = (currentNode.GetPositionAbove() + (GameController.FPS*Time.deltaTime)*(targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(++countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)));
 					countBetweenSpaces += Time.deltaTime;
 					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), currentNode.GetPositionAbove()))));
-					//Translate by: 
 
 					// Frank's Janky Turning Code
 					if ( targetNode.GetPositionAbove().x > transform.position.x )	// Is it time to turn right?
@@ -145,26 +144,58 @@ public class PathfindingPlayer : MonoBehaviour {
 			} else {
 				//Move to the target node and set the new current node
 				//Also set the target node as occupied and the current node as unoccupied
-				this.transform.position = targetNode.GetPositionAbove();
-				if (clickWhileMoving){
-					//Debug.Log ("Not resetting the current node this time");
-					clickWhileMoving = false;
-				}else{
-					currentNode.SetNextNode (null);
-					currentNode.SetMarked (false);
-				}
-				currentNode.SetIsOccupied(false);
-				targetNode.SetIsOccupied(true);
-				moveToTargetNode = false;
-				currentNode = targetNode;
-				targetNode = currentNode.GetNextNode ();
-				if (targetNode == null) {
-					Debug.Log ("Got to goal!");
+				//float leftoverDistance = (Time.deltaTime/TIME_TO_MOVE_ONE_SPACE) - Vector3.Distance (this.transform.position, targetNode.GetPositionAbove());
+				float leftoverTime = Time.deltaTime;
+				targetNode.SetIsOccupied(false);
+
+				while (targetNode && !targetNode.GetIsOccupied () && leftoverTime > 0){
+					if (Vector3.Distance(this.transform.position, targetNode.GetPositionAbove()) < leftoverTime/TIME_TO_MOVE_ONE_SPACE){
+						Debug.Log ("Moving to target node");
+						//We are close enough to get to the next space. Move there and figure out the left over time
+						leftoverTime = Time.deltaTime - Vector3.Distance (this.transform.position, targetNode.GetPositionAbove())*TIME_TO_MOVE_ONE_SPACE;
+						this.transform.position = targetNode.GetPositionAbove();
+						if (clickWhileMoving){
+							//Debug.Log ("Not resetting the current node this time");
+							clickWhileMoving = false;
+						}else{
+							currentNode.SetNextNode (null);
+							currentNode.SetMarked (false);
+						}
+						currentNode.SetIsOccupied(false);
+						targetNode.SetIsOccupied(true);
+						moveToTargetNode = false;
+						currentNode = targetNode;
+						targetNode = currentNode.GetNextNode ();
+						if (targetNode == null) {
+							Debug.Log ("Got to goal!");
+						}
+
+						countBetweenSpaces = 0;
+						alreadyResetLastNodeOccupied = false;
+					}else{
+						Debug.Log ("Moving toward next target node: " + leftoverTime/TIME_TO_MOVE_ONE_SPACE);
+						//We are not close enough to get to this target node. Just move toward it
+						leftoverTime = 0;
+						targetNode.SetIsOccupied(true);
+						moveToTargetNode = true;
+
+						countBetweenSpaces += leftoverTime;
+						this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), currentNode.GetPositionAbove()))));
+					}
 				}
 
-				countBetweenSpaces = 0;
-				alreadyResetLastNodeOccupied = false;
+				/*//Now, if there is leftover time to move further, and we have another target node, start moving there
+				while (targetNode && !targetNode.GetIsOccupied() && leftoverTime > 0){
+					targetNode.SetIsOccupied(true);
+					moveToTargetNode = true;
 
+					if (Vector3.Distance(this.transform.position, targetNode.transform.position) < leftoverTime/TIME_TO_MOVE_ONE_SPACE){
+						//Move to the target node, 
+					}
+
+					countBetweenSpaces += leftoverTime;
+					this.transform.position = (currentNode.GetPositionAbove() + (targetNode.GetPositionAbove() - currentNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(currentNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), currentNode.GetPositionAbove()))));
+				}*/
 			}
 		}
 	}

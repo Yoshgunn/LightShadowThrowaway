@@ -16,6 +16,13 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 	public int speed;
 	float timeToRotateOneDegree = TIME_TO_ROTATE_ONE_DEGREE;
 
+	//Shake stuff
+	public bool shake = true;
+	Vector3 actualPos;
+	float shakeTimer = 0f;
+	public float startShakeTimer = 0.5f;
+	public float shakeAmount = 0.1f;
+
 	//private int myRotation = 0;
 	private float rotationAmount = 0;
 	private bool triggered = false;
@@ -31,6 +38,7 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 		rotator = this.transform.GetChild (0).transform;
 		axis = new Vector3 (rotateInX ? 1 : 0, rotateInY ? 1 : 0, rotateInZ ? 1 : 0);
 		nodes = rotator.GetComponentsInChildren<Node> ();
+		actualPos = this.transform.position;
 
 		//Set up the 'default' values
 		if (speed == 0) {
@@ -46,6 +54,8 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 		if (triggered && !rotating) {
 			rotating = true;
 			triggered = false;
+			//Trigger shake
+			shakeTimer = startShakeTimer;
 		}
 
 		if (rotating && rotationAmount < rotateAmount) {
@@ -64,6 +74,22 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 			nodesActive = true;
 			rotating = false;
 			rotationAmount = 0;
+			//Trigger shake
+			shakeTimer = startShakeTimer;
+		}
+
+		//Perform shake
+		if (shakeTimer > 0) {
+			Debug.Log ("Shake timer: " + shakeTimer);
+			Vector3 diff = Vector3.Normalize(new Vector3(Random.value-0.5f, Random.value-0.5f, Random.value-0.5f)) * Mathf.Lerp (0f, shakeAmount, shakeTimer/startShakeTimer);
+			this.transform.position = actualPos + diff;
+			shakeTimer-=Time.deltaTime;
+			if (shakeTimer <= 0){
+				Node[] nodes = transform.GetComponentsInChildren<Node>();
+				foreach (Node n in nodes){
+					n.RecalculateEdges();
+				}
+			}
 		}
 	}
 

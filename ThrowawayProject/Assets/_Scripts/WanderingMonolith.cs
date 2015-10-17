@@ -9,6 +9,13 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
 	float timeToMoveOneSpace = TIME_TO_MOVE_ONE_SPACE;
+
+	//Shake stuff
+	public bool shake = true;
+	Vector3 actualPos;
+	float shakeTimer = 0f;
+	public float startShakeTimer = 0.5f;
+	public float shakeAmount = 0.1f;
 	
 	bool triggered = false;
 	bool wasTriggered = false;
@@ -30,6 +37,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		//targetRelativePos = targetPos - startingPos;
 		//currentRelativePos = Vector3.zero;
 		nodes = myObject.GetComponentsInChildren<Node> ();
+		actualPos = this.transform.position;
 
 		//Set up the 'default' values
 		if (speed == 0) {
@@ -86,6 +94,8 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 					curChild=0;
 				}
 				wasTriggered = true;
+				//Trigger shake
+				shakeTimer = startShakeTimer;
 			}
 			//Move toward the target position
 			//Debug.Log ("Moving toward target");
@@ -100,10 +110,16 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 					nodesActive = true;
 				}
 				myObject.transform.localPosition = targetPos;
+				Debug.Log ("got to goal. Changing pos from " + actualPos);
+				actualPos = myObject.transform.position;
+				Debug.Log ("...to " + actualPos);
 				triggered = false;
 				wasTriggered = false;
+				//Trigger shake
+				shakeTimer = startShakeTimer;
 			}else{
 				//Debug.Log ("just moving!");
+				actualPos += Vector3.Normalize(targetPos - myObject.transform.localPosition)*(Time.deltaTime/timeToMoveOneSpace);
 				myObject.transform.Translate(Vector3.Normalize(targetPos - myObject.transform.localPosition)*(Time.deltaTime/timeToMoveOneSpace));
 			}
 		}/* else {
@@ -122,6 +138,19 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 				myObject.transform.Translate(Vector3.Normalize(startingPos - myObject.transform.localPosition)*speed);
 			}
 		}*/
+		
+		//Perform shake
+		if (shakeTimer > 0) {
+			Vector3 diff = Vector3.Normalize(new Vector3(Random.value-0.5f, Random.value-0.5f, Random.value-0.5f)) * Mathf.Lerp (0f, shakeAmount, shakeTimer/startShakeTimer);
+			myObject.transform.position = actualPos + diff;
+			shakeTimer-=Time.deltaTime;
+			if (shakeTimer <= 0){
+				Node[] nodes = transform.GetComponentsInChildren<Node>();
+				foreach (Node n in nodes){
+					n.RecalculateEdges();
+				}
+			}
+		}
 	}
 	
 	void Triggerable.Trigger(){

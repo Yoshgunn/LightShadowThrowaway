@@ -134,10 +134,12 @@ public class TrackWalker : MonoBehaviour {
 			}*/
 		} else {
 			//Move toward the target node
-			/*if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*frameSpeed){
-				Debug.Log ("count: " + countBetweenSpaces);
+
+			//If the walker moves PAST the target space, send it back to the target space
+			if (targetNode && countBetweenSpaces > (myNode.cost + targetNode.cost)*frameSpeed){
+				//Debug.Log ("count: " + countBetweenSpaces);
 				this.transform.position = targetNode.GetPositionAbove();
-			}*/
+			}
 
 			if (Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) > Time.deltaTime/timeToMoveOneSpace){
 				//If we're not moving (because the place we want to move to is occupied), figure out what to do.
@@ -160,6 +162,7 @@ public class TrackWalker : MonoBehaviour {
 					targetNode.SetIsOccupied(true);
 				}
 			}else{
+				float leftoverTime = Time.deltaTime - Vector3.Distance (this.transform.position, targetNode.GetPositionAbove())*TIME_TO_MOVE_ONE_SPACE;
 				this.transform.position = targetNode.GetPositionAbove();
 				targetNode.SetIsOccupied(true);
 				myNode.SetIsOccupied(false);
@@ -167,6 +170,15 @@ public class TrackWalker : MonoBehaviour {
 				targetNode = null;
 				moveToTargetNode = false;
 				countBetweenSpaces = 0;
+				
+				//Now, if there is leftover time to move further, and we have another target node, start moving there
+				if (targetNode && !targetNode.GetIsOccupied() && leftoverTime > 0){
+					targetNode.SetIsOccupied(true);
+					moveToTargetNode = true;
+					
+					countBetweenSpaces += leftoverTime;
+					this.transform.position = (myNode.GetPositionAbove() + (targetNode.GetPositionAbove() - myNode.GetPositionAbove())*(countBetweenSpaces)/((TIME_TO_MOVE_ONE_SPACE/2f)*(myNode.cost+targetNode.cost)*Mathf.Abs (Vector3.Distance(targetNode.GetPositionAbove(), myNode.GetPositionAbove()))));
+				}
 			}
 		}
 	}
