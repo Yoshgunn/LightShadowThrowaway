@@ -12,8 +12,8 @@ public class GameController : MonoBehaviour {
 
 	public GameObject finalNodeGO;
 
-	private int torchLightTimer = 30;
-	private int fadeOutTimer = 0;
+	private float torchLightTimer = 30;
+	private float fadeOutTimer = 0;
 	private string levelToLoad;
 	private Node finalNode;
 	private bool levelOver = false;
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour {
 		ENV = null;
 
 		levelToLoad = levelName;
-		fadeOutTimer = Torch.DEFAULT_FLICKER_OFF_TIME + 30;
+		fadeOutTimer = Torch.DEFAULT_FLICKER_OFF_TIME;
 		Application.LoadLevel (levelName);
 	}
 	

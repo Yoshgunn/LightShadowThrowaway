@@ -2932,6 +2932,18 @@ Prefab:
       propertyPath: startsOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13684852, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478574, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -.100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 478574, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .0500000007
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 10860394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
@@ -2951,7 +2963,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 15
+  m_Range: 5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -2984,11 +2996,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRange: 5
-  flickerRange: .5
+  flickerRange: .25
   maxIntensity: 2
-  flickerIntensity: .25
+  flickerIntensity: .100000001
   flickerLength: .100000001
   lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!1001 &767180486
 Prefab:
   m_ObjectHideFlags: 0

@@ -1846,13 +1846,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 1
-  maxRange: 3
+  maxRange: 5
+  flickerRange: .25
   maxIntensity: 2
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!82 &58241952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5665,7 +5665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &387064619
 Light:
   m_ObjectHideFlags: 0
@@ -12445,13 +12445,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRange: 5
+  flickerRange: .25
+  maxIntensity: 2
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
   startsOn: 1
-  maxRange: 1
-  maxIntensity: 1
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!108 &889558413
 Light:
   m_ObjectHideFlags: 0
@@ -25689,13 +25689,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 1
-  maxRange: 3
+  maxRange: 5
+  flickerRange: .25
   maxIntensity: 2
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!108 &1816831555
 Light:
   m_ObjectHideFlags: 0
@@ -28191,13 +28191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRange: 5
+  flickerRange: .25
+  maxIntensity: 2
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
   startsOn: 1
-  maxRange: 1
-  maxIntensity: 1
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!108 &1950273418
 Light:
   m_ObjectHideFlags: 0
@@ -29280,13 +29280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRange: 5
+  flickerRange: .25
+  maxIntensity: 2
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
   startsOn: 1
-  maxRange: 1
-  maxIntensity: 1
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!82 &2038307917
 AudioSource:
   m_ObjectHideFlags: 0

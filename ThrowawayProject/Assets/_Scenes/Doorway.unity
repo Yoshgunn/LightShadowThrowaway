@@ -130,6 +130,10 @@ Prefab:
       propertyPath: connectedTo
       value: 
       objectReference: {fileID: 731691225}
+    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
+      propertyPath: numTimesBeforeClosing
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
   m_IsPrefabParent: 0
@@ -538,13 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 0
   maxRange: -1
+  flickerRange: .25
   maxIntensity: -1
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
+  flickerIntensity: .100000001
   flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 0
 --- !u!4 &454929624
 Transform:
   m_ObjectHideFlags: 0
@@ -952,6 +956,10 @@ Prefab:
     - target: {fileID: 137802, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
       propertyPath: m_Name
       value: Doorway (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
+      propertyPath: numTimesBeforeClosing
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
@@ -1458,6 +1466,10 @@ Prefab:
     - target: {fileID: 137802, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
       propertyPath: m_Name
       value: Doorway (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
+      propertyPath: numTimesBeforeClosing
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
