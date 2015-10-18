@@ -948,7 +948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &308052990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
+--- !u!1 &650425013 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100190, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &902010592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,9 +1156,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 998137355}
   - {fileID: 2121995549}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1171,36 +1176,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8a266d7a0894488f3ae2b489d70d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectsList:
-  - name: Lantern Being Placed Into Slot
-    sound: {fileID: 8300000, guid: fa089d8960856324bb7914675e79542d, type: 3}
-    sceneObject: {fileID: 0}
-    swapMaterial: {fileID: 0}
-    isEnabled: 1
-    cueTime: 2
-  - name: Lantern Orange
-    sound: {fileID: 8300000, guid: 86ff270788f2a0441a5f22d0f8feb498, type: 3}
-    sceneObject: {fileID: 1845307781}
-    swapMaterial: {fileID: 2100000, guid: d9872c6e420f2b24e95a5f5dc3ee60cf, type: 2}
-    isEnabled: 1
-    cueTime: 4
-  blueGlow: {fileID: 2100000, guid: 8c650e4c70dd2fb42b5f186d2e4c25b7, type: 2}
   clockDisplay: {fileID: 2121995550}
-  testChime: {fileID: 8300000, guid: fa089d8960856324bb7914675e79542d, type: 3}
-  testChimeTime: 24.5
-  isTestChimeEnabled: 1
-  wallMaterial: {fileID: 2100000, guid: bc310a88b5d382a4db8c01d470a3e9e7, type: 2}
-  wallMaterialTime: 26
-  isWallMaterialEnabled: 1
-  testLantern: {fileID: 1845307781}
-  testLanternTime: 26
-  isTestLanternEnabled: 1
-  testLight: {fileID: 902010595}
-  testLightTime: 26
-  isLightEnabled: 1
-  testCamera: {fileID: 2063168306}
-  testCameraTime: 26
-  isCameraEnabled: 1
+  fadePanel: {fileID: 998137353}
+  effectsList:
+  - name: Verify Audio
+    cueID: 1
+    sound: {fileID: 8300000, guid: 8e80693f5cdb1c54995d9d1b1bcf69be, type: 3}
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: .75
+  - name: Verify Materials
+    cueID: 2
+    sound: {fileID: 0}
+    sceneObjects:
+    - {fileID: 1338390799}
+    - {fileID: 650425013}
+    swapMaterial: {fileID: 2100000, guid: ed64c40f047891b4e91889b710a1c308, type: 2}
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: .75
+  - name: Verify Lights
+    cueID: 3
+    sound: {fileID: 0}
+    sceneObjects:
+    - {fileID: 1338390799}
+    - {fileID: 650425013}
+    swapMaterial: {fileID: 0}
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: .75
+--- !u!1 &998137352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 998137355}
+  - 222: {fileID: 998137354}
+  - 114: {fileID: 998137353}
+  m_Layer: 5
+  m_Name: FadingFog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &998137353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 998137352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &998137354
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 998137352}
+--- !u!224 &998137355
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 998137352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 964619150}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &1090117653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,14 +1344,74 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
+--- !u!1 &1139945278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1139945280}
+  - 108: {fileID: 1139945279}
+  m_Layer: 0
+  m_Name: Test Light 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1139945279
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139945278}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &1139945280
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139945278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.76999998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!4 &1173257064 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400114, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
   m_PrefabInternal: {fileID: 99856220}
---- !u!1 &1845307781 stripped
+--- !u!1 &1338390799 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 100114, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabParentObject: {fileID: 100182, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
   m_PrefabInternal: {fileID: 99856220}
 --- !u!1001 &1863254483
 Prefab:
@@ -1341,6 +1471,66 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9067b65529370784c8fd3b7fe6d2edcd, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1878218191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1878218193}
+  - 108: {fileID: 1878218192}
+  m_Layer: 0
+  m_Name: Test Light 1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1878218192
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1878218191}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &1878218193
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1878218191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6789999, y: 2.76999998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1001 &1917784790
 Prefab:
   m_ObjectHideFlags: 0
@@ -1637,7 +1827,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &2063168312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,7 +1899,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 964619150}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -75}

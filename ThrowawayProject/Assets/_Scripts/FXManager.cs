@@ -23,61 +23,38 @@ public class FXManager : MonoBehaviour
 	public class Cue
 	{
 		public string name;
+		public int cueID;
 		public AudioClip sound;
-		public GameObject sceneObject;
+		public GameObject[] sceneObjects;
 		public Material swapMaterial;
+		public float lightIntensity;
+		public string animationName;
 		public bool isEnabled;
 		public float cueTime;
 				
 		public Cue ( )
 		{
+			lightIntensity = -1;
 			isEnabled = true;
 		}
 	}
 
-	// An FX Manager is just a list of Cues
-	public Cue[] effectsList;
-
-	// Materials We Use
-	public Material blueGlow;
-
-	// Clock
+	// An FX Manager has a list of Cues, a Debug Clock, and a Panel to fade in and out from.
 	public Text clockDisplay;
-
-	// Sound Effects
-	public AudioClip testChime;
-	public float testChimeTime;
-	public bool isTestChimeEnabled;
-
-	// Materials
-	public Material wallMaterial;
-	public float wallMaterialTime;
-	public bool isWallMaterialEnabled;
-	public GameObject testLantern;
-	public float testLanternTime;
-	public bool isTestLanternEnabled;
-
-	// Light
-	public Light testLight;
-	public float testLightTime;
-	public bool isLightEnabled;
-
-	// Animation
-	public GameObject testCamera;
-	public float testCameraTime;
-	public bool isCameraEnabled;
+	public Image fadePanel;
+	public Cue[] effectsList;
 
 
 
 	void Start () 
 	{
-		Debug.Log ("Hello world!");
-		wallMaterial.SetColor ( "_EmissionColor", Color.black );
+		// Fade the panel in
+		fadePanel.CrossFadeAlpha ( 0.0f, 5.0f, false );
 	}
 
 	void Update () 
 	{
-		// Clock Management
+		// UI - Clock Management
 		clockDisplay.text = "" + Time.time;
 
 		// Iterate through all of the Cues
@@ -86,53 +63,40 @@ public class FXManager : MonoBehaviour
 			// Is it time to play this Cue? Did we already play this Cue?
 			if ( cue.isEnabled && Time.time >= cue.cueTime )
 			{
-				// Does this Cue have a sound to play?
+				// Does this Cue have a sound to play?     --- > This could be an array too...
 				if ( cue.sound != null )
 					AudioSource.PlayClipAtPoint ( cue.sound, Vector3.zero, 0.1f );
 
-				// Does this Cue have a material it wants to swap out?
-				if ( cue.swapMaterial != null && cue.sceneObject != null )
-					cue.sceneObject.GetComponent<MeshRenderer>().material = cue.swapMaterial;
+				// Does the Cue's first SceneObject have a MeshRenderer? Does the Cue have a Material to swap to?
+				if ( cue.sceneObjects != null && cue.swapMaterial != null && cue.sceneObjects[0].GetComponent<MeshRenderer>() != null )
+				{
+					foreach ( GameObject gobj in cue.sceneObjects )
+						gobj.GetComponent<MeshRenderer>().material = cue.swapMaterial;
+				}
 
+				/* Does the Cue's first SceneObject
+				foreach ( GameObject gobj in cue.sceneObjects )
+				{
+					gobj.GetComponent<MeshRenderer>().material.SetColor ( "_EmissionColor", cue.swapMaterial.color );
+				}*/
+
+				// Does the Cue's first SceneObject have a Light Component?
+				if ( cue.sceneObjects != null && cue.lightIntensity != -1 && cue.sceneObjects[0].GetComponent<Light>() != null )
+				{
+					foreach ( GameObject gobj in cue.sceneObjects )
+					{
+						gobj.GetComponent<Light>().color = cue.swapMaterial.color;
+						gobj.GetComponent<Light>().intensity = cue.lightIntensity;
+					}
+				}
+
+				// Does this Cue's SceneObject have an Animation to play?
+				if ( cue.animationName != "" )
+					cue.sceneObjects[0].GetComponent<Animator>().SetTrigger ( cue.animationName );
+
+				// Don't play this Cue again!
 				cue.isEnabled = false;
 			}
-		}
-
-
-
-
-
-
-
-
-
-		/* OLD GARBAGE CODE, NOT EVEN FIT FOR A DUMP! MUCH LESS, A KING */
-
-		// Materials
-		if ( Time.time >= wallMaterialTime && isWallMaterialEnabled )
-		{
-			wallMaterial.SetColor ( "_EmissionColor", blueGlow.GetColor("_EmissionColor") );
-			isWallMaterialEnabled = false;
-		}
-		if ( Time.time >= testLanternTime && isTestLanternEnabled )
-		{
-			testLantern.GetComponent<MeshRenderer>().material = blueGlow;
-			isTestLanternEnabled = false;
-		}
-
-		// Lights
-		if ( Time.time >= testLightTime && isLightEnabled )
-		{
-			testLight.color = blueGlow.GetColor("_EmissionColor");
-			testLight.intensity = 8.0f;
-			isLightEnabled = false;
-		}
-
-		// Animation
-		if ( Time.time >= testCameraTime && isCameraEnabled )
-		{
-			testCamera.GetComponent<Animator>().SetTrigger ( "StartRumbling" );
-			isCameraEnabled = false;
 		}
 	}
 }
