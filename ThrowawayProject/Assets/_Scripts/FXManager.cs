@@ -25,8 +25,8 @@ public class FXManager : MonoBehaviour
 	public class Cue
 	{
 		public string name;
-		public int cueID;
 		public AudioClip sound;
+		public float soundVolume;
 		public AudioReverbPreset echo;
 		public GameObject[] sceneObjects;
 		public Material swapMaterial;
@@ -38,6 +38,7 @@ public class FXManager : MonoBehaviour
 				
 		public Cue ( )
 		{
+			soundVolume = 1.0f;
 			lightIntensity = -1;
 			isEnabled = true;
 		}
@@ -59,7 +60,7 @@ public class FXManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 	}
 
-	AudioSource PlayClipAt ( AudioClip clip, Vector3 pos, string name, AudioReverbPreset echoLevel )
+	AudioSource PlayClipAt ( AudioClip clip, Vector3 pos, string name, float vol, AudioReverbPreset echoLevel )
 	{
 		// Create a temporary object
 		GameObject tempGO = new GameObject( name );
@@ -70,6 +71,7 @@ public class FXManager : MonoBehaviour
 		// Add an Audio Source and define the Clip
 		AudioSource audioSource = tempGO.AddComponent<AudioSource>();
 		audioSource.clip = clip;
+		audioSource.volume = vol;
 
 		// Add an Audio Reverb Filter
 		AudioReverbFilter reverbFilter = tempGO.AddComponent<AudioReverbFilter>();
@@ -109,7 +111,7 @@ public class FXManager : MonoBehaviour
 				if ( cue.sound != null )
 				{
 					// AudioSource.PlayClipAtPoint ( cue.sound, Vector3.zero, 1.0f  ); DEPRECATED
-					PlayClipAt ( cue.sound, Vector3.zero, cue.name, cue.echo );
+					PlayClipAt ( cue.sound, Vector3.zero, cue.name, cue.soundVolume, cue.echo );
 				}
 
 				// Does the have some GameObjects and a Material to swap to?

@@ -1109,6 +1109,8 @@ GameObject:
   - 114: {fileID: 964619148}
   - 114: {fileID: 964619147}
   - 114: {fileID: 964619151}
+  - 82: {fileID: 964619153}
+  - 164: {fileID: 964619152}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1204,8 +1206,8 @@ MonoBehaviour:
   fadePanel: {fileID: 998137353}
   effectsList:
   - name: Verify Audio
-    cueID: 1
     sound: {fileID: 8300000, guid: 8e80693f5cdb1c54995d9d1b1bcf69be, type: 3}
+    soundVolume: 1
     echo: 0
     sceneObjects: []
     swapMaterial: {fileID: 0}
@@ -1215,8 +1217,8 @@ MonoBehaviour:
     isEnabled: 0
     cueTime: 3
   - name: Verify Materials
-    cueID: 2
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 1338390799}
@@ -1228,8 +1230,8 @@ MonoBehaviour:
     isEnabled: 0
     cueTime: 3
   - name: Verify Emissive Materials
-    cueID: 3
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 1674589997}
@@ -1242,8 +1244,8 @@ MonoBehaviour:
     isEnabled: 0
     cueTime: 7
   - name: Verify Lights
-    cueID: 4
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 1139945278}
@@ -1255,8 +1257,8 @@ MonoBehaviour:
     isEnabled: 0
     cueTime: 3
   - name: Verify Animation
-    cueID: 5
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 2063168306}
@@ -1267,8 +1269,8 @@ MonoBehaviour:
     isEnabled: 0
     cueTime: 3
   - name: 6. (Audio) Step Start
-    cueID: 6
     sound: {fileID: 8300000, guid: db3f412d3efb0f741ad6ff450c5a0262, type: 3}
+    soundVolume: 1
     echo: 9
     sceneObjects: []
     swapMaterial: {fileID: 0}
@@ -1277,9 +1279,9 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 26
-  - name: 6. (Audio) Step Slide A
-    cueID: 6
+  - name: 7. (Audio) Step Slide A
     sound: {fileID: 8300000, guid: 787cedcd1ca37344bb38ef6345462a76, type: 3}
+    soundVolume: 1
     echo: 9
     sceneObjects: []
     swapMaterial: {fileID: 0}
@@ -1288,10 +1290,10 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 27
-  - name: 7. Lantern Activates
-    cueID: 7
-    sound: {fileID: 0}
-    echo: 0
+  - name: 8. Lantern Activates
+    sound: {fileID: 8300000, guid: 69f84fe79e2118b4d84cc5ab95919de3, type: 3}
+    soundVolume: .75
+    echo: 9
     sceneObjects:
     - {fileID: 792629015}
     - {fileID: 902010592}
@@ -1301,9 +1303,9 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 26
-  - name: 8. Lantern Deactivates
-    cueID: 8
+  - name: 9. Lantern Deactivates
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 792629015}
@@ -1314,9 +1316,20 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 36.5
-  - name: 9. Camera Shake
-    cueID: 9
+  - name: (Audio) Lantern Deactivates
+    sound: {fileID: 8300000, guid: 3d71d692b7a67c54aaa27f13b0defe37, type: 3}
+    soundVolume: 1
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 33.5
+  - name: 10. Camera Shake
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 2063168306}
@@ -1326,10 +1339,10 @@ MonoBehaviour:
     animationName: StartRumbling
     isEnabled: 1
     cueTime: 26
-  - name: 10. Walls Turn Blue
-    cueID: 10
-    sound: {fileID: 0}
-    echo: 0
+  - name: 11. Walls Turn Blue
+    sound: {fileID: 8300000, guid: b9056ccecf5048642a26ebbc0fe34dad, type: 3}
+    soundVolume: 1
+    echo: 9
     sceneObjects:
     - {fileID: 1674589997}
     - {fileID: 1548543244}
@@ -1352,9 +1365,9 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 26
-  - name: 11. Walls Revert
-    cueID: 11
+  - name: 12. Walls Revert
     sound: {fileID: 0}
+    soundVolume: 1
     echo: 0
     sceneObjects:
     - {fileID: 1674589997}
@@ -1378,17 +1391,659 @@ MonoBehaviour:
     animationName: 
     isEnabled: 1
     cueTime: 36.5
-  - name: Lantern Placed Into Position
-    cueID: 11
+  - name: 13. Lantern Placed Into Position
     sound: {fileID: 8300000, guid: 645c0bb6fd15e774eb0fa3e37138be2b, type: 3}
-    echo: 0
+    soundVolume: .300000012
+    echo: 9
     sceneObjects: []
     swapMaterial: {fileID: 0}
     emissive: 0
     lightIntensity: -1
     animationName: 
     isEnabled: 1
-    cueTime: 23.25
+    cueTime: 23.75
+  - name: 14. Lantern Click
+    sound: {fileID: 8300000, guid: 6b172eb385a70854c8f1199da925e730, type: 3}
+    soundVolume: .300000012
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 24.3299999
+  - name: 15. Lantern Remove
+    sound: {fileID: 8300000, guid: cea24c10bf08978418daa6e8308149e4, type: 3}
+    soundVolume: .300000012
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 36.75
+  - name: Footstep Left 1
+    sound: {fileID: 8300000, guid: 91345e0b6251202469d6f3e49a49cf9c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 5
+  - name: Footstep Right 1
+    sound: {fileID: 8300000, guid: 98879b29ef21acb479130e711fba64e8, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 5.5
+  - name: Footstep Left 2
+    sound: {fileID: 8300000, guid: 589e82b64fb287243a7625039bd6d917, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 6
+  - name: Footstep Right 2
+    sound: {fileID: 8300000, guid: baa00ace8614e13448367d275e12af16, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 6.5
+  - name: Footstep Left 3
+    sound: {fileID: 8300000, guid: 290597775e61bd642b47fdcafac682af, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 7
+  - name: Footstep Right 3
+    sound: {fileID: 8300000, guid: a6538ecb75b2a2348b3280a1de86a9b5, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 7.5
+  - name: Footstep Left 4
+    sound: {fileID: 8300000, guid: 001276c83476c0e48a4f0e2cbec92841, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 8
+  - name: Footstep Right 4
+    sound: {fileID: 8300000, guid: 2a2720314e3493347993ed578cf93f4a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 8.5
+  - name: Footstep Left 5
+    sound: {fileID: 8300000, guid: 109559fad86fd3546a667470f628323c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 9
+  - name: Footstep Right 5
+    sound: {fileID: 8300000, guid: 99d8352633f0beb43a0e7e3451e420fd, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 9.5
+  - name: Footstep Left 6
+    sound: {fileID: 8300000, guid: 86829bc63121bcd46af207098882d0f3, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 10
+  - name: Footstep Right 6
+    sound: {fileID: 8300000, guid: 07c473b998674e847afa9b81c7ddfb3a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 10.5
+  - name: Footstep Left 7
+    sound: {fileID: 8300000, guid: 162dc16b3cfcb594cbbcdc8bf6cfa810, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 11
+  - name: Footstep Right 7
+    sound: {fileID: 8300000, guid: 91345e0b6251202469d6f3e49a49cf9c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 11.5
+  - name: Footstep Left 8
+    sound: {fileID: 8300000, guid: 98879b29ef21acb479130e711fba64e8, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 12
+  - name: Footstep Right 8
+    sound: {fileID: 8300000, guid: 589e82b64fb287243a7625039bd6d917, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 12.5
+  - name: Footstep Left 9
+    sound: {fileID: 8300000, guid: baa00ace8614e13448367d275e12af16, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 13
+  - name: Footstep Right 9
+    sound: {fileID: 8300000, guid: 290597775e61bd642b47fdcafac682af, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 13.5
+  - name: Footstep Left 10
+    sound: {fileID: 8300000, guid: a6538ecb75b2a2348b3280a1de86a9b5, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 14
+  - name: Footstep Right 10
+    sound: {fileID: 8300000, guid: 001276c83476c0e48a4f0e2cbec92841, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 14.5
+  - name: Footstep Left 11
+    sound: {fileID: 8300000, guid: 2a2720314e3493347993ed578cf93f4a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 15
+  - name: Footstep Right 11
+    sound: {fileID: 8300000, guid: 109559fad86fd3546a667470f628323c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 15.5
+  - name: Footstep Left 12
+    sound: {fileID: 8300000, guid: 99d8352633f0beb43a0e7e3451e420fd, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 16
+  - name: Footstep Right 12
+    sound: {fileID: 8300000, guid: 86829bc63121bcd46af207098882d0f3, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 16.6000004
+  - name: Footstep Left 13
+    sound: {fileID: 8300000, guid: 07c473b998674e847afa9b81c7ddfb3a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 17.5
+  - name: Footstep Right 13
+    sound: {fileID: 8300000, guid: 162dc16b3cfcb594cbbcdc8bf6cfa810, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 41.5
+  - name: Footstep Left 14
+    sound: {fileID: 8300000, guid: 91345e0b6251202469d6f3e49a49cf9c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 42.1500015
+  - name: Footstep Right 14
+    sound: {fileID: 8300000, guid: 98879b29ef21acb479130e711fba64e8, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 42.5
+  - name: Footstep Left 15
+    sound: {fileID: 8300000, guid: 589e82b64fb287243a7625039bd6d917, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 43
+  - name: Footstep Right 15
+    sound: {fileID: 8300000, guid: baa00ace8614e13448367d275e12af16, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 43.5
+  - name: Footstep Left 16
+    sound: {fileID: 8300000, guid: 290597775e61bd642b47fdcafac682af, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 44
+  - name: Slip and Fall
+    sound: {fileID: 8300000, guid: 4d9b79d87bd31ad41bf9f63855ac6a5e, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 45
+  - name: Footstep Left 17
+    sound: {fileID: 8300000, guid: a6538ecb75b2a2348b3280a1de86a9b5, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 45.7999992
+  - name: Footstep Right 17
+    sound: {fileID: 8300000, guid: 001276c83476c0e48a4f0e2cbec92841, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 47
+  - name: Footstep Left 18
+    sound: {fileID: 8300000, guid: 2a2720314e3493347993ed578cf93f4a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 47.2999992
+  - name: Footstep Right 18
+    sound: {fileID: 8300000, guid: 109559fad86fd3546a667470f628323c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 48
+  - name: Footstep Left 19
+    sound: {fileID: 8300000, guid: 99d8352633f0beb43a0e7e3451e420fd, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 48.5
+  - name: Footstep Right 19
+    sound: {fileID: 8300000, guid: 86829bc63121bcd46af207098882d0f3, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 49
+  - name: Footstep Left 20
+    sound: {fileID: 8300000, guid: 07c473b998674e847afa9b81c7ddfb3a, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 49.4000015
+  - name: Jump Grunt
+    sound: {fileID: 8300000, guid: 64ceb7be42a557c44b3d418c7df57149, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 50.5999985
+  - name: Jump Land
+    sound: {fileID: 8300000, guid: 4d9b79d87bd31ad41bf9f63855ac6a5e, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 51
+  - name: Footstep Right 20
+    sound: {fileID: 8300000, guid: 162dc16b3cfcb594cbbcdc8bf6cfa810, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 53.2999992
+  - name: Footstep Left 21
+    sound: {fileID: 8300000, guid: 91345e0b6251202469d6f3e49a49cf9c, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 53.7999992
+  - name: Footstep Right 21
+    sound: {fileID: 8300000, guid: 98879b29ef21acb479130e711fba64e8, type: 3}
+    soundVolume: .100000001
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 54.2999992
+  - name: Footstep Left 22
+    sound: {fileID: 8300000, guid: 98879b29ef21acb479130e711fba64e8, type: 3}
+    soundVolume: .075000003
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 54.7999992
+  - name: Footstep Right 22
+    sound: {fileID: 8300000, guid: 589e82b64fb287243a7625039bd6d917, type: 3}
+    soundVolume: .0500000007
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 55.2999992
+  - name: Footstep Left 23
+    sound: {fileID: 8300000, guid: baa00ace8614e13448367d275e12af16, type: 3}
+    soundVolume: .0250000004
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 55.7999992
+  - name: Footstep Right 23
+    sound: {fileID: 8300000, guid: 290597775e61bd642b47fdcafac682af, type: 3}
+    soundVolume: .00999999978
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 56.2999992
+--- !u!164 &964619152
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964619146}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: 0
+  m_RoomRolloff: 0
+  m_DecayTime: 2.91000009
+  m_DecayHFRatio: 1.29999995
+  m_ReflectionsLevel: -602
+  m_ReverbLevel: -302
+  m_ReverbDelay: .0219999999
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 9
+--- !u!82 &964619153
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964619146}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9c0dce0f15d0f5f4294ca54aff31adc8, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .0480000004
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &998137352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2121995549
 RectTransform:
   m_ObjectHideFlags: 0
