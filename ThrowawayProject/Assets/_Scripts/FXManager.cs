@@ -11,7 +11,9 @@ using System.Collections;
  * 	- Sounds to play
  * 	- Objects that need their materials changed
  *  - Animatable Objects that need their animations triggered
- *  - Lights that need their properties changes
+ *  - Lights that need their Color or Intensity changed
+ * 
+ * TO DO
  *  - Prefabs that need to be instantiated
  * 
  * */
@@ -25,8 +27,10 @@ public class FXManager : MonoBehaviour
 		public string name;
 		public int cueID;
 		public AudioClip sound;
+		public AudioReverbPreset echo;
 		public GameObject[] sceneObjects;
 		public Material swapMaterial;
+		public bool emissive;
 		public float lightIntensity;
 		public string animationName;
 		public bool isEnabled;
@@ -50,12 +54,50 @@ public class FXManager : MonoBehaviour
 	{
 		// Fade the panel in
 		fadePanel.CrossFadeAlpha ( 0.0f, 5.0f, false );
+
+		// Reset the Timescale
+		Time.timeScale = 1.0f;
+	}
+
+	AudioSource PlayClipAt ( AudioClip clip, Vector3 pos, string name, AudioReverbPreset echoLevel )
+	{
+		// Create a temporary object
+		GameObject tempGO = new GameObject( name );
+
+		// Set the position
+		tempGO.transform.position = pos;
+
+		// Add an Audio Source and define the Clip
+		AudioSource audioSource = tempGO.AddComponent<AudioSource>();
+		audioSource.clip = clip;
+
+		// Add an Audio Reverb Filter
+		AudioReverbFilter reverbFilter = tempGO.AddComponent<AudioReverbFilter>();
+		reverbFilter.reverbPreset = echoLevel;
+
+		// Play
+		audioSource.Play();
+
+		// Destroy this after it's done
+		// Destroy(tempGO, clip.length);
+
+		return audioSource; // return the AudioSource reference
 	}
 
 	void Update () 
 	{
 		// UI - Clock Management
 		clockDisplay.text = "" + Time.time;
+
+		// Input for Fast Forwarding and Slow Motion
+		if ( Input.GetKey ( KeyCode.RightArrow ) )
+		    Time.timeScale = 4.0f;
+
+		else if ( Input.GetKey ( KeyCode.DownArrow ) )
+			Time.timeScale = 1.0f;
+		
+		else if ( Input.GetKey ( KeyCode.LeftArrow ) )
+			Time.timeScale = 0.5f;
 
 		// Iterate through all of the Cues
 		foreach ( Cue cue in effectsList )
@@ -65,28 +107,46 @@ public class FXManager : MonoBehaviour
 			{
 				// Does this Cue have a sound to play?     --- > This could be an array too...
 				if ( cue.sound != null )
-					AudioSource.PlayClipAtPoint ( cue.sound, Vector3.zero, 0.1f );
-
-				// Does the Cue's first SceneObject have a MeshRenderer? Does the Cue have a Material to swap to?
-				if ( cue.sceneObjects != null && cue.swapMaterial != null && cue.sceneObjects[0].GetComponent<MeshRenderer>() != null )
 				{
-					foreach ( GameObject gobj in cue.sceneObjects )
-						gobj.GetComponent<MeshRenderer>().material = cue.swapMaterial;
+					// AudioSource.PlayClipAtPoint ( cue.sound, Vector3.zero, 1.0f  ); DEPRECATED
+					PlayClipAt ( cue.sound, Vector3.zero, cue.name, cue.echo );
 				}
 
-				/* Does the Cue's first SceneObject
-				foreach ( GameObject gobj in cue.sceneObjects )
+				// Does the have some GameObjects and a Material to swap to?
+				if ( cue.sceneObjects != null && cue.swapMaterial != null )
 				{
-					gobj.GetComponent<MeshRenderer>().material.SetColor ( "_EmissionColor", cue.swapMaterial.color );
-				}*/
+					// Are we only changing the Emissive property?
+					if ( cue.emissive )
+					{
+						foreach ( GameObject gobj in cue.sceneObjects )
+							gobj.GetComponent<MeshRenderer>().material.SetColor ( "_EmissionColor", cue.swapMaterial.color );
+					}
+					else 
+					{
+						foreach ( GameObject gobj in cue.sceneObjects )
+						{
+							if ( gobj.GetComponent<MeshRenderer>() != null )
+							{
+								gobj.GetComponent<MeshRenderer>().material = cue.swapMaterial;
+								// Debug.Log ( "yeyy : D" + gobj.name );
+							}
+							else {
+								// Debug.Log ( "NAHH B!!! NAHHH" + gobj.name );
+							}
+						}
+					}
+				}
 
 				// Does the Cue's first SceneObject have a Light Component?
-				if ( cue.sceneObjects != null && cue.lightIntensity != -1 && cue.sceneObjects[0].GetComponent<Light>() != null )
+				if ( cue.sceneObjects != null && cue.lightIntensity != -1 && cue.swapMaterial != null )
 				{
 					foreach ( GameObject gobj in cue.sceneObjects )
 					{
-						gobj.GetComponent<Light>().color = cue.swapMaterial.color;
-						gobj.GetComponent<Light>().intensity = cue.lightIntensity;
+						if ( gobj.GetComponent<Light>() != null )
+						{
+							gobj.GetComponent<Light>().color = cue.swapMaterial.color;
+							gobj.GetComponent<Light>().intensity = cue.lightIntensity;
+						}
 					}
 				}
 

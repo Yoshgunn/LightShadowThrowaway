@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
       propertyPath: m_LocalRotation.x
@@ -948,7 +948,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
+--- !u!1 &204182047 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100428, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &308052990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,10 +1012,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
+--- !u!1 &494275430 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100348, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &606272015 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100380, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &650425013 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100190, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &665227735 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100396, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &792629015 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100114, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
   m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &902010592
 GameObject:
@@ -1073,6 +1093,10 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &906577653 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100340, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &964619146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,34 +1206,189 @@ MonoBehaviour:
   - name: Verify Audio
     cueID: 1
     sound: {fileID: 8300000, guid: 8e80693f5cdb1c54995d9d1b1bcf69be, type: 3}
+    echo: 0
     sceneObjects: []
     swapMaterial: {fileID: 0}
+    emissive: 0
     lightIntensity: -1
     animationName: 
-    isEnabled: 1
-    cueTime: .75
+    isEnabled: 0
+    cueTime: 3
   - name: Verify Materials
     cueID: 2
     sound: {fileID: 0}
+    echo: 0
     sceneObjects:
     - {fileID: 1338390799}
     - {fileID: 650425013}
     swapMaterial: {fileID: 2100000, guid: ed64c40f047891b4e91889b710a1c308, type: 2}
+    emissive: 0
     lightIntensity: -1
     animationName: 
-    isEnabled: 1
-    cueTime: .75
-  - name: Verify Lights
+    isEnabled: 0
+    cueTime: 3
+  - name: Verify Emissive Materials
     cueID: 3
     sound: {fileID: 0}
+    echo: 0
     sceneObjects:
-    - {fileID: 1338390799}
-    - {fileID: 650425013}
+    - {fileID: 1674589997}
+    - {fileID: 1548543244}
+    - {fileID: 1827313938}
+    swapMaterial: {fileID: 2100000, guid: 8c650e4c70dd2fb42b5f186d2e4c25b7, type: 2}
+    emissive: 1
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 0
+    cueTime: 7
+  - name: Verify Lights
+    cueID: 4
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 1139945278}
+    - {fileID: 1878218191}
+    swapMaterial: {fileID: 2100000, guid: 8c650e4c70dd2fb42b5f186d2e4c25b7, type: 2}
+    emissive: 0
+    lightIntensity: 5
+    animationName: 
+    isEnabled: 0
+    cueTime: 3
+  - name: Verify Animation
+    cueID: 5
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 2063168306}
     swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: StartRumbling
+    isEnabled: 0
+    cueTime: 3
+  - name: 6. (Audio) Step Start
+    cueID: 6
+    sound: {fileID: 8300000, guid: db3f412d3efb0f741ad6ff450c5a0262, type: 3}
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
     lightIntensity: -1
     animationName: 
     isEnabled: 1
-    cueTime: .75
+    cueTime: 26
+  - name: 6. (Audio) Step Slide A
+    cueID: 6
+    sound: {fileID: 8300000, guid: 787cedcd1ca37344bb38ef6345462a76, type: 3}
+    echo: 9
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 27
+  - name: 7. Lantern Activates
+    cueID: 7
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 792629015}
+    - {fileID: 902010592}
+    swapMaterial: {fileID: 2100000, guid: 8c650e4c70dd2fb42b5f186d2e4c25b7, type: 2}
+    emissive: 0
+    lightIntensity: 8
+    animationName: 
+    isEnabled: 1
+    cueTime: 26
+  - name: 8. Lantern Deactivates
+    cueID: 8
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 792629015}
+    - {fileID: 902010592}
+    swapMaterial: {fileID: 2100000, guid: c768e6d0740fb0e419410cb4fa860f99, type: 2}
+    emissive: 0
+    lightIntensity: .5
+    animationName: 
+    isEnabled: 1
+    cueTime: 36.5
+  - name: 9. Camera Shake
+    cueID: 9
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 2063168306}
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: StartRumbling
+    isEnabled: 1
+    cueTime: 26
+  - name: 10. Walls Turn Blue
+    cueID: 10
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 1674589997}
+    - {fileID: 1548543244}
+    - {fileID: 1827313938}
+    - {fileID: 1974529095}
+    - {fileID: 1350348920}
+    - {fileID: 906577653}
+    - {fileID: 494275430}
+    - {fileID: 1774855483}
+    - {fileID: 606272015}
+    - {fileID: 1775201700}
+    - {fileID: 665227735}
+    - {fileID: 1158545766}
+    - {fileID: 1833507835}
+    - {fileID: 2030095024}
+    - {fileID: 204182047}
+    swapMaterial: {fileID: 2100000, guid: 8c650e4c70dd2fb42b5f186d2e4c25b7, type: 2}
+    emissive: 1
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 26
+  - name: 11. Walls Revert
+    cueID: 11
+    sound: {fileID: 0}
+    echo: 0
+    sceneObjects:
+    - {fileID: 1674589997}
+    - {fileID: 1548543244}
+    - {fileID: 1827313938}
+    - {fileID: 1974529095}
+    - {fileID: 1350348920}
+    - {fileID: 906577653}
+    - {fileID: 494275430}
+    - {fileID: 1774855483}
+    - {fileID: 606272015}
+    - {fileID: 1775201700}
+    - {fileID: 665227735}
+    - {fileID: 1158545766}
+    - {fileID: 1833507835}
+    - {fileID: 2030095024}
+    - {fileID: 204182047}
+    swapMaterial: {fileID: 2100000, guid: bfe101c1f54d1e249a37743906f49e6c, type: 2}
+    emissive: 1
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 36.5
+  - name: Lantern Placed Into Position
+    cueID: 11
+    sound: {fileID: 8300000, guid: 645c0bb6fd15e774eb0fa3e37138be2b, type: 3}
+    echo: 0
+    sceneObjects: []
+    swapMaterial: {fileID: 0}
+    emissive: 0
+    lightIntensity: -1
+    animationName: 
+    isEnabled: 1
+    cueTime: 23.25
 --- !u!1 &998137352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &1139945278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1550,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1400,11 +1579,15 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1139945278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.76999998, z: 0}
+  m_LocalPosition: {x: 0, y: 4.78999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
+--- !u!1 &1158545766 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100404, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!4 &1173257064 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400114, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
@@ -1412,6 +1595,34 @@ Transform:
 --- !u!1 &1338390799 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100182, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1350348920 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100330, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1548543244 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100156, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1674589997 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100126, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1774855483 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100356, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1775201700 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100388, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1827313938 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100172, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &1833507835 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100412, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
   m_PrefabInternal: {fileID: 99856220}
 --- !u!1001 &1863254483
 Prefab:
@@ -1450,7 +1661,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9067b65529370784c8fd3b7fe6d2edcd, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 9067b65529370784c8fd3b7fe6d2edcd, type: 3}
       propertyPath: m_Controller
@@ -1481,7 +1692,7 @@ GameObject:
   - 4: {fileID: 1878218193}
   - 108: {fileID: 1878218192}
   m_Layer: 0
-  m_Name: Test Light 1 (1)
+  m_Name: Test Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1497,7 +1708,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1526,11 +1737,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1878218191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6789999, y: 2.76999998, z: 0}
+  m_LocalPosition: {x: -2.6789999, y: 4.78999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 9
 --- !u!1001 &1917784790
 Prefab:
   m_ObjectHideFlags: 0
@@ -1568,7 +1779,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 72a6f84ea755c1947ac85e0d9212fead, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2300006, guid: 72a6f84ea755c1947ac85e0d9212fead, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1741,6 +1952,14 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72a6f84ea755c1947ac85e0d9212fead, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1974529095 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100460, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
+--- !u!1 &2030095024 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100420, guid: cb3a13017dcd31a4181c66d934be8923, type: 3}
+  m_PrefabInternal: {fileID: 99856220}
 --- !u!1 &2063168306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +2046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &2063168312
 MonoBehaviour:
   m_ObjectHideFlags: 0
