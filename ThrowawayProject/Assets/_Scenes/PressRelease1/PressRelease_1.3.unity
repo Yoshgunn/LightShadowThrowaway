@@ -4924,6 +4924,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  shake: 1
+  startShakeTimer: .5
+  shakeAmount: .100000001
 --- !u!1001 &933766924
 Prefab:
   m_ObjectHideFlags: 0
@@ -5732,6 +5735,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  shake: 1
+  startShakeTimer: .5
+  shakeAmount: .100000001
 --- !u!1 &1122657767
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,47 +7257,47 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[2]
-      value: 10
+      value: .100000001
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[3]
-      value: 10
+      value: .100000001
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[4]
-      value: 350
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[5]
-      value: 350
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[6]
-      value: 355
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[7]
-      value: 450
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[8]
-      value: 450
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[9]
-      value: 460
+      value: 7.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[10]
-      value: 460
+      value: 7.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[11]
-      value: 800
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[12]
-      value: 800
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: triggerableTransforms.Array.data[13]
@@ -7299,7 +7305,7 @@ Prefab:
       objectReference: {fileID: 56042586}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[13]
-      value: 355
+      value: 7.0999999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}

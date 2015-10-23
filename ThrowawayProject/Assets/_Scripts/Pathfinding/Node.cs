@@ -486,26 +486,6 @@ public class Node : MonoBehaviour {
 		}
 		return null;
 	}
-	
-	//Get the node to the 'up in x' direction from this node
-	/*public Node GetUpXNode(){
-		return GetNextNodeInDirection (UP_X);
-	}
-	
-	//Get the node to the 'up in z' direction from this node
-	public Node GetUpZNode(){
-		return GetNextNodeInDirection (UP_Z);
-	}
-	
-	//Get the node to the 'down in x' direction from this node
-	public Node GetDownXNode(){
-		return GetNextNodeInDirection (DOWN_X);
-	}
-	
-	//Get the node to the 'down in z' direction from this node
-	public Node GetDownZNode(){
-		return GetNextNodeInDirection (DOWN_Z);
-	}*/
 
 	//Returns the position that something should be in to be considered 'on' this node. Directly above this node (0.5)
 	public Vector3 GetPositionAbove(){

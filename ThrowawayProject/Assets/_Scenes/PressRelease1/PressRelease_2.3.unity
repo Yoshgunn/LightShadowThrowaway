@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eadb259f9f23284ba55d752fd9e4be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: .100000001
   shake: 1
   startShakeTimer: .5
   shakeAmount: .100000001
@@ -2317,13 +2317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 1
-  maxRange: 1
+  maxRange: 1.5
+  flickerRange: .0500000007
   maxIntensity: 2
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!1001 &614974260
 Prefab:
   m_ObjectHideFlags: 0
@@ -2963,7 +2963,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 5
+  m_Range: 12
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4878,13 +4878,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 1
-  maxRange: 1
+  maxRange: 1.5
+  flickerRange: .0500000007
   maxIntensity: 2
-  flickerRangeChange: .0500000007
-  flickerIntensityChange: .100000001
-  flickerLength: 5
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!1 &1408648153
 GameObject:
   m_ObjectHideFlags: 0
@@ -5324,7 +5324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eadb259f9f23284ba55d752fd9e4be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: .100000001
   shake: 1
   startShakeTimer: .5
   shakeAmount: .100000001
