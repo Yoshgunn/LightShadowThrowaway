@@ -126,10 +126,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11470322, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
-      propertyPath: isExitDoor
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfdc23ede569df94a9531f0aaa586636, type: 2}
   m_IsPrefabParent: 0
@@ -2184,26 +2180,26 @@ Transform:
   m_Children:
   - {fileID: 130997979}
   - {fileID: 1040605646}
-  - {fileID: 1070365230}
-  - {fileID: 209638853}
-  - {fileID: 2091643720}
-  - {fileID: 1384177300}
-  - {fileID: 2123584998}
-  - {fileID: 1682419510}
+  - {fileID: 43296602}
   - {fileID: 170985762}
+  - {fileID: 206832191}
+  - {fileID: 209638853}
+  - {fileID: 1018677727}
+  - {fileID: 1070365230}
   - {fileID: 50039337}
   - {fileID: 1101542509}
-  - {fileID: 21614443}
-  - {fileID: 1018677727}
   - {fileID: 1138968906}
-  - {fileID: 2096414782}
-  - {fileID: 206832191}
-  - {fileID: 115270229}
-  - {fileID: 1738683679}
-  - {fileID: 43296602}
-  - {fileID: 808367073}
-  - {fileID: 1745986524}
+  - {fileID: 1384177300}
   - {fileID: 1405936883}
+  - {fileID: 1682419510}
+  - {fileID: 1738683679}
+  - {fileID: 1745986524}
+  - {fileID: 115270229}
+  - {fileID: 2091643720}
+  - {fileID: 2096414782}
+  - {fileID: 808367073}
+  - {fileID: 2123584998}
+  - {fileID: 21614443}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1001 &2123584997
