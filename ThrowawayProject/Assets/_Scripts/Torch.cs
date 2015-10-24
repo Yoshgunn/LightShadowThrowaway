@@ -82,8 +82,8 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 				thisLight.range = MINIMUM_RANGE;
 				thisLight.intensity = MINIMUM_INTENSITY;
 			//}
-			thisLight.range = maxRange;
-			thisLight.intensity = maxIntensity;
+			//thisLight.range = maxRange;
+			//thisLight.intensity = maxIntensity;
 		} else {
 			//If the light component already exists, inherit values from it
 			maxRange = thisLight.range;
@@ -105,7 +105,9 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 		allTorches.Add (this.GetComponent<Torch>());
 		
 		if (startsOn) {
-			this.GetComponent<MyLight>().FlickerOn (DEFAULT_FLICKER_ON_TIME);
+			this.GetComponent<MyLight> ().FlickerOn (DEFAULT_FLICKER_ON_TIME);
+		} else {
+			thisLight.enabled = false;
 		}
 	}
 	
@@ -230,14 +232,15 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			this.GetComponent<MyLight>().FlickerOn (DEFAULT_FLICKER_ON_TIME);
 			
 			//Sound
-			Debug.Log ("Sound on!");
+			//I somehow screwed this up, so I'm turning it off for now
+			/*Debug.Log ("Sound on!");
 			AudioSource[] torchSounds = gameObject.GetComponents<AudioSource> ();
 			// Turn on the Torch Loop sound
 			torchSounds [0].volume = 0.1f;
 			
 			// Trigger the Ignite sound and the Creepy Alert sound
 			torchSounds [2].Play ();
-			torchSounds [3].Play ();
+			torchSounds [3].Play ();*/
 		} else {
 			//Set intensity and range to minimum
 			currentBaseRange = MINIMUM_RANGE;
@@ -246,13 +249,13 @@ public class Torch : MonoBehaviour, Triggerable, MyLight {
 			thisLight.intensity = currentBaseIntensity;
 
 			//Sound
-			Debug.Log ("Sound off!");
+			/*Debug.Log ("Sound off!");
 			AudioSource[] torchSounds = gameObject.GetComponents<AudioSource>();
 			// Shut off the Torch Loop sound
 			torchSounds[0].volume = 0;
 			
 			// Trigger the Extinguish sound
-			torchSounds[1].Play();
+			torchSounds[1].Play();*/
 		}
 	}
 	
