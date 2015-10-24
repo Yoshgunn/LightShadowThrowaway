@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 2}
+  m_LocalPosition: {x: 0, y: 1, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484230}
@@ -125,7 +125,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194582}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 019d80b0cac0b48d6b0c4c7d127b8e5d, type: 2}
@@ -149,7 +149,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125124}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 1c80b4be9f305da40bd2972f925b9228, type: 2}
@@ -277,11 +277,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b39d153d6fdce408c0dea6cf92d9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retriggerable: 1
+  retriggerable: 0
   unTriggerOnLeave: 0
-  triggerableTransforms: []
-  delays: 
+  triggerableTransforms:
+  - {fileID: 0}
+  delays:
+  - .150000006
   debugging: 0
+  disablePlayerDuration: 0
   speakers: {fileID: 8285738}
   pressSound: {fileID: 8300000, guid: fa089d8960856324bb7914675e79542d, type: 3}
   resetSound: {fileID: 8300000, guid: 56f7ef276f904e74eb345bb01846fef0, type: 3}

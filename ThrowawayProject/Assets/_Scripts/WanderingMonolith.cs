@@ -37,7 +37,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		//targetRelativePos = targetPos - startingPos;
 		//currentRelativePos = Vector3.zero;
 		nodes = myObject.GetComponentsInChildren<Node> ();
-		actualPos = this.transform.position;
+		actualPos = myObject.transform.position;
 
 		//Set up the 'default' values
 		if (speed == 0) {

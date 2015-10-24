@@ -94,14 +94,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: delays.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerableTransforms.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -139,33 +131,9 @@ Prefab:
       value: 
       objectReference: {fileID: 1945905024}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: retriggerable
-      value: 0
+      propertyPath: disablePlayerDuration
+      value: 2.0999999
       objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: delays.Array.data[0]
-      value: .150000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerableTransforms.Array.data[1]
-      value: 
-      objectReference: {fileID: 1945905024}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerableTransforms.Array.data[2]
-      value: 
-      objectReference: {fileID: 1549667760}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: delays.Array.data[1]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: delays.Array.data[2]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361600, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e9dc1a1655a229149842a37aba49f557, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
   m_IsPrefabParent: 0
@@ -424,11 +392,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409708, guid: 1365ef2024270a84e8eb730dd732f2a0, type: 2}
       propertyPath: maxRange
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 11409708, guid: 1365ef2024270a84e8eb730dd732f2a0, type: 2}
       propertyPath: maxIntensity
-      value: 2
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409708, guid: 1365ef2024270a84e8eb730dd732f2a0, type: 2}
+      propertyPath: flickerRange
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409708, guid: 1365ef2024270a84e8eb730dd732f2a0, type: 2}
+      propertyPath: flickerIntensity
+      value: .0500000007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1365ef2024270a84e8eb730dd732f2a0, type: 2}
@@ -813,6 +789,14 @@ Prefab:
       propertyPath: startsOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: flickerRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
+      propertyPath: flickerIntensity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 10860394, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 53f616d655eacf142b997ab318d75f6c, type: 2}
@@ -836,7 +820,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
@@ -1667,6 +1651,10 @@ Prefab:
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[0]
       value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+      propertyPath: disablePlayerDuration
+      value: 2.20000005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
@@ -2980,7 +2968,7 @@ Prefab:
       objectReference: {fileID: 1998556270}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[1]
-      value: 0
+      value: .150000006
       objectReference: {fileID: 0}
     - target: {fileID: 2361600, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -2992,11 +2980,15 @@ Prefab:
       objectReference: {fileID: 880751793}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[2]
-      value: 100
+      value: .150000006
       objectReference: {fileID: 0}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: delays.Array.data[0]
       value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+      propertyPath: disablePlayerDuration
+      value: 4.4000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}

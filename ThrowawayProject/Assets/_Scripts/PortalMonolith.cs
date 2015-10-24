@@ -105,6 +105,13 @@ public class PortalMonolith : MonoBehaviour {
 			Vector3 pos = blockingTriggers[i].transform.position;
 			angleToObstacle = Mathf.Atan2 (pos.z - thisZ, pos.x - thisX);
 			squaredDistanceToObstacle = (pos.x - thisX)*(pos.x - thisX) + (pos.z - thisZ)*(pos.z - thisZ);
+
+			//If the object isn't enabled, don't use it
+			if (!blockingTriggers[i].activeInHierarchy){
+				previousAnglesToObstacles[i] = angleToObstacle;
+				continue;
+			}
+
 			if (angleToPlayer==angleToObstacle){
 				//This is a little hacky, but we don't know which direction to go if the angle is EQUAL
 				//Therefore, if this is the case, don't do anything and wait for next frame
