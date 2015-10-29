@@ -22,6 +22,8 @@ public class TrackWalker : MonoBehaviour {
 	bool moveToTargetNode = false;
 	float countBetweenSpaces = 0;
 
+	bool halfwayToNextNode = false;
+
 	Vector3[] legalPositions;
 
 	Boundary lastBoundary = null;		//Used to record where we came from to get to the current node, so that we can get the next node in the right direction
@@ -156,16 +158,18 @@ public class TrackWalker : MonoBehaviour {
 				}
 
 				//If we are halfway to the new node, set the old one to unoccupied
-				if (myNode.GetIsOccupied() && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, myNode.GetPositionAbove())){
+				if (myNode.GetIsOccupied() && !halfwayToNextNode && Vector3.Distance (this.transform.position, targetNode.GetPositionAbove()) <= Vector3.Distance (this.transform.position, myNode.GetPositionAbove())){
 					//Debug.Log ("Walker setting node occupied to false...");
 					myNode.SetIsOccupied(false);
 					targetNode.SetIsOccupied(true);
+					halfwayToNextNode = true;
 				}
 			}else{
 				float leftoverTime = Time.deltaTime - Vector3.Distance (this.transform.position, targetNode.GetPositionAbove())*TIME_TO_MOVE_ONE_SPACE;
 				this.transform.position = targetNode.GetPositionAbove();
 				targetNode.SetIsOccupied(true);
-				myNode.SetIsOccupied(false);
+				//myNode.SetIsOccupied(false);
+				halfwayToNextNode = false;
 				myNode = targetNode;
 				targetNode = null;
 				moveToTargetNode = false;

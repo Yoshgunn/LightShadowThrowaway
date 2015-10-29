@@ -184,6 +184,8 @@ public class PathfindingPlayer : MonoBehaviour {
 					}
 				}
 
+				//currentNode.SetIsOccupied(true);
+
 				/*//Now, if there is leftover time to move further, and we have another target node, start moving there
 				while (targetNode && !targetNode.GetIsOccupied() && leftoverTime > 0){
 					targetNode.SetIsOccupied(true);
