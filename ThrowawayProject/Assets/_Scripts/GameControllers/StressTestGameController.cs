@@ -14,8 +14,8 @@ public class StressTestGameController : GameController {
 		cam.GetComponent<MyCamera> ().SetMode (4, new Vector3 (10,10,10));
 	}
 
-	public void EndInstance (string levelName){
-		base.EndInstance (levelName);
+	public void EndInstance (int levelNum){
+		base.EndInstance (levelNum);
 	}
 	
 	// Update is called once per frame

@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 
 	private float torchLightTimer = 30;
 	private float fadeOutTimer = 0;
-	private string levelToLoad;
+	private int levelToLoad;
 	private Node finalNode;
 	private bool levelOver = false;
 
@@ -27,15 +27,15 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public virtual void EndInstance (string levelName){
+	public virtual void EndInstance (int levelNum){
 		Node.EndScene ();
 		Boundary.EndScene ();
 		Torch.EndScene ();
 		ENV = null;
 
-		levelToLoad = levelName;
+		levelToLoad = levelNum;
 		fadeOutTimer = Torch.DEFAULT_FLICKER_OFF_TIME;
-		Application.LoadLevel (levelName);
+		Application.LoadLevel (levelNum);
 	}
 	
 	// Update is called once per frame
@@ -78,9 +78,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public static void EndLevel(string levelName){
+	public static void EndLevel(int levelNum){
 		if (ENV) {
-			ENV.EndInstance (levelName);
+			ENV.EndInstance (levelNum);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour {
 		EndInstance(GetNameOfNextLevel ());
 	}
 
-	private static string GetNameOfNextLevel(){
+	private static int GetNameOfNextLevel(){
 		string thisLevel = Application.loadedLevelName;
 		Debug.Log (thisLevel);
 		int i = thisLevel.IndexOf ('.');
@@ -103,7 +103,10 @@ public class GameController : MonoBehaviour {
 		int levelNum = Int32.Parse (levelSuffix);
 		levelNum++;
 		thisLevel = levelPrefix + levelNum;
-		return thisLevel;
+
+		//int thisLevel = Application.loadedLevel;
+
+		return Application.loadedLevel+1;
 	}
 
 	public static void DisablePlayer(){

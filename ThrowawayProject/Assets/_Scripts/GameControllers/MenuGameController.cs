@@ -8,8 +8,8 @@ public class MenuGameController : GameController {
 		base.Start ();
 	}
 
-	public override void EndInstance (string levelName){
-		base.EndInstance (levelName);
+	public override void EndInstance (int levelNum){
+		base.EndInstance (levelNum);
 	}
 	
 	// Update is called once per frame

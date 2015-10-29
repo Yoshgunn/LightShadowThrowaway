@@ -529,6 +529,7 @@ public class Node : MonoBehaviour {
 	public static void ClearPathfinding(){
 		foreach (Node n in allNodes) {
 			n.SetMarked(false);
+			n.SetNextNode(null);
 		}
 	}
 
