@@ -33,6 +33,7 @@ public class FXManager : MonoBehaviour
 		public bool emissive;
 		public float lightIntensity;
 		public string animationName;
+		public bool reparent;
 		public bool isEnabled;
 		public float cueTime;
 				
@@ -155,6 +156,18 @@ public class FXManager : MonoBehaviour
 				// Does this Cue's SceneObject have an Animation to play?
 				if ( cue.animationName != "" )
 					cue.sceneObjects[0].GetComponent<Animator>().SetTrigger ( cue.animationName );
+
+				// Does this Cue want to reparent a GameObject?
+				if ( cue.reparent )
+				{
+					if ( cue.sceneObjects.Length == 1 )
+						cue.sceneObjects[0].transform.parent = null;
+					else
+					{
+						cue.sceneObjects[0].transform.SetParent( cue.sceneObjects[1].transform, false );
+						Debug.Log ( "Maha!!" );
+					}
+				}
 
 				// Don't play this Cue again!
 				cue.isEnabled = false;
