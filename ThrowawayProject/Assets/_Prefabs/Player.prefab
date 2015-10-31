@@ -224,10 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 1
   maxRange: -1
+  flickerRange: .25
   maxIntensity: -1
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 1
 --- !u!114 &11486978
 MonoBehaviour:
   m_ObjectHideFlags: 1

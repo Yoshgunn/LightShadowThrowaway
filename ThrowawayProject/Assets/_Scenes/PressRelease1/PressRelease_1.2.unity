@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -132,7 +130,7 @@ Prefab:
       objectReference: {fileID: 1945905024}
     - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
       propertyPath: disablePlayerDuration
-      value: 2.0999999
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
@@ -519,6 +517,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1595,18 +1599,18 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 251764981}
-  - {fileID: 1109695500}
-  - {fileID: 1134723596}
-  - {fileID: 910756326}
-  - {fileID: 1437292285}
-  - {fileID: 1031839026}
-  - {fileID: 1757172319}
-  - {fileID: 1027960194}
-  - {fileID: 853160427}
-  - {fileID: 1166446224}
   - {fileID: 908998285}
   - {fileID: 933954165}
+  - {fileID: 251764981}
+  - {fileID: 1027960194}
+  - {fileID: 1109695500}
+  - {fileID: 1031839026}
+  - {fileID: 1134723596}
+  - {fileID: 910756326}
+  - {fileID: 1166446224}
+  - {fileID: 1437292285}
+  - {fileID: 1757172319}
+  - {fileID: 853160427}
   m_Father: {fileID: 0}
   m_RootOrder: 9
 --- !u!1001 &1129898553
@@ -2034,6 +2038,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -2111,6 +2116,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -2384,6 +2395,10 @@ Prefab:
     - target: {fileID: 416614, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 122592, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}

@@ -84,12 +84,12 @@ public class RotatingObject : MonoBehaviour, Triggerable {
 			Vector3 diff = Vector3.Normalize(new Vector3(Random.value-0.5f, Random.value-0.5f, Random.value-0.5f)) * Mathf.Lerp (0f, shakeAmount, shakeTimer/startShakeTimer);
 			this.transform.position = actualPos + diff;
 			shakeTimer-=Time.deltaTime;
-			if (shakeTimer <= 0){
+			/*if (shakeTimer <= 0){
 				Node[] nodes = transform.GetComponentsInChildren<Node>();
 				foreach (Node n in nodes){
-					n.RecalculateEdges();
+					//n.RecalculateEdges();
 				}
-			}
+			}*/
 		}
 	}
 
