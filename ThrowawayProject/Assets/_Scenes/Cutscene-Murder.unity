@@ -566,19 +566,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: .270598322
+      value: .270598292
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -.65328145
+      value: -.653281391
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: .65328151
+      value: .65328145
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .270598054
+      value: .270598024
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
       propertyPath: m_Controller
@@ -708,6 +708,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bfe101c1f54d1e249a37743906f49e6c, type: 2}
+    - target: {fileID: 2300032, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
     - {fileID: 3300000, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
