@@ -712,6 +712,22 @@ Prefab:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400086, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -.000189046899
+      objectReference: {fileID: 0}
+    - target: {fileID: 400086, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -.0249524359
+      objectReference: {fileID: 0}
+    - target: {fileID: 400086, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: .865096807
+      objectReference: {fileID: 0}
+    - target: {fileID: 400086, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: .500983775
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
     - {fileID: 3300000, guid: 2141d39cea2e77646a0d28d79241e57c, type: 3}
