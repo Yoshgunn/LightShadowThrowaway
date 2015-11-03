@@ -361,7 +361,7 @@ MeshRenderer:
   m_GameObject: {fileID: 144358}
   m_Enabled: 1
   m_CastShadows: 3
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 6c8225ccc3b17ec4c84cb4b08df27dbb, type: 2}
   m_SubsetIndices: 

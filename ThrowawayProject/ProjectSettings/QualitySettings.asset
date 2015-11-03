@@ -162,7 +162,7 @@ QualitySettings:
     shadowCascade2Split: .333333343
     shadowCascade4Split: {x: .0666666701, y: .199999988, z: .466666639}
     blendWeights: 1
-    textureQuality: 3
+    textureQuality: 0
     anisotropicTextures: 0
     antiAliasing: 0
     softParticles: 0
@@ -184,4 +184,4 @@ QualitySettings:
     Web: 3
     WebGL: 3
     Windows Store Apps: 3
-    iPhone: 3
+    iPhone: 6

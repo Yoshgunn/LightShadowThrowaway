@@ -29,6 +29,8 @@ public class Cam : MonoBehaviour {
 	private float startShakeTimer = 0;
 	private float shakeAmount = 0;
 
+	//int count = 0;
+
 	// Use this for initialization
 	void Start () {
 		targetPos = this.transform.position;
@@ -37,6 +39,11 @@ public class Cam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		/*count++;
+		if (count > 300) {
+			this.Pan (new Vector3(10, 10, 10), 1000, 5);
+		}*/
+
 		if (playerPosSet) {
 			targetPos += PathfindingPlayer.PLAYER.transform.position - previousPlayerPos;
 		} else {
