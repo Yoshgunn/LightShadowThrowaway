@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -287,10 +285,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 0
   maxRange: -1
+  flickerRange: .25
   maxIntensity: -1
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 0
 --- !u!4 &270075820
 Transform:
   m_ObjectHideFlags: 0
@@ -769,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f552e8f6bf750e049b40a3cdc47ec85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalNodeGO: {fileID: 0}
 --- !u!4 &669991894
 Transform:
   m_ObjectHideFlags: 0
@@ -895,6 +897,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1191,12 +1194,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 456938, guid: 2533af6327afc0b4bbced25be30a9f85, type: 2}
   m_PrefabInternal: {fileID: 1290865493}
---- !u!114 &1298415181 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11434012, guid: 2533af6327afc0b4bbced25be30a9f85,
-    type: 2}
-  m_PrefabInternal: {fileID: 2000992905}
-  m_Script: {fileID: 11500000, guid: 3a502852c0cb92446aa2a6864fa74a40, type: 3}
 --- !u!1 &1301771153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,10 +1530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 0
   maxRange: -1
+  flickerRange: .25
   maxIntensity: -1
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 0
 --- !u!1001 &1685345677
 Prefab:
   m_ObjectHideFlags: 0
@@ -1694,64 +1694,48 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 11499834, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: triggerableTransforms.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalPosition.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 424400, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 489790, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: myNode
-      value: 
-      objectReference: {fileID: 1298415181}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerables.Array.data[0]
-      value: 
-      objectReference: {fileID: 1456669748}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+    - target: {fileID: 11499834, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
       propertyPath: triggerableTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 1456669748}
-    - target: {fileID: 11460692, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
-      propertyPath: triggerableTransforms.Array.data[1]
-      value: 
-      objectReference: {fileID: 1965896709}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc8f1f033c017824aaafe047c281f71c, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 4fd70f57366bc3b419659abad2f0609a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1835806152
 Prefab:
@@ -2164,10 +2148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61098f347629dc46add58981b803809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startsOn: 0
   maxRange: -1
+  flickerRange: .25
   maxIntensity: -1
-  myColor: {r: 0, g: 0, b: 0, a: 1}
+  flickerIntensity: .100000001
+  flickerLength: .100000001
+  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  startsOn: 0
 --- !u!1001 &1998908227
 Prefab:
   m_ObjectHideFlags: 0
