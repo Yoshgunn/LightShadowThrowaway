@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Floater : MonoBehaviour, Triggerable {
 
-	private static float DEFAULT_SPEED = 0.03f;
+	private static float DEFAULT_SPEED = 1f;
 	private static int STOP_TIME = 10;
 	private static float TIME_TO_MOVE_ONE_SPACE = 1f;	//in seconds
 
@@ -46,7 +46,7 @@ public class Floater : MonoBehaviour, Triggerable {
 		if (speed == 0) {
 			speed = DEFAULT_SPEED;
 		} else {
-			timeToMoveOneSpace = 1/(speed*GameController.FPS);
+			timeToMoveOneSpace = 1/(speed/**GameController.FPS*/);
 		}
 		if (stopTime < 0) {
 			stopTime = STOP_TIME;
