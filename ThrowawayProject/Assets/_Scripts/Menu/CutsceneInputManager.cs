@@ -19,22 +19,28 @@ public class CutsceneInputManager : MonoBehaviour
 	{
 		if ( Input.GetMouseButton ( 0 ) && isPlaying )
 		{
-			PauseMenu.SetActive ( true );
-			isPlaying = false;
+			Pause();
 		}
+	}
+
+	void Pause ()
+	{
+		PauseMenu.SetActive ( true );
+		isPlaying = false;
+		Time.timeScale = 0.0f;
 	}
 
 	public void Skip ( )
 	{
 		// In the future this will access the "NextLevel" which will be set somewhere
-
+		Time.timeScale = 1.0f;
 		Application.LoadLevel ( 1 );
 	}
 
 	public void Unpause ( )
 	{
-		Debug.Log ( "Unpause!!" );
 		PauseMenu.SetActive ( false );
 		isPlaying = true;
+		Time.timeScale = 1.0f;
 	}
 }
