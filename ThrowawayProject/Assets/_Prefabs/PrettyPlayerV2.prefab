@@ -949,7 +949,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132068}
-  m_LocalRotation: {x: .270598322, y: -.65328145, z: .65328151, w: .270598054}
+  m_LocalRotation: {x: .270598292, y: -.653281391, z: .65328145, w: .270598024}
   m_LocalPosition: {x: 1.64561342e-07, y: -.210360512, z: .0241473913}
   m_LocalScale: {x: .905233502, y: .905233502, z: .905233443}
   m_Children: []
@@ -1043,8 +1043,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.49000001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -.5, z: 0}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1.20000005}
   m_Children:
   - {fileID: 498392}
   - {fileID: 474598}
@@ -1302,7 +1302,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: .192000002}
+  m_LocalPosition: {x: -0, y: 0, z: .155000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 458766}
@@ -1903,7 +1903,7 @@ Animator:
   m_GameObject: {fileID: 133864}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d92bd3ac658a5c34fa93cf176ad2bfe6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 258e96b0b8654fe428672cd0263d7ae9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1920,9 +1920,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .25
-  m_Range: 15
+  m_Color: {r: 1, g: .928143024, b: .345588207, a: 1}
+  m_Intensity: 1
+  m_Range: 25
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -2003,7 +2003,7 @@ MonoBehaviour:
   maxIntensity: -1
   flickerIntensity: 0
   flickerLength: .100000001
-  lightColor: {r: .784313738, g: .784313738, b: .588235319, a: 1}
+  lightColor: {r: 1, g: .934279978, b: .404411793, a: 1}
   startsOn: 1
 --- !u!136 &13612732
 CapsuleCollider:

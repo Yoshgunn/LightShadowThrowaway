@@ -165,7 +165,6 @@ public class FXManager : MonoBehaviour
 					else
 					{
 						cue.sceneObjects[0].transform.SetParent( cue.sceneObjects[1].transform, false );
-						Debug.Log ( "Maha!!" );
 					}
 				}
 
