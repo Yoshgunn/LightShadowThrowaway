@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotatingObject : MonoBehaviour, Triggerable {
+public class RotatingObjectTriggered : MonoBehaviour, Triggerable {
 
 	private static int DEFAULT_SPEED = 1;
 	private static float TIME_TO_ROTATE_ONE_DEGREE = 1/60f;	//in seconds

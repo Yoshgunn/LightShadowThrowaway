@@ -489,12 +489,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loops: 1
-  reverseDirection: 0
+  stopsAtFinalState: 1
   blockingTriggers:
   - {fileID: 794503006}
   - {fileID: 1422988325}
   lights: []
   ignoreShadow: 0
+  reverseDirection: 0
   directionMatters: 0
   debugging: 1
 --- !u!1001 &134358671
@@ -1084,12 +1085,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loops: 1
-  reverseDirection: 0
+  stopsAtFinalState: 1
   blockingTriggers:
   - {fileID: 794503006}
   - {fileID: 1422988325}
   lights: []
   ignoreShadow: 1
+  reverseDirection: 0
   directionMatters: 0
   debugging: 1
 --- !u!1001 &271931697
@@ -3465,11 +3467,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loops: 1
-  reverseDirection: 0
+  stopsAtFinalState: 1
   blockingTriggers:
   - {fileID: 1180642375}
   lights: []
   ignoreShadow: 0
+  reverseDirection: 0
   directionMatters: 0
   debugging: 0
 --- !u!1 &707678655

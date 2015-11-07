@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotatingPlatform : MonoBehaviour, Triggerable {
+public class RotatingObjectAuto : MonoBehaviour, Triggerable {
 
-	private static int DEFAULT_SPEED = 1;
+	private static int DEFAULT_SPEED = 60;
 	private static int STOP_TIME = 60;
 	private static float TIME_TO_ROTATE_ONE_DEGREE = 1/60f;	//in seconds
 
@@ -44,7 +44,7 @@ public class RotatingPlatform : MonoBehaviour, Triggerable {
 		if (stopTime < 0) {
 			stopTime = STOP_TIME;
 		} else {
-			timeToRotateOneDegree = 1/(speed*GameController.FPS);
+			timeToRotateOneDegree = 1/(speed/**GameController.FPS*/);
 		}
 	}
 	

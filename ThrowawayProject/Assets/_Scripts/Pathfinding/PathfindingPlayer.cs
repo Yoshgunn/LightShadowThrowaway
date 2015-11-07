@@ -150,7 +150,7 @@ public class PathfindingPlayer : MonoBehaviour {
 
 				while (targetNode && !targetNode.GetIsOccupied () && leftoverTime > 0){
 					if (Vector3.Distance(this.transform.position, targetNode.GetPositionAbove()) < leftoverTime/TIME_TO_MOVE_ONE_SPACE){
-						Debug.Log ("Moving to target node");
+						//Debug.Log ("Moving to target node");
 						//We are close enough to get to the next space. Move there and figure out the left over time
 						leftoverTime = Time.deltaTime - Vector3.Distance (this.transform.position, targetNode.GetPositionAbove())*TIME_TO_MOVE_ONE_SPACE;
 						this.transform.position = targetNode.GetPositionAbove();
@@ -167,13 +167,13 @@ public class PathfindingPlayer : MonoBehaviour {
 						currentNode = targetNode;
 						targetNode = currentNode.GetNextNode ();
 						if (targetNode == null) {
-							Debug.Log ("Got to goal!");
+							//Debug.Log ("Got to goal!");
 						}
 
 						countBetweenSpaces = 0;
 						alreadyResetLastNodeOccupied = false;
 					}else{
-						Debug.Log ("Moving toward next target node: " + leftoverTime/TIME_TO_MOVE_ONE_SPACE);
+						//Debug.Log ("Moving toward next target node: " + leftoverTime/TIME_TO_MOVE_ONE_SPACE);
 						//We are not close enough to get to this target node. Just move toward it
 						leftoverTime = 0;
 						targetNode.SetIsOccupied(true);

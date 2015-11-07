@@ -6,9 +6,9 @@ public class PortalMonolith : MonoBehaviour {
 
 	const float ANGLE_ADJUSTMENT = 0.000001f;
 	
-	public bool loops = true;
-	public bool reverseDirection = false;
-	bool stopsAtFinalState = false;
+	public bool loops = false;
+	public bool stopsAtFinalState = true;
+	//bool stopsAtFinalState = false;
 
 	bool hidden = false;
 	int lastNumObst = 0;
@@ -28,6 +28,7 @@ public class PortalMonolith : MonoBehaviour {
 	//public GameObject player;
 	public GameObject[] lights;
 	public bool ignoreShadow;
+	public bool reverseDirection = false;
 	public bool directionMatters;
 	public bool debugging;
 
@@ -62,7 +63,7 @@ public class PortalMonolith : MonoBehaviour {
 			this.transform.GetChild (0).gameObject.SetActive(true);
 		}
 
-		if (reverseDirection) {
+		if (!loops) {
 			childDiff = -childDiff;
 		}
 	}
@@ -536,6 +537,11 @@ public class PortalMonolith : MonoBehaviour {
 		if (debugging) {
 			Debug.Log ("I should be toggling!");
 		}
+
+		if (reverseDirection) {
+			direction = -direction;
+		}
+
 		//First of all, only toggle it if there is NO light on it
 		if (ignoreShadow || Monolith.AmIInShadow(this.gameObject, lights, blockingTriggers)) {
 			if (debugging){
@@ -574,16 +580,16 @@ public class PortalMonolith : MonoBehaviour {
 			this.transform.GetChild (curChild).gameObject.SetActive (false);
 
 			//Go to the next child (which should now become active
-			//Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
+			Debug.Log ("Cur child: " + curChild + ", direction: " + direction + ", child diff: " + childDiff);
 			curChild += direction * childDiff;
-			//Debug.Log ("Intermediary: " + curChild);
+			Debug.Log ("Intermediary: " + curChild);
 			/*if (currentBlockerDiff!=0 && directionMatters){
 				//Debug.Log ("Current blocker diff: " + currentBlockerDiff);
 				curChild -= currentBlockerDiff;
 				currentBlockerDiff = 0;
 			}*/
 			if (curChild > numChildren-1 || curChild < 0) {
-				if (loops){
+				if (!stopsAtFinalState){
 					curChild %= numChildren;
 					if (curChild < 0){
 						curChild += numChildren;
@@ -593,7 +599,7 @@ public class PortalMonolith : MonoBehaviour {
 					curChild -= direction * childDiff;
 				}
 			}
-			//Debug.Log ("New child: " + curChild);
+			Debug.Log ("New child: " + curChild);
 			//curChild = (curChild + 1) % numChildren;
 
 			//Show the next child
