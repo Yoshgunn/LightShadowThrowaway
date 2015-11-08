@@ -4,11 +4,11 @@ using System.Collections;
 
 public class TrackWalker : MonoBehaviour {
 	
-	private static float DEFAULT_SPEED = 0.04f;
+	private static float DEFAULT_SPEED = 1f;
 	private static float TIME_TO_MOVE_ONE_SPACE = 1f;	//in seconds
 
-	public int direction = 0;
-	public bool clockwise = false;
+	//public int direction = 0;
+	public bool followLeftWall = false;
 
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
@@ -42,7 +42,7 @@ public class TrackWalker : MonoBehaviour {
 		if (speed == 0) {
 			speed = DEFAULT_SPEED;
 		} else {
-			timeToMoveOneSpace = 1/(speed*GameController.FPS);
+			timeToMoveOneSpace = 1/(speed/**GameController.FPS*/);
 		}
 		frameSpeed = 1f / (2f*speed);
 	}
@@ -61,7 +61,7 @@ public class TrackWalker : MonoBehaviour {
 				if (b){
 					lastBoundary = b;
 				}
-				b = myNode.GetNextBoundary(lastBoundary, !clockwise);
+				b = myNode.GetNextBoundary(lastBoundary, !followLeftWall);
 				if (!(b && b.GetConnectedTo())){
 					targetNode = null;
 					break;

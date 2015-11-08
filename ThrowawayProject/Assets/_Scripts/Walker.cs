@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Walker : MonoBehaviour {
 
-	private static float DEFAULT_SPEED = 0.04f;
+	private static float DEFAULT_SPEED = 1f;
 	private static float TIME_TO_MOVE_ONE_SPACE = 1f;	//in seconds
 
-	public int direction = 0;
-	public bool clockwise = false;
+	//public int direction = 0;
+	public bool followLeftWall = false;
 
 	//These attributes will have default values. However, they can be changed.
 	public float speed;
@@ -35,7 +35,7 @@ public class Walker : MonoBehaviour {
 		if (speed <= 0) {
 			speed = DEFAULT_SPEED;
 		} else {
-			timeToMoveOneSpace = 1/(speed*GameController.FPS);
+			timeToMoveOneSpace = 1/(speed/**GameController.FPS*/);
 		}
 		frameSpeed = 1f / (2f*speed);
 		if (allowedTerrain.Length == 0) {
@@ -51,7 +51,7 @@ public class Walker : MonoBehaviour {
 		Debug.Log ("Are we allowed to move to target node? " + moveToTargetNode);*/
 		if (targetNode == null) {
 			//Get the next node
-			targetNode = myNode.GetNextNodeFromBoundary(lastBoundary, !clockwise, allowedTerrain);
+			targetNode = myNode.GetNextNodeFromBoundary(lastBoundary, !followLeftWall, allowedTerrain);
 			//Debug.Log ("Got next node: " + targetNode);
 
 			lastBoundary = Node.GetSharedBoundary(targetNode, myNode);

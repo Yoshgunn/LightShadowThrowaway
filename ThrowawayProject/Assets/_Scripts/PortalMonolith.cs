@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -564,7 +564,7 @@ public class PortalMonolith : MonoBehaviour {
 				if (debugging){
 					Debug.Log ("Preserving pathfinding...");
 				}
-				pointingToMe = nodes[0].GetNodePointingToMe();
+				pointingToMe = nodes[0].GetPreviousNode();
 				if (pointingToMe && debugging){
 					Debug.Log ("There's a node pointing to me");
 				}

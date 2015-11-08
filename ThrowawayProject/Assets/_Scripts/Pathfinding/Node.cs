@@ -20,6 +20,7 @@ public class Node : MonoBehaviour {
 
 	public Boundary[] boundaries = new Boundary[4];
 	public Transform placeholder = null;
+	public float distanceBelow = 1f;
 	private Node nextNode = null;	//The next node in the path. If it's null, then this is the last space in the path (not necessarily the goal though).
 	private bool marked = false;	//Is this node part of the path?
 	private float gScore = -1;		//Cost from start along best known path during pathfinding.
@@ -138,7 +139,7 @@ public class Node : MonoBehaviour {
 		return nextNode;
 	}
 
-	public Node GetNodePointingToMe(){
+	public Node GetPreviousNode(){
 		//TODO: This isn't always returning the correct value, because the boundaries may not be connected anymore!
 		if (marked) {
 			foreach (Boundary b in boundaries) {
@@ -490,7 +491,7 @@ public class Node : MonoBehaviour {
 	//Returns the position that something should be in to be considered 'on' this node. Directly above this node (0.5)
 	public Vector3 GetPositionAbove(){
 		//return new Vector3(this.transform.position.x, this.transform.position.y+0.5f, this.transform.position.z);
-		return new Vector3(placeholder.position.x, placeholder.position.y+0.5f, placeholder.position.z);
+		return new Vector3(placeholder.position.x, placeholder.position.y+distanceBelow, placeholder.position.z);
 	}
 
 	//Returns the position of this node (the position is determined by the 'placeholder' child object)
@@ -499,7 +500,8 @@ public class Node : MonoBehaviour {
 	}
 
 	//Determine whether or not two nodes are direct neighbors
-	public bool IsNeighborOf(Node n){
+	//DEPRECATED: See IsConnectedTo(Node)
+	/*public bool IsNeighborOf(Node n){
 		foreach (Boundary b in boundaries) {
 			if (b.GetConnectedTo()){
 				if (b.GetConnectedTo().GetNode().Equals (n)){
@@ -508,7 +510,7 @@ public class Node : MonoBehaviour {
 			}
 		}
 		return false;
-	}
+	}*/
 
 	//Determine whether or not two nodes WOULD be neighbors if they were both active.
 	public bool WouldBeNeighborOf(Node n){

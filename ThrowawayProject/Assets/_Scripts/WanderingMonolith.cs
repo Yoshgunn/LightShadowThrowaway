@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WanderingMonolith : MonoBehaviour, Triggerable {
 
-	private static float DEFAULT_SPEED = 0.02f;
+	private static float DEFAULT_SPEED = 0.5f;
 	private static float TIME_TO_MOVE_ONE_SPACE = 2f;	//in seconds
 
 	//These attributes will have default values. However, they can be changed.
@@ -31,8 +31,10 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 	
 	// Use this for initialization
 	void Start () {
-		targetPos = transform.GetChild (0).transform.localPosition;
-		myObject = transform.GetChild (transform.childCount-1).gameObject;
+		//targetPos = transform.GetChild (0).transform.localPosition;
+		//myObject = transform.GetChild (transform.childCount-1).gameObject;
+		targetPos = transform.GetChild (1).transform.localPosition;
+		myObject = transform.GetChild (0).gameObject;
 		startingPos = myObject.transform.localPosition;
 		//targetRelativePos = targetPos - startingPos;
 		//currentRelativePos = Vector3.zero;
@@ -43,7 +45,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		if (speed == 0) {
 			speed = DEFAULT_SPEED;
 		} else {
-			timeToMoveOneSpace = 1/(speed*GameController.FPS);
+			timeToMoveOneSpace = 1/(speed/**GameController.FPS*/);
 		}
 	}
 	
@@ -86,7 +88,7 @@ public class WanderingMonolith : MonoBehaviour, Triggerable {
 		if (triggered) {
 			//Get the target pos
 			if (!wasTriggered){
-				targetPos = transform.GetChild (curChild).transform.localPosition;
+				targetPos = transform.GetChild (curChild+1).transform.localPosition;
 				Debug.Log ("Setting new child as target: " + targetPos);
 				//Debug.Log ("Setting the target position to: " + targetPos);
 				curChild++;

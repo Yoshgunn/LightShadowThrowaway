@@ -113,7 +113,7 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 72581295}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!23 &42649313
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -321,9 +321,9 @@ Transform:
   m_LocalPosition: {x: 5, y: 1, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 707678656}
   - {fileID: 1948621600}
   - {fileID: 42649312}
-  - {fileID: 707678656}
   m_Father: {fileID: 0}
   m_RootOrder: 11
 --- !u!114 &72581296
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eadb259f9f23284ba55d752fd9e4be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .100000001
+  speed: 0
   shake: 1
   startShakeTimer: .5
   shakeAmount: .100000001
@@ -1636,7 +1636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1537653101}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!1001 &376396756
 Prefab:
   m_ObjectHideFlags: 0
@@ -3504,7 +3504,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 72581295}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!23 &707678657
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6727,9 +6727,9 @@ Transform:
   m_LocalPosition: {x: -5, y: 1, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 375471745}
   - {fileID: 1618414935}
   - {fileID: 1622479838}
-  - {fileID: 375471745}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!114 &1537653102
@@ -6743,7 +6743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eadb259f9f23284ba55d752fd9e4be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: .100000001
+  speed: 2
   shake: 1
   startShakeTimer: .5
   shakeAmount: .100000001
@@ -7006,7 +7006,7 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1537653101}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &1618414936
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7124,7 +7124,7 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 1537653101}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!23 &1622479839
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8968,7 +8968,7 @@ Transform:
   m_LocalScale: {x: .200000003, y: .200000003, z: .200000003}
   m_Children: []
   m_Father: {fileID: 72581295}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &2029016023
 GameObject:
   m_ObjectHideFlags: 0
