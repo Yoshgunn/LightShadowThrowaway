@@ -21,6 +21,10 @@ public class PathfindingPlayer : MonoBehaviour {
 
 	// Animation Stuff
 	public Animator animatorController;
+	public Node targetStandNode;
+
+	// UI Stuff
+	public GameObject pauseButton;
 
 	// Use this for initialization
 	void Start () {
@@ -226,5 +230,26 @@ public class PathfindingPlayer : MonoBehaviour {
 		//This probably shouldn't be used often, let the pathfinding handle it
 		//I'm using it now for the doorways, since you have to 'teleport'
 		this.currentNode = n;
+	}
+
+	public void StandUp ()
+	{
+		// Play animation
+		animatorController.SetTrigger ( "StandUp" );
+
+		// Show the Pause Button
+		pauseButton.SetActive ( true );
+
+		// Walk forward in a sec
+		Invoke ( "GoOneStepForward", 0.25f );
+	}
+
+	public void GoOneStepForward ()
+	{
+		// Get into position
+		Node.FindPath ( targetStandNode );
+
+		// Allow control to occur
+		// -- TBD --
 	}
 }
