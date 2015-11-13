@@ -234,14 +234,15 @@ public class PathfindingPlayer : MonoBehaviour {
 
 	public void StandUp ()
 	{
+		Debug.Log ("Stand up");
 		// Play animation
 		animatorController.SetTrigger ( "StandUp" );
 
 		// Show the Pause Button
-		pauseButton.SetActive ( true );
+		//pauseButton.SetActive ( true );
 
 		// Walk forward in a sec
-		Invoke ( "GoOneStepForward", 0.25f );
+		//Invoke ( "GoOneStepForward", 0.25f );
 	}
 
 	public void GoOneStepForward ()

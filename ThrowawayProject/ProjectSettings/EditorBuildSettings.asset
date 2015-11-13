@@ -53,9 +53,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/ShadowTrigger.unity
   - enabled: 0
     path: Assets/_Scenes/StressTest.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Test1.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/PressRelease1/PressRelease_1.1.unity
   - enabled: 1
     path: Assets/_Scenes/PressRelease1/PressRelease_1.2.unity

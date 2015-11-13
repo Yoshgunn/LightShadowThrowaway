@@ -47,8 +47,9 @@ public class GameController : MonoBehaviour {
 			if (torchLightTimer==0){
 				//First, turn on aesthetic player light
 				//TODO: we might need to make this more robust if there are a lot of 'aesthetic' lights
-				if (PathfindingPlayer.PLAYER)
-					PathfindingPlayer.PLAYER.transform.GetChild (0).transform.GetComponent<Light>().enabled = true;
+				//if (PathfindingPlayer.PLAYER)
+					//PathfindingPlayer.PLAYER.GetComponentInChildren<MyLight>().transform.GetComponent<Light>().enabled = true;
+					//PathfindingPlayer.PLAYER.transform.GetChild (0).transform.GetComponent<Light>().enabled = true;
 
 				foreach (Torch t in Torch.allTorches) {
 					if (t.startsOn){

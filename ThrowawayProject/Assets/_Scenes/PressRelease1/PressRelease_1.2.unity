@@ -292,6 +292,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 11481628, guid: b5582560b00792a4993b9d029650494b, type: 2}
+      propertyPath: distanceBelow
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5582560b00792a4993b9d029650494b, type: 2}
   m_IsPrefabParent: 0
@@ -2711,6 +2715,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  distanceBelow: 1
   isActive: 1
 --- !u!1001 &1566305545
 Prefab:
@@ -2791,6 +2796,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placeholder: {fileID: 0}
+  distanceBelow: 1
   isActive: 1
 --- !u!1 &1678792072
 GameObject:
@@ -3112,15 +3118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8a0444ee64e864da41572c86a72f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 90
-  rotateInX: 0
-  rotateInY: 0
-  rotateInZ: 1
-  rotateBackwards: 1
-  speed: 0
-  shake: 1
-  startShakeTimer: .5
-  shakeAmount: .100000001
 --- !u!1 &1989174150
 GameObject:
   m_ObjectHideFlags: 0
