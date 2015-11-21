@@ -1,0 +1,103 @@
+Initialize engine version: 5.2.2f1 (3757309da7e7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [dlumd9.dll 9.18.7.6]
+    Renderer: AMD Radeon HD 6800 Series
+    Vendor:   ATI
+    VRAM:     1011 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 NULL=1 RESZ=1 SlowINTZ=1
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.070 seconds
+desktop: 1920x1080 60Hz; virtual: 4000x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Jacquies\Documents\Unity5\JFMC\LightShadowThrowaway\ThrowawayProject\Target\Windows\SizeTest_Data\Managed\System.dll (this message is harmless)
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Material:Internal_CreateWithShader (UnityEngine.Material,UnityEngine.Shader)
+  at UnityEngine.Material..ctor (UnityEngine.Shader shader) [0x00000] in <filename unknown>:0 
+  at CameraBackground.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Starting Node: Node (Node)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Stand up
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 1570 -> priority: 1 
+ACTIVATING!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pathfinding...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+ACTIVATING!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pathfinding...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Turn off renderer
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+ACTIVATING!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pathfinding...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Turn off renderer
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+ACTIVATING!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pathfinding...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Turn off renderer
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+ACTIVATING!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Pathfinding...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Turn off renderer
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Turn off renderer
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+

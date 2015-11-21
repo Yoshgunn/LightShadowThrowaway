@@ -31,7 +31,7 @@ Shader "Hidden/BWDiffuse" {
 				result.rgb = bw;
 				
 				//float rep = 1-min(c.r+c.g+c.b,1)
-				result.rgb = lerp(c2.rgb*c3.rgb*0.4, c.rgb, min(256*(c.r+c.g+c.b),1));
+				result.rgb = lerp(c2.rgb*c3.rgb, c.rgb, min(256*(c.r+c.g+c.b),1));
 				
 				return result;
 			}
