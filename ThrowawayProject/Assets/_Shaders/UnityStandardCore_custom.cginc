@@ -65,8 +65,9 @@ UnityLight AdditiveLight (half3 normalWorld, half3 lightDir, half atten)
 	l.ndotl = LambertTerm (normalWorld, l.dir);
 
 	// shadow the light
-	//l.color *= sqrt(sqrt(atten));
-	l.color *= sqrt(atten) * 5;
+	l.color *= sqrt(sqrt(atten))*5;
+	//l.color *= sqrt(atten) * 5;
+	//l.color *= (atten+1)*(atten+1);
 	return l;
 }
 

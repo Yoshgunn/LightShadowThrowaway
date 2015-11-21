@@ -7,12 +7,14 @@ public class CameraBackground : MonoBehaviour {
 	//public float intensity;
 	private Material material;
 	public Texture2D tex;
+	public Texture2D gradTex;
 	
 	// Creates a private material used to the effect
 	void Awake ()
 	{
 		material = new Material( Shader.Find("Hidden/BWDiffuse") );
 		material.SetTexture ("_BGTex", tex);
+		material.SetTexture ("_GradTex", gradTex);
 	}
 	
 	// Postprocess the image
